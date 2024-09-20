@@ -1,0 +1,8 @@
+en:
+  laa_crime_forms_common:
+    nsm:
+      disbursement_type:
+        car: Car mileage
+        motorcycle: Motorcycle mileage
+        bike: Bike mileage
+        other: Other disbursement type

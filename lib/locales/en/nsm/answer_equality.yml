@@ -1,0 +1,6 @@
+en:
+  laa_crime_forms_common:
+    nsm:
+      answer_equality:
+        'yes': Yes, answer the equality questions (takes 2 minutes)
+        'no': No, skip the equality questions

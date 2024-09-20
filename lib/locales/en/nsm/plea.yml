@@ -1,0 +1,16 @@
+ en:
+  laa_crime_forms_common:
+    nsm:
+      plea:
+        guilty: Guilty plea
+        uncontested_breach: Uncontested breach
+        bind_over: Bind over
+        deferred_sentence: Deferred sentence hearing
+        change_solicitor: Change of solicitor
+        arrest_warrant: Warrant of arrest
+        not_guilty: Not guilty plea
+        cracked_trial: Cracked trial
+        contested: Contested breach
+        discontinuance_cat1: Discontinuance or withdrawal
+        discontinuance_cat2: Discontinuance or withdrawal
+        mixed: Mixed plea

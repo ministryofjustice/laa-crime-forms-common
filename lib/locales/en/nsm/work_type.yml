@@ -1,0 +1,10 @@
+en:
+  laa_crime_forms_common:
+    nsm:
+      work_type:
+        attendance_with_counsel: Attendance with counsel
+        attendance_without_counsel: Attendance without counsel
+        preparation: Preparation
+        advocacy: Advocacy
+        travel: Travel
+        waiting: Waiting

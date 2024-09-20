@@ -1,0 +1,26 @@
+en:
+  laa_crime_forms_common:
+    nsm:
+      hearing_outcome:
+        CP01: 'Arrest warrant issued/adjourned indefinitely'
+        CP02: 'Change of solicitor'
+        CP03: 'Representation order withdrawn'
+        CP04: 'Trial: acquitted'
+        CP05: 'Trial: mixed verdicts'
+        CP06: 'Trial: convicted'
+        CP07: 'Discontinued (before any pleas entered)'
+        CP08: 'Discontinued (after pleas entered)'
+        CP09: 'Guilty plea to all charges put – not listed for trial'
+        CP10: 'Guilty plea to all charges put after case listed for trial'
+        CP11: 'Guilty plea to substitute charges put – after case listed for trial'
+        CP12: 'Mix of guilty plea(s) and discontinuance – Not listed for trial'
+        CP13: 'Mix of guilty plea(s) and discontinuance – listed for trial'
+        CP16: 'Committal: discharged'
+        CP17: 'Extradition'
+        CP18: 'Case remitted from Crown to magistrates’ court for sentencing'
+        CP19: 'Deferred sentence'
+        CP20: 'Granted anti-social behaviour order / sexual offences order / other order'
+        CP21: 'Part-granted anti-social behaviour order/ sexual offences order / other order'
+        CP22: 'Refused anti-social behaviour order/ sexual offences order / other order'
+        CP23: 'Varied anti-social behaviour order/ sexual offences order / other order'
+        CP24: 'Discharged anti-social behaviour order/ sexual offences order / other order'

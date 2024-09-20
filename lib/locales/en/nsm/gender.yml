@@ -1,0 +1,7 @@
+en:
+  laa_crime_forms_common:
+    nsm:
+      gender:
+        m: Male
+        f: Female
+        u: Other

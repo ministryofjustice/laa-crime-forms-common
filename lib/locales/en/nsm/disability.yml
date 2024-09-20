@@ -1,0 +1,7 @@
+en:
+  laa_crime_forms_common:
+    nsm:
+      disability:
+        'y': 'Yes'
+        'n': 'No'
+        u: Unknown
