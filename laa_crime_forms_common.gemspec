@@ -17,6 +17,7 @@ Gem::Specification.new do |spec|
   end
 
   spec.add_dependency("i18n", ">= 1.8.11", "< 2")
+  spec.add_dependency("json-schema", ">= 5.0.0", "< 6")
 
   spec.metadata["rubygems_mfa_required"] = "true"
 end
