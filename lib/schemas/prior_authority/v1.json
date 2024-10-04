@@ -1,0 +1,1472 @@
+{
+  "$id": "https://submit-crime-forms.service.justice.gov.uk/schemas/prior_authority/v1.json",
+  "type": "object",
+  "title": "Prior Authority Application payload",
+  "required": [
+    "additional_costs",
+    "client_detained",
+    "court_type",
+    "created_at",
+    "custom_main_offence_name",
+    "custom_prison_name",
+    "custom_service_name",
+    "defendant",
+    "firm_office",
+    "further_information",
+    "incorrect_information",
+    "laa_reference",
+    "main_offence_id",
+    "next_hearing",
+    "next_hearing_date",
+    "no_alternative_quote_reason",
+    "office_code",
+    "plea",
+    "prior_authority_granted",
+    "prison_id",
+    "prison_law",
+    "provider",
+    "psychiatric_liaison",
+    "psychiatric_liaison_reason_not",
+    "quotes",
+    "reason_why",
+    "rep_order_date",
+    "service_type",
+    "solicitor",
+    "status",
+    "subject_to_poca",
+    "supporting_documents",
+    "ufn",
+    "updated_at",
+    "youth_court"
+  ],
+  "properties": {
+    "additional_costs": {
+      "type": "array",
+      "title": "Additional costs associated with the primary quote",
+      "items": {
+        "type": "object",
+        "title": "Additional cost",
+        "required": [
+          "id",
+          "name",
+          "description",
+          "unit_type"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "ID",
+            "examples": [
+              "fa985737-8172-471a-97ea-f2c87c67111b"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "examples": [
+              "A cost"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "examples": [
+              "Lorem ipsum"
+            ]
+          },
+          "unit_type": {
+            "type": "string",
+            "title": "type cost",
+            "enum": ["per_hour", "per_item"],
+            "examples": [
+              "per_hour",
+              "per_item"
+            ]
+          },
+          "cost_per_hour": {
+            "type": ["string", "null"],
+            "title": "Decimal representation of the hourly cost - only required for per_hour costs",
+            "examples": [
+              "10.3"
+            ]
+          },
+          "cost_per_hour_original": {
+            "type": ["string", "null"],
+            "title": "Pre-adjustment hourly cost",
+            "examples": [
+              "10.3"
+            ]
+          },
+          "cost_per_item": {
+            "type": ["string", "null"],
+            "title": "Decimal representation of the per-item cost - only required for per_item costs",
+            "examples": [
+                "10.3"
+            ]
+          },
+          "cost_per_item_original": {
+            "type": ["string", "null"],
+            "title": "Pre-adjustment per-item cost",
+            "examples": [
+                "10.3"
+            ]
+          },
+          "items": {
+            "type": ["integer", "null"],
+            "title": "number of items for per_item costs",
+            "examples": [
+              10
+            ]
+          },
+          "items_original": {
+            "type": ["integer", "null"],
+            "title": "pre-adjustments figure of items for per_item costs",
+            "examples": [
+              10
+            ]
+          },
+          "period": {
+            "type": ["integer", "null"],
+            "title": "duration in minutes for per_hour costs",
+            "examples": [
+              180
+            ]
+          },
+          "period_original": {
+            "type": ["integer", "null"],
+            "title": "pre-adjustment duration in minutes for per_hour costs",
+            "examples": [
+              180
+            ]
+          }
+        },
+        "examples": [
+          [
+            {
+              "id": "fa985737-8172-471a-97ea-f2c87c67111b",
+              "name": "A cost",
+              "description": "Lorem ipsum",
+              "unit_type": "per_hour",
+              "cost_per_hour": "10.3",
+              "cost_per_item": null,
+              "items": null,
+              "period": 180
+            }
+          ]
+        ]
+      },
+      "examples": [
+        [
+          {
+            "id": "fa985737-8172-471a-97ea-f2c87c67111b",
+            "name": "A cost",
+            "description": "Lorem ipsum",
+            "unit_type": "per_hour",
+            "cost_per_hour": "10.3",
+            "cost_per_item": null,
+            "items": null,
+            "period": 180
+          }
+        ]
+      ]
+    },
+    "assessment_comment": {
+      "type": ["string", "null"],
+      "title": "Assessment comment",
+      "examples": [
+        "I don't like this"
+      ]
+    },
+    "client_detained": {
+      "type": ["boolean", "null"],
+      "title": "Whether the client is detained - not relevant for prison law applications",
+      "examples": [
+        true
+      ]
+    },
+    "court_type": {
+      "type": ["string", "null"],
+      "title": "type court - not relevant for prison law applications",
+      "enum": ["central_criminal_court", "magistrates_court", "crown_court", null],
+      "examples": [
+        "central_criminal_court"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "title": "Datetime representation of when the application was first started",
+      "examples": [
+        "2024-08-23T09:27:58.613Z"
+      ]
+    },
+    "custom_main_offence_name": {
+      "type": ["string", "null"],
+      "title": "name the main offence if the main_offence_id is `other`",
+      "examples": [
+        "Jaywalking"
+      ]
+    },
+    "custom_prison_name": {
+        "type": ["string", "null"],
+        "title": "name the prison if the prison_id is `other`",
+        "examples": [
+            "HMP London"
+        ]
+    },
+    "custom_service_name": {
+        "type": ["null", "string"],
+        "title": "name the service being purchase if service_type is `other`",
+        "examples": [
+          "Psychic"
+        ]
+    },
+    "defendant": {
+      "type": "object",
+      "title": "defendant represented",
+      "required": [
+        "maat",
+        "first_name",
+        "last_name",
+        "date_of_birth"
+      ],
+      "properties": {
+        "maat": {
+          "type": ["string", "null"],
+          "title": "MAAT",
+          "examples": [
+            "1234567"
+          ]
+        },
+        "first_name": {
+          "type": "string",
+          "title": "First name",
+          "examples": [
+            "Lanette"
+          ]
+        },
+        "last_name": {
+          "type": "string",
+          "title": "Last name",
+          "examples": [
+            "Rodriguez"
+          ]
+        },
+        "date_of_birth": {
+          "type": "string",
+          "title": "date birth in YYYY-MM-DD",
+          "examples": [
+            "1965-02-02"
+          ]
+        }
+      },
+      "examples": [{
+        "maat": "1234567",
+        "first_name": "Lanette",
+        "last_name": "Rodriguez",
+        "date_of_birth": "1965-02-02"
+      }]
+    },
+    "firm_office": {
+      "type": "object",
+      "title": "firm_office",
+      "required": [
+        "name",
+        "address_line_1",
+        "address_line_2",
+        "town",
+        "postcode",
+        "vat_registered",
+        "account_number"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Firm name",
+          "examples": [
+            "Firm A"
+          ]
+        },
+        "address_line_1": {
+          "type": "null",
+          "title": "Address line 1",
+          "examples": [
+            null
+          ]
+        },
+        "address_line_2": {
+          "type": ["null"],
+          "title": "Address line 2",
+          "examples": [
+            null
+          ]
+        },
+        "town": {
+          "type": "null",
+          "title": "Town",
+          "examples": [
+            null
+          ]
+        },
+        "postcode": {
+          "type": "null",
+          "title": "Postcode",
+          "examples": [
+            null
+          ]
+        },
+        "vat_registered": {
+          "type": "null",
+          "title": "String representation of whether the firm is vat registered",
+          "examples": [
+            null
+          ]
+        },
+        "account_number": {
+          "type": "string",
+          "title": "account to be associated with this application",
+          "examples": [
+            "1A123B"
+          ]
+        }
+      },
+      "examples": [{
+        "name": "Firm A",
+        "address_line_1": null,
+        "address_line_2": null,
+        "town": null,
+        "postcode": null,
+        "vat_registered": null,
+        "account_number": "1A123B"
+      }]
+    },
+    "further_information": {
+      "type": "array",
+      "title": "Any further information provided",
+      "items": {
+        "type": "object",
+        "title": "Further information",
+        "required": [
+          "information_requested",
+          "information_supplied",
+          "caseworker_id",
+          "requested_at",
+          "new",
+          "documents"
+        ],
+        "properties": {
+          "information_requested": {
+            "type": "string",
+            "title": "information by the caseworker",
+            "examples": [
+              "Please state your name"
+            ]
+          },
+          "information_supplied": {
+            "type": ["string", "null"],
+            "title": "information by the provider",
+            "examples": [
+              "My name is John Doe"
+            ]
+          },
+          "caseworker_id": {
+            "type": "string",
+            "title": "ID the caseworker who requested further information",
+            "examples": [
+              "123123123"
+            ]
+          },
+          "requested_at": {
+            "type": "string",
+            "title": "timestamp when the information was requested",
+            "examples": [
+              "2024-08-23T09:27:58.613Z"
+            ]
+          },
+          "new": {
+            "type": "boolean",
+            "title": "Whether this is a newly added",
+            "examples": [
+              true
+            ]
+          },
+          "documents": {
+            "type": "array",
+            "title": "Supporting documents",
+            "items": {
+                "type": "object",
+                "title": "A document",
+                "required": [
+                    "file_name",
+                    "file_type",
+                    "file_size",
+                    "file_path",
+                    "document_type"
+                ],
+                "properties": {
+                    "file_name": {
+                        "type": "string",
+                        "title": "Filename",
+                        "examples": [
+                            "test.png"
+                        ]
+                    },
+                    "file_type": {
+                        "type": "string",
+                        "title": "File type",
+                        "examples": [
+                            "image/png"
+                        ]
+                    },
+                    "file_size": {
+                        "type": "integer",
+                        "title": "File size in bytes",
+                        "examples": [
+                            1234
+                        ]
+                    },
+                    "file_path": {
+                        "type": "string",
+                        "title": "S3 ID of the file",
+                        "examples": [
+                            "test_path"
+                        ]
+                    },
+                    "document_type": {
+                        "type": "string",
+                        "title": "Document type",
+                        "examples": [
+                            "supporting_document"
+                        ]
+                    }
+                },
+                "examples": [{
+                    "file_name": "test.png",
+                    "file_type": "image/png",
+                    "file_size": 1234,
+                    "file_path": "test_path",
+                    "document_type": "supporting_document"
+                },
+                {
+                    "file_name": "test.png",
+                    "file_type": "image/png",
+                    "file_size": 1234,
+                    "file_path": "test_path",
+                    "document_type": "supporting_document"
+                }]
+            },
+            "examples": [
+                [{
+                    "file_name": "test.png",
+                    "file_type": "image/png",
+                    "file_size": 1234,
+                    "file_path": "test_path",
+                    "document_type": "supporting_document"
+                },
+                {
+                    "file_name": "test.png",
+                    "file_type": "image/png",
+                    "file_size": 1234,
+                    "file_path": "test_path",
+                    "document_type": "supporting_document"
+                }]
+            ]
+          }
+        },
+        "examples": [
+          {
+            "information_requested": "What is your name?",
+            "information_supplied": "John Doe",
+            "caseworker_id": "123-123",
+            "requested_at": "TODO",
+            "new": false,
+            "documents": [{
+              "file_name": "test.png",
+              "file_type": "image/png",
+              "file_size": 1234,
+              "file_path": "test_path",
+              "document_type": "supporting_document"
+            }]
+          }
+        ]
+      },
+      "examples": [
+        [
+          {
+            "information_requested": "What is your name?",
+            "information_supplied": "John Doe",
+            "caseworker_id": "123-123",
+            "requested_at": "TODO",
+            "new": false,
+            "documents": [{
+              "file_name": "test.png",
+              "file_type": "image/png",
+              "file_size": 1234,
+              "file_path": "test_path",
+              "document_type": "supporting_document"
+            }]
+          }
+        ]
+      ]
+    },
+    "further_information_explanation": {
+      "type": ["string", "null"],
+      "title": "Further information explanation",
+      "examples": [
+        "Please add info to the case details"
+      ]
+    },
+    "incorrect_information": {
+      "type": "array",
+      "title": "Incorrect information",
+      "items": {
+        "type": "object",
+        "title": "Incorrect information",
+        "required": [
+          "information_requested",
+          "sections_changed",
+          "caseworker_id",
+          "requested_at",
+          "new"
+        ],
+        "properties": {
+          "information_requested": {
+            "type": "string",
+            "title": "Information requested by the caseworker",
+            "examples": [
+              "Please update the case details"
+            ]
+          },
+          "sections_changed": {
+            "type": "array",
+            "title": "Which sections have been corrected",
+            "items": {
+              "type": "string",
+              "title": "Corrected section",
+              "examples": [
+                "case_details"
+              ]
+            },
+            "examples": [
+              [
+                "case_details"
+              ]
+            ]
+          },
+          "caseworker_id": {
+              "type": "string",
+              "title": "ID of the requesting caseworker",
+              "examples": [
+                  "87e88ac6-d89a-4180-80d4-e03285023fb0"
+              ]
+          },
+          "requested_at": {
+              "type": "string",
+              "title": "When corrections were requested",
+              "examples": [
+                  "2024-01-01T01:01:01.000Z"
+              ]
+          },
+          "new": {
+              "type": "boolean",
+              "title": "If these corrections are new in this submission",
+              "examples": [
+                  true
+              ]
+          }
+        },
+        "examples": [{
+          "information_requested": "Please update the case details",
+          "sections_changed": [
+            "case_details"
+          ],
+          "caseworker_id": "87e88ac6-d89a-4180-80d4-e03285023fb0",
+          "requested_at": "2024-01-01T01:01:01.000Z",
+          "new": true
+        }]
+      },
+      "examples": [
+        [{
+          "information_requested": "Please update the case details",
+          "sections_changed": [
+            "case_details"
+          ],
+          "caseworker_id": "87e88ac6-d89a-4180-80d4-e03285023fb0",
+          "requested_at": "2024-01-01T01:01:01.000Z",
+          "new": true
+        }]
+      ]
+    },
+    "incorrect_information_explanation": {
+      "type": ["string", "null"],
+      "title": "Incorrect information explanation",
+      "examples": [
+        "Please correct the case details"
+      ]
+    },
+    "laa_reference": {
+      "type": "string",
+      "title": "LAA reference",
+      "examples": [
+        "LAA-n4AohV"
+      ]
+    },
+    "main_offence_id": {
+      "type": ["string", "null"],
+      "title": "ID of the main offence unless this is prison law",
+      "examples": [
+        "something"
+      ]
+    },
+    "next_hearing": {
+      "type": "boolean",
+      "title": "Whether the date of the next hearing is known",
+      "examples": [
+        true
+      ]
+    },
+    "next_hearing_date": {
+      "type": ["string", "null"],
+      "title": "next date if known",
+      "examples": [
+        "2024-08-24"
+      ]
+    },
+    "no_alternative_quote_reason": {
+      "type": ["string", "null"],
+      "title": "Why no alternative quotes are given if none are given",
+      "examples": [
+        "a reason"
+      ]
+    },
+    "office_code": {
+      "type": "string",
+      "title": "Office code",
+      "examples": [
+        "1A123B"
+      ]
+    },
+    "pending_decision": {
+      "type": ["string", "null"],
+      "title": "Stashed provisional decision",
+      "enum": ["granted", "part_grant", "rejected"],
+      "examples": [
+        "granted"
+      ]
+    },
+    "pending_granted_explanation": {
+      "type": ["string", "null"],
+      "title": "Stashed grant reasoning",
+      "examples": [
+        "I like this"
+      ]
+    },
+    "pending_part_grant_explanation": {
+      "type": ["string", "null"],
+      "title": "Stashed part grant reasoning",
+      "examples": [
+        "I quite like this"
+      ]
+    },
+    "pending_rejected_explanation": {
+      "type": ["string", "null"],
+      "title": "Stashed rejection reasoning",
+      "examples": [
+        "I don't like this"
+      ]
+    },
+    "plea": {
+      "type": ["string", "null"],
+      "title": "Plea unless this is prison law",
+      "enum": ["guilty", "not_guilty", "mixed", "unknown", null],
+      "examples": [
+          "something"
+      ]
+    },
+    "prior_authority_granted": {
+        "type": "boolean",
+        "title": "Whether prior authority has previously been granted",
+        "examples": [
+            false
+        ]
+    },
+    "prison_id": {
+      "type": ["string", "null"],
+      "title": "prison_id",
+      "examples": [
+        "something"
+      ]
+    },
+    "prison_law": {
+      "type": "boolean",
+      "title": "Is this a Prison Law case",
+      "examples": [
+        true
+      ]
+    },
+    "provider": {
+      "type": ["object", "null"],
+      "title": "person who originated the application",
+      "required": [
+        "email",
+        "description"
+      ],
+      "properties": {
+        "email": {
+          "type": "string",
+          "title": "Email",
+          "examples": [
+            "provider@example.com"
+          ]
+        },
+        "description": {
+          "type": "null",
+          "title": "Description",
+          "examples": [
+            null
+          ]
+        }
+      },
+      "examples": [{
+        "email": "provider@example.com",
+        "description": null
+      }]
+    },
+    "psychiatric_liaison": {
+      "type": ["boolean", "null"],
+      "title": "Psychiatric liaison service accessed",
+      "examples": [
+        false
+      ]
+    },
+    "psychiatric_liaison_reason_not": {
+      "type": ["string", "null"],
+      "title": "Why psychiatric liaison service not accessed",
+      "examples": [
+        "whatever you like"
+      ]
+    },
+    "quotes": {
+      "type": "array",
+      "title": "quotes",
+      "items": {
+        "type": "object",
+        "title": "A Schema",
+        "required": [
+          "id",
+          "organisation",
+          "postcode",
+          "primary",
+          "ordered_by_court",
+          "related_to_post_mortem",
+          "cost_per_hour",
+          "cost_per_item",
+          "items",
+          "period",
+          "travel_time",
+          "travel_cost_per_hour",
+          "travel_cost_reason",
+          "additional_cost_list",
+          "additional_cost_total",
+          "contact_first_name",
+          "contact_last_name",
+          "town",
+          "document",
+          "cost_type",
+          "item_type",
+          "cost_item_type",
+          "cost_multiplier"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "ID",
+            "examples": [
+              "bf7e14df-dfc2-4d14-a646-99a0c109fea8"
+            ]
+          },
+          "organisation": {
+            "type": "string",
+            "title": "Organisation",
+            "examples": [
+              "Some org"
+            ]
+          },
+          "postcode": {
+            "type": "string",
+            "title": "Postcode",
+            "examples": [
+              "CR0 1RE"
+            ]
+          },
+          "primary": {
+            "type": "boolean",
+            "title": "Is this the primary quote",
+            "examples": [
+              true
+            ]
+          },
+          "ordered_by_court": {
+            "type": ["boolean", "null"],
+            "title": "Ordered by court",
+            "examples": [
+              null
+            ]
+          },
+          "related_to_post_mortem": {
+            "type": ["boolean", "null"],
+            "title": "Related to a post mortem",
+            "examples": [
+              true
+            ]
+          },
+          "cost_per_hour": {
+            "type": ["string", "null"],
+            "title": "Cost per hour",
+            "examples": [
+              "10.0"
+            ]
+          },
+          "cost_per_hour_original": {
+            "type": ["string", "null"],
+            "title": "Pre-adjustment cost per hour",
+            "examples": [
+              "10.0"
+            ]
+          },
+          "cost_per_item": {
+            "type": ["string", "null"],
+            "title": "Cost per item",
+            "examples": [
+                "10.3"
+            ]
+          },
+          "cost_per_item_original": {
+            "type": ["string", "null"],
+            "title": "Pre-adjustment cost per item",
+            "examples": [
+                "10.3"
+            ]
+          },
+          "items": {
+            "type": ["integer", "null"],
+            "title": "items",
+            "examples": [
+              10
+            ]
+          },
+          "items_original": {
+            "type": ["integer", "null"],
+            "title": "Pre-adjustment items",
+            "examples": [
+              10
+            ]
+          },
+          "period": {
+            "type": ["integer", "null"],
+            "title": "period",
+            "examples": [
+              180
+            ]
+          },
+          "period_original": {
+            "type": ["integer", "null"],
+            "title": "Pre-adjustment period",
+            "examples": [
+              180
+            ]
+          },
+          "travel_time": {
+            "type": ["integer", "null"],
+            "title": "Travel time",
+            "examples": [
+              150
+            ]
+          },
+          "travel_time_original": {
+            "type": ["integer", "null"],
+            "title": "Pre-adjustment travel time",
+            "examples": [
+              150
+            ]
+          },
+          "travel_cost_per_hour": {
+            "type": ["string", "null"],
+            "title": "Travel cost per hour",
+            "examples": [
+              "50.0"
+            ]
+          },
+          "travel_cost_per_hour_original": {
+            "type": ["string", "null"],
+            "title": "Pre-adjustment travel cost per hour",
+            "examples": [
+              "50.0"
+            ]
+          },
+          "travel_cost_reason": {
+            "type": ["string", "null"],
+            "title": "Travel cost reason",
+            "examples": [
+              "Reasons"
+            ]
+          },
+          "additional_cost_list": {
+            "type": ["string", "null"],
+            "title": "Additional costs for non-primary quotes",
+            "examples": [
+              "Cost 1\nCost2"
+            ]
+          },
+          "additional_cost_total": {
+            "type": ["string", "null"],
+            "title": "Total of additional costs for non-primary quotes",
+            "examples": [
+              "100.35"
+            ]
+          },
+          "contact_first_name": {
+            "type": "string",
+            "title": "Contact ifrst name",
+            "examples": [
+              "Joe"
+            ]
+          },
+          "contact_last_name": {
+            "type": "string",
+            "title": "contact_last_name",
+            "examples": [
+              "Bloggs"
+            ]
+          },
+          "town": {
+            "type": ["string", "null"],
+            "title": "town",
+            "examples": [
+              "Slough"
+            ]
+          },
+          "document": {
+            "type": ["object", "null"],
+            "title": "Quote document (required for primary quote)",
+            "required": [
+              "file_name",
+              "file_type",
+              "file_size",
+              "file_path",
+              "document_type"
+            ],
+            "properties": {
+              "file_name": {
+                "type": ["string", "null"],
+                "title": "file_name",
+                "examples": [
+                  "test.png"
+                ]
+              },
+              "file_type": {
+                "type": ["string", "null"],
+                "title": "file_type",
+                "examples": [
+                  "image/png"
+                ]
+              },
+              "file_size": {
+                "type": ["integer", "null"],
+                "title": "file_size",
+                "examples": [
+                  1234
+                ]
+              },
+              "file_path": {
+                "type": ["string", "null"],
+                "title": "file_path",
+                "examples": [
+                  "test_path"
+                ]
+              },
+              "document_type": {
+                "type": ["string", "null"],
+                "title": "document_type",
+                "examples": [
+                  "quote_document"
+                ]
+              }
+            },
+            "examples": [{
+              "file_name": "test.png",
+              "file_type": "image/png",
+              "file_size": 1234,
+              "file_path": "test_path",
+              "document_type": "quote_document"
+            }]
+          },
+          "cost_type": {
+            "type": "string",
+            "title": "Cost type",
+            "enum": ["per_hour", "per_item"],
+            "examples": [
+              "per_hour"
+            ]
+          },
+          "item_type": {
+            "type": ["string", "null"],
+            "title": "Item type",
+            "enum": ["item", "minute", "word", "page", null],
+            "examples": [
+                "item"
+            ]
+          },
+          "cost_item_type": {
+            "type": ["string", "null"],
+            "title": "Cost item type",
+            "enum": ["item", "minute", "thousand_words", "page", null],
+            "examples": [
+              "item"
+            ]
+          },
+          "cost_multiplier": {
+            "type": ["integer", "string"],
+            "title": "Cost multiplier (integer or decimal number represented as string)",
+            "examples": [
+              "1.0"
+            ]
+          }
+        },
+        "examples": [{
+          "id": "bf7e14df-dfc2-4d14-a646-99a0c109fea8",
+          "organisation": "LAA",
+          "postcode": "CR0 1RE",
+          "primary": true,
+          "ordered_by_court": null,
+          "related_to_post_mortem": true,
+          "cost_per_hour": "10.0",
+          "cost_per_item": null,
+          "items": null,
+          "period": 180,
+          "travel_time": 150,
+          "travel_cost_per_hour": "50.0",
+          "travel_cost_reason": "Reasons",
+          "additional_cost_list": null,
+          "additional_cost_total": null,
+          "contact_first_name": "Joe",
+          "contact_last_name": "Bloggs",
+          "town": "Slough",
+          "document": {
+            "file_name": "test.png",
+            "file_type": "image/png",
+            "file_size": 1234,
+            "file_path": "test_path",
+            "document_type": "quote_document"
+          },
+          "cost_type": "per_hour",
+          "item_type": "item",
+          "cost_item_type": "item",
+          "cost_multiplier": "1"
+        },
+        {
+          "id": "41f8af23-067b-438b-89cf-cafe613bb630",
+          "organisation": "LAA",
+          "postcode": "CR0 1RE",
+          "primary": false,
+          "ordered_by_court": null,
+          "related_to_post_mortem": true,
+          "cost_per_hour": "10.0",
+          "cost_per_item": null,
+          "items": null,
+          "period": 180,
+          "travel_time": 150,
+          "travel_cost_per_hour": "50.0",
+          "travel_cost_reason": "Reasons",
+          "additional_cost_list": null,
+          "additional_cost_total": null,
+          "contact_first_name": "Joe",
+          "contact_last_name": "Bloggs",
+          "town": "Slough",
+          "document": {
+            "file_name": "test.png",
+            "file_type": "image/png",
+            "file_size": 1234,
+            "file_path": "test_path",
+            "document_type": "quote_document"
+          },
+          "cost_type": "per_hour",
+          "item_type": "item",
+          "cost_item_type": "item",
+          "cost_multiplier": "1"
+        }]
+      },
+      "examples": [
+        [{
+          "id": "bf7e14df-dfc2-4d14-a646-99a0c109fea8",
+          "organisation": "LAA",
+          "postcode": "CR0 1RE",
+          "primary": true,
+          "ordered_by_court": null,
+          "related_to_post_mortem": true,
+          "cost_per_hour": "10.0",
+          "cost_per_item": null,
+          "items": null,
+          "period": 180,
+          "travel_time": 150,
+          "travel_cost_per_hour": "50.0",
+          "travel_cost_reason": "Reasons",
+          "additional_cost_list": null,
+          "additional_cost_total": null,
+          "contact_first_name": "Joe",
+          "contact_last_name": "Bloggs",
+          "town": "Slough",
+          "document": {
+              "file_name": "test.png",
+              "file_type": "image/png",
+              "file_size": 1234,
+              "file_path": "test_path",
+              "document_type": "quote_document"
+          },
+          "cost_type": "per_hour",
+          "item_type": "item",
+          "cost_item_type": "item",
+          "cost_multiplier": "1"
+        },
+        {
+          "id": "41f8af23-067b-438b-89cf-cafe613bb630",
+          "organisation": "LAA",
+          "postcode": "CR0 1RE",
+          "primary": false,
+          "ordered_by_court": null,
+          "related_to_post_mortem": true,
+          "cost_per_hour": "10.0",
+          "cost_per_item": null,
+          "items": null,
+          "period": 180,
+          "travel_time": 150,
+          "travel_cost_per_hour": "50.0",
+          "travel_cost_reason": "Reasons",
+          "additional_cost_list": null,
+          "additional_cost_total": null,
+          "contact_first_name": "Joe",
+          "contact_last_name": "Bloggs",
+          "town": "Slough",
+          "document": {
+            "file_name": "test.png",
+            "file_type": "image/png",
+            "file_size": 1234,
+            "file_path": "test_path",
+            "document_type": "quote_document"
+          },
+          "cost_type": "per_hour",
+          "item_type": "item",
+          "cost_item_type": "item",
+          "cost_multiplier": "1"
+        }]
+      ]
+    },
+    "reason_why": {
+      "type": "string",
+      "title": "Reason why prior authority is requested",
+      "examples": [
+        "something"
+      ]
+    },
+    "rep_order_date": {
+      "type": ["string", "null"],
+      "title": "Representation order date",
+      "examples": [
+        "2024-01-01"
+      ]
+    },
+    "resubmission_deadline": {
+      "type": ["string", "null"],
+      "title": "Resubmission deadline timestamp",
+      "examples": [
+         "2024-08-23T12:20:28.141Z"
+      ]
+    },
+    "service_type": {
+      "type": "string",
+      "title": "service type identifier",
+      "examples": [
+        "pathologist_report"
+      ]
+    },
+    "solicitor": {
+      "type": "object",
+      "title": "solicitor",
+      "required": [
+        "reference_number",
+        "contact_email",
+        "contact_first_name",
+        "contact_last_name"
+      ],
+      "properties": {
+        "reference_number": {
+          "type": "null",
+          "title": "reference_number"
+        },
+        "contact_email": {
+          "type": "string",
+          "title": "Email",
+          "examples": [
+            "james@email.com"
+          ]
+        },
+        "contact_first_name": {
+          "type": "string",
+          "title": "First name",
+          "examples": [
+            "James"
+          ]
+        },
+        "contact_last_name": {
+          "type": "string",
+          "title": "Last name",
+          "examples": [
+            "Blake"
+          ]
+        }
+      },
+      "examples": [{
+        "reference_number": null,
+        "contact_email": "james@email.com",
+        "contact_first_name": "James",
+        "contact_last_name": "Blake"
+      }]
+    },
+    "status": {
+      "type": "string",
+      "title": "current state of application",
+      "examples": [
+        "sent_back"
+      ]
+    },
+    "subject_to_poca": {
+      "type": ["boolean", "null"],
+      "title": "Case is subject to POCA",
+      "examples": [
+        true
+      ]
+    },
+    "supporting_documents": {
+      "type": "array",
+      "title": "supporting_documents",
+      "items": {
+        "type": "object",
+        "title": "A Schema",
+        "required": [
+          "file_name",
+          "file_type",
+          "file_size",
+          "file_path",
+          "document_type"
+        ],
+        "properties": {
+          "file_name": {
+            "type": "string",
+            "title": "file_name",
+            "examples": [
+              "test.png"
+            ]
+          },
+          "file_type": {
+            "type": "string",
+            "title": "file_type",
+            "examples": [
+              "image/png"
+            ]
+          },
+          "file_size": {
+            "type": "integer",
+            "title": "file_size",
+            "examples": [
+              1234
+            ]
+          },
+          "file_path": {
+            "type": "string",
+            "title": "file_path",
+            "examples": [
+              "test_path"
+            ]
+          },
+          "document_type": {
+            "type": "string",
+            "title": "document_type",
+            "examples": [
+              "supporting_document"
+            ]
+          }
+        },
+        "examples": [{
+          "file_name": "test.png",
+          "file_type": "image/png",
+          "file_size": 1234,
+          "file_path": "test_path",
+          "document_type": "supporting_document"
+        },
+        {
+          "file_name": "test.png",
+          "file_type": "image/png",
+          "file_size": 1234,
+          "file_path": "test_path",
+          "document_type": "supporting_document"
+        }]
+      },
+      "examples": [
+        [{
+          "file_name": "test.png",
+          "file_type": "image/png",
+          "file_size": 1234,
+          "file_path": "test_path",
+          "document_type": "supporting_document"
+        },
+        {
+          "file_name": "test.png",
+          "file_type": "image/png",
+          "file_size": 1234,
+          "file_path": "test_path",
+          "document_type": "supporting_document"
+        }]
+      ]
+    },
+    "ufn": {
+      "type": "string",
+      "title": "ufn",
+      "examples": [
+        "120423/123"
+      ]
+    },
+    "updated_at": {
+      "type": "string",
+      "title": "updated_at",
+      "examples": [
+        "2024-08-23T12:20:28.141Z"
+      ]
+    },
+    "updates_needed": {
+      "type": ["array", "null"],
+      "title": "List of changes that need to be made in an RFI loop",
+      "items": {
+        "type": "string",
+        "enum": ["further_information", "incorrect_information"]
+      },
+      "examples": [
+        ["incorrect_information"]
+      ]
+    },
+    "youth_court": {
+      "type": ["boolean", "null"],
+      "title": "Is this a youth court case",
+      "examples": [
+        true
+      ]
+    }
+  },
+  "examples": [{
+    "office_code": "1A123B",
+    "prison_law": true,
+    "ufn": "120423/123",
+    "laa_reference": "LAA-n4AohV",
+    "created_at": "2024-08-23T09:27:58.613Z",
+    "updated_at": "2024-08-23T12:20:28.141Z",
+    "reason_why": "something",
+    "rep_order_date": null,
+    "client_detained": true,
+    "subject_to_poca": true,
+    "next_hearing_date": "2024-08-24",
+    "plea": "something",
+    "court_type": "central_criminal_court",
+    "youth_court": true,
+    "psychiatric_liaison": false,
+    "psychiatric_liaison_reason_not": "whatever you like",
+    "next_hearing": true,
+    "prior_authority_granted": false,
+    "no_alternative_quote_reason": "a reason",
+    "service_type": "pathologist_report",
+    "custom_service_name": null,
+    "main_offence_id": "something",
+    "custom_main_offence_name": null,
+    "prison_id": "something",
+    "custom_prison_name": null,
+    "supporting_documents": [{
+      "file_name": "test.png",
+      "file_type": "image/png",
+      "file_size": 1234,
+      "file_path": "test_path",
+      "document_type": "supporting_document"
+    },
+    {
+      "file_name": "test.png",
+      "file_type": "image/png",
+      "file_size": 1234,
+      "file_path": "test_path",
+      "document_type": "supporting_document"
+    }],
+    "provider": {
+      "email": "provider@example.com",
+      "description": null
+    },
+    "firm_office": {
+      "name": "Firm A",
+      "address_line_1": null,
+      "address_line_2": null,
+      "town": null,
+      "postcode": null,
+      "vat_registered": null,
+      "account_number": "1A123B"
+    },
+    "solicitor": {
+      "reference_number": null,
+      "contact_email": "james@email.com",
+      "contact_first_name": "James",
+      "contact_last_name": "Blake"
+    },
+    "defendant": {
+      "maat": "1234567",
+      "first_name": "Lanette",
+      "last_name": "Rodriguez",
+      "date_of_birth": "1965-02-02"
+    },
+    "quotes": [{
+      "id": "bf7e14df-dfc2-4d14-a646-99a0c109fea8",
+      "organisation": "LAA",
+      "postcode": "CR0 1RE",
+      "primary": true,
+      "ordered_by_court": null,
+      "related_to_post_mortem": true,
+      "cost_per_hour": "10.0",
+      "cost_per_item": null,
+      "items": null,
+      "period": 180,
+      "travel_time": 150,
+      "travel_cost_per_hour": "50.0",
+      "travel_cost_reason": "Reasons",
+      "additional_cost_list": null,
+      "additional_cost_total": null,
+      "contact_first_name": "Joe",
+      "contact_last_name": "Bloggs",
+      "town": "Slough",
+      "document": {
+        "file_name": "test.png",
+        "file_type": "image/png",
+        "file_size": 1234,
+        "file_path": "test_path",
+        "document_type": "quote_document"
+      },
+      "cost_type": "per_hour",
+      "item_type": "item",
+      "cost_item_type": "item",
+      "cost_multiplier": "1"
+    }],
+    "additional_costs": [],
+    "further_information": [],
+    "incorrect_information": [{
+      "information_requested": "Please update the case details",
+      "sections_changed": [
+        "first_name"
+      ],
+      "caseworker_id": "87e88ac6-d89a-4180-80d4-e03285023fb0",
+      "requested_at": "2024-01-01T01:01:01.000Z",
+      "new": true
+    }],
+    "status": "sent_back"
+  }]
+}
