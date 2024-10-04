@@ -347,11 +347,8 @@
         "title": "Further information",
         "required": [
           "information_requested",
-          "information_supplied",
           "caseworker_id",
-          "requested_at",
-          "new",
-          "documents"
+          "requested_at"
         ],
         "properties": {
           "information_requested": {
@@ -523,10 +520,8 @@
         "title": "Incorrect information",
         "required": [
           "information_requested",
-          "sections_changed",
           "caseworker_id",
-          "requested_at",
-          "new"
+          "requested_at"
         ],
         "properties": {
           "information_requested": {
