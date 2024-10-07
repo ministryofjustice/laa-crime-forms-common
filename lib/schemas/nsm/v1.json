@@ -1,0 +1,1998 @@
+{
+  "$id":"https://submit-crime-forms.service.justice.gov.uk/schemas/nsm/v1.json",
+  "title":"NSM claim payload",
+  "type":"object",
+  "required":[
+    "adjusted_total",
+    "adjusted_total_inc_vat",
+    "agent_instructed",
+    "answer_equality",
+    "arrest_warrant_date",
+    "assessment_comment",
+    "assigned_counsel",
+    "claim_type",
+    "cntp_date",
+    "cntp_order",
+    "concluded",
+    "conclusion",
+    "court",
+    "cracked_trial_date",
+    "created_at",
+    "defence_statement",
+    "defendants",
+    "disability",
+    "disbursements",
+    "ethnic_group",
+    "firm_office",
+    "first_hearing_date",
+    "gender",
+    "has_disbursements",
+    "hearing_outcome",
+    "id",
+    "is_other_info",
+    "laa_reference",
+    "letters_and_calls",
+    "main_offence",
+    "main_offence_date",
+    "matter_type",
+    "number_of_hearing",
+    "number_of_witnesses",
+    "office_code",
+    "other_info",
+    "plea",
+    "plea_category",
+    "preparation_time",
+    "prosecution_evidence",
+    "reason_for_claim_other_details",
+    "reasons_for_claim",
+    "remitted_to_magistrate",
+    "remitted_to_magistrate_date",
+    "rep_order_date",
+    "representation_order_withdrawn_date",
+    "send_by_post",
+    "signatory_name",
+    "solicitor",
+    "stage_reached",
+    "status",
+    "submitted_total",
+    "submitted_total_inc_vat",
+    "submitter",
+    "supplemental_claim",
+    "supporting_evidences",
+    "time_spent",
+    "ufn",
+    "unassigned_counsel",
+    "updated_at",
+    "vat_rate",
+    "wasted_costs",
+    "work_after",
+    "work_after_date",
+    "work_before",
+    "work_before_date",
+    "work_completed_date",
+    "work_item_pricing",
+    "work_items",
+    "youth_court"
+  ],
+  "properties":{
+    "adjusted_total":{
+      "examples":[
+        null
+      ],
+      "title":"Unused",
+      "type":"null"
+    },
+    "adjusted_total_inc_vat":{
+      "examples":[
+        null
+      ],
+      "title":"Unused",
+      "type":"null"
+    },
+    "agent_instructed":{
+      "examples":[
+        "no"
+      ],
+      "title":"Was there an instructed agent?",
+      "type":"string",
+      "enum": ["yes", "no"]
+    },
+    "answer_equality":{
+      "examples":[
+        "yes"
+      ],
+      "title":"Do you want to answer the equality questions?",
+      "type":"string",
+      "enum": ["yes", "no"]
+    },
+    "arrest_warrant_date":{
+      "examples":[
+        null
+      ],
+      "title":"Date arrest warrant was issued, if any",
+      "type":["null","string"]
+    },
+    "assessment_comment":{
+      "examples":[
+        null
+      ],
+      "title":"Comment by caseworker",
+      "type":["null","string"]
+    },
+    "assigned_counsel":{
+      "examples":[
+        "no"
+      ],
+      "title":"Was there an assigned counsel?",
+      "type":"string",
+      "enum": ["yes", "no"]
+    },
+    "claim_type":{
+      "examples":[
+        "non_standard_magistrate"
+      ],
+      "title":"What are you claiming for?",
+      "type":"string",
+      "enum":["non_standard_magistrate","breach_of_injunction"]
+    },
+    "cntp_date":{
+      "examples":[
+        null
+      ],
+      "title":"Date the CNTP rep order was issued",
+      "type":["null","string"]
+    },
+    "cntp_order":{
+      "examples":[
+        "CNTP1234"
+      ],
+      "title":"Clients CNTP (contempt) number",
+      "type":["null","string"]
+    },
+    "concluded":{
+      "examples":[
+        "yes"
+      ],
+      "title":"Did the proceedings conclude over 3 months ago?",
+      "type":"string",
+      "enum": ["yes", "no"]
+    },
+    "conclusion":{
+      "examples":[
+        "Because"
+      ],
+      "title":"Tell us why you did not make this claim within 3 months of the conclusion of the proceedings",
+      "type":["string","null"]
+    },
+    "cost_summary":{
+      "examples":[
+        {
+          "disbursements":{
+            "gross_cost":"0.0",
+            "net_cost":"0.0",
+            "vat":"0.0"
+          },
+          "profit_costs":{
+            "gross_cost":"987.02016",
+            "net_cost":"822.5168",
+            "vat":"164.50336"
+          },
+          "travel":{
+            "gross_cost":"0.0",
+            "net_cost":"0.0",
+            "vat":"0.0"
+          },
+          "waiting":{
+            "gross_cost":"404.064",
+            "net_cost":"336.72",
+            "vat":"67.344"
+          }
+        }
+      ],
+      "properties":{
+        "disbursements":{
+          "examples":[
+            {
+              "gross_cost":"0.0",
+              "net_cost":"0.0",
+              "vat":"0.0"
+            }
+          ],
+          "properties":{
+            "gross_cost":{
+              "examples":[
+                "0.0"
+              ],
+              "title":"Gross cost",
+              "type":"string"
+            },
+            "net_cost":{
+              "examples":[
+                "0.0"
+              ],
+              "title":"Net cost",
+              "type":"string"
+            },
+            "vat":{
+              "examples":[
+                "0.0"
+              ],
+              "title":"VAT",
+              "type":"string"
+            }
+          },
+          "required":[
+            "gross_cost",
+            "net_cost",
+            "vat"
+          ],
+          "title":"Disbursement summary",
+          "type":"object"
+        },
+        "profit_costs":{
+          "examples":[
+            {
+              "gross_cost":"987.02016",
+              "net_cost":"822.5168",
+              "vat":"164.50336"
+            }
+          ],
+          "properties":{
+            "gross_cost":{
+              "examples":[
+                "987.02016"
+              ],
+              "title":"Gross cost",
+              "type":"string"
+            },
+            "net_cost":{
+              "examples":[
+                "822.5168"
+              ],
+              "title":"Net cost",
+              "type":"string"
+            },
+            "vat":{
+              "examples":[
+                "164.50336"
+              ],
+              "title":"VAT",
+              "type":"string"
+            }
+          },
+          "required":[
+            "gross_cost",
+            "net_cost",
+            "vat"
+          ],
+          "title":"Profit costs",
+          "type":"object"
+        },
+        "travel":{
+          "examples":[
+            {
+              "gross_cost":"0.0",
+              "net_cost":"0.0",
+              "vat":"0.0"
+            }
+          ],
+          "properties":{
+            "gross_cost":{
+              "examples":[
+                "0.0"
+              ],
+              "title":"Gross cost",
+              "type":"string"
+            },
+            "net_cost":{
+              "examples":[
+                "0.0"
+              ],
+              "title":"Net cost",
+              "type":"string"
+            },
+            "vat":{
+              "examples":[
+                "0.0"
+              ],
+              "title":"VAT",
+              "type":"string"
+            }
+          },
+          "required":[
+            "gross_cost",
+            "net_cost",
+            "vat"
+          ],
+          "title":"Travel",
+          "type":"object"
+        },
+        "waiting":{
+          "examples":[
+            {
+              "gross_cost":"404.064",
+              "net_cost":"336.72",
+              "vat":"67.344"
+            }
+          ],
+          "properties":{
+            "gross_cost":{
+              "examples":[
+                "404.064"
+              ],
+              "title":"Gross cost",
+              "type":"string"
+            },
+            "net_cost":{
+              "examples":[
+                "336.72"
+              ],
+              "title":"Net cost",
+              "type":"string"
+            },
+            "vat":{
+              "examples":[
+                "67.344"
+              ],
+              "title":"VAT",
+              "type":"string"
+            }
+          },
+          "required":[
+            "gross_cost",
+            "net_cost",
+            "vat"
+          ],
+          "title":"Waiting",
+          "type":"object"
+        }
+      },
+      "required":[
+        "disbursements",
+        "profit_costs",
+        "travel",
+        "waiting"
+      ],
+      "title":"Cost summary",
+      "type":"object"
+    },
+    "court":{
+      "examples":[
+        "Aberconwy PSD - C3237",
+        "something else - n/a"
+      ],
+      "title":"Court",
+      "type":"string"
+    },
+    "court_in_undesignated_area":{
+      "examples":[
+        false
+      ],
+      "title":"Court in undesignated area",
+      "type":["boolean","null"]
+    },
+    "cracked_trial_date":{
+      "examples":[
+         "2024-10-04"
+      ],
+      "title":"Cracked trial date",
+      "type":["null", "string"]
+    },
+    "created_at":{
+      "examples":[
+        "2024-10-04T08:48:30.744Z"
+      ],
+      "title":"Created at",
+      "type":"string"
+    },
+    "defence_statement":{
+      "examples":[
+        12
+      ],
+      "title":"Number of pages of defence statements",
+      "type":"integer"
+    },
+    "defendants":{
+      "examples":[
+        [
+          {
+            "first_name":"asd",
+            "id":"21a726f3-9f04-40f2-93f4-c834cb16ea02",
+            "last_name":"asd",
+            "maat":"1234567",
+            "main":true,
+            "position":1
+          }
+        ]
+      ],
+      "items":{
+        "examples":[
+          {
+            "first_name":"asd",
+            "id":"21a726f3-9f04-40f2-93f4-c834cb16ea02",
+            "last_name":"asd",
+            "maat":"1234567",
+            "main":true,
+            "position":1
+          }
+        ],
+        "properties":{
+          "first_name":{
+            "examples":[
+              "Joe"
+            ],
+            "title":"First name",
+            "type":"string"
+          },
+          "id":{
+            "examples":[
+              "21a726f3-9f04-40f2-93f4-c834cb16ea02"
+            ],
+            "title":"ID",
+            "type":"string"
+          },
+          "last_name":{
+            "examples":[
+              "Bloggs"
+            ],
+            "title":"Last name",
+            "type":"string"
+          },
+          "maat":{
+            "examples":[
+              "1234567"
+            ],
+            "title":"MAAT ID",
+            "type":["string","null"]
+          },
+          "main":{
+            "examples":[
+              true
+            ],
+            "title":"Main",
+            "type":"boolean"
+          },
+          "position":{
+            "examples":[
+              1
+            ],
+            "title":"Position",
+            "type":"integer"
+          }
+        },
+        "required":[
+          "first_name",
+          "id",
+          "last_name",
+          "maat",
+          "main",
+          "position"
+        ],
+        "title":"Defendant",
+        "type":"object"
+      },
+      "title":"Defendants",
+      "type":"array"
+    },
+    "disability":{
+      "examples":[
+        "n"
+      ],
+      "title":"Disability code",
+      "type":["string", "null"]
+    },
+    "disbursements":{
+      "examples":[
+        [
+          {
+            "id": "f1482bb3-5c5d-44ef-83c1-389d123d9521",
+            "disbursement_date": "2012-12-12",
+            "disbursement_type": "car",
+            "other_type": null,
+            "miles": "12.0",
+            "total_cost_without_vat": 5.4,
+            "details": "12",
+            "prior_authority": null,
+            "apply_vat": "false",
+            "vat_amount": 0.0,
+            "position": 1,
+            "pricing": 0.45,
+            "vat_rate": 0.2
+          }
+        ]
+      ],
+      "items":{
+        "examples":[
+          {
+            "id": "f1482bb3-5c5d-44ef-83c1-389d123d9521",
+            "disbursement_date": "2012-12-12",
+            "disbursement_type": "car",
+            "other_type": null,
+            "miles": "12.0",
+            "total_cost_without_vat": 5.4,
+            "details": "12",
+            "prior_authority": null,
+            "apply_vat": "false",
+            "vat_amount": 0.0,
+            "position": 1,
+            "pricing": 0.45,
+            "vat_rate": 0.2
+          }
+        ],
+        "properties":{
+          "id":{
+            "examples":[
+              "21a726f3-9f04-40f2-93f4-c834cb16ea02"
+            ],
+            "title":"ID",
+            "type":"string"
+          },
+          "disbursement_date":{
+            "examples":[
+              "2012-12-12"
+            ],
+            "title":"Disbursement date",
+            "type":"string"
+          },
+          "disbursement_type":{
+            "examples":[
+              "card"
+            ],
+            "title":"Disbursement type",
+            "type":"string",
+            "enum": ["car", "motorcycle","bike", "other"]
+          },
+          "other_type":{
+            "examples":[
+              "Foo"
+            ],
+            "title":"Other type",
+            "type":["string","null"]
+          },
+          "miles":{
+            "examples":[
+              "12.3"
+            ],
+            "title":"Miles",
+            "type":["string","null"]
+          },
+          "miles_original":{
+            "examples":[
+              "12.3"
+            ],
+            "title":"Miles",
+            "type":["string","null"]
+          },
+          "total_cost_without_vat":{
+            "examples":[
+              12.3
+            ],
+            "title":"Total cost without vat",
+            "type":["number","null"]
+          },
+          "total_cost_without_vat_original":{
+            "examples":[
+              12.3
+            ],
+            "title":"Total cost without vat",
+            "type":["number","null"]
+          },
+          "details":{
+            "examples":[
+              "A disbursement"
+            ],
+            "title":"Details",
+            "type":"string"
+          },
+          "prior_authority":{
+            "examples":[
+              "yes"
+            ],
+            "title":"Prior authority",
+            "type":["string", "null"],
+            "enum":["yes","no",null]
+          },
+          "apply_vat":{
+            "examples":[
+              "true"
+            ],
+            "title":"Apply VAT",
+            "type":"string",
+            "enum":["true","false"]
+          },
+          "apply_vat_original":{
+            "examples":[
+              "true"
+            ],
+            "title":"Apply VAT",
+            "type":["null","string"],
+            "enum":["true","false", null]
+          },
+          "vat_amount":{
+            "examples":[
+              12.3
+            ],
+            "title":"VAT amount",
+            "type":["number","null"]
+          },
+          "vat_amount_original":{
+            "examples":[
+              12.3
+            ],
+            "title":"VAT amount",
+            "type":["number","null"]
+          },
+          "position":{
+            "examples":[
+              1
+            ],
+            "title":"Position",
+            "type":"integer"
+          },
+          "pricing":{
+            "examples":[
+              12.3
+            ],
+            "title":"Pricing",
+            "type":"number"
+          },
+          "vat_rate":{
+            "examples":[
+              0.2
+            ],
+            "title":"VAT rate",
+            "type":"number"
+          }
+        },
+        "required":[
+          "id",
+          "disbursement_date",
+          "disbursement_type",
+          "other_type",
+          "miles",
+          "total_cost_without_vat",
+          "details",
+          "prior_authority",
+          "apply_vat",
+          "vat_amount",
+          "position",
+          "pricing",
+          "vat_rate"
+        ],
+        "title":"Disbursement",
+        "type":"object"
+      },
+      "title":"Disbursements",
+      "type":"array"
+    },
+    "ethnic_group":{
+      "examples":[
+        "04_black_or_black_british_caribbean"
+      ],
+      "title":"Ethnic group",
+      "type":["string","null"]
+    },
+    "firm_office":{
+      "examples":[
+        {
+          "account_number":"1A123B",
+          "address_line_1":"123",
+          "address_line_2":"123",
+          "name":"123",
+          "postcode":"IP1 1AA",
+          "previous_id":null,
+          "town":"123",
+          "vat_registered":"yes"
+        }
+      ],
+      "properties":{
+        "account_number":{
+          "examples":[
+            "1A123B"
+          ],
+          "title":"Account number",
+          "type":"string"
+        },
+        "address_line_1":{
+          "examples":[
+            "123"
+          ],
+          "title":"Address line 1",
+          "type":"string"
+        },
+        "address_line_2":{
+          "examples":[
+            "123"
+          ],
+          "title":"Address line 2",
+          "type":["string","null"]
+        },
+        "name":{
+          "examples":[
+            "123"
+          ],
+          "title":"Nmae",
+          "type":"string"
+        },
+        "postcode":{
+          "examples":[
+            "IP1 1AA"
+          ],
+          "title":"Postcode",
+          "type":"string"
+        },
+        "previous_id":{
+          "examples":[
+            null
+          ],
+          "title":"Previous ID",
+          "type":"null"
+        },
+        "town":{
+          "examples":[
+            "123"
+          ],
+          "title":"Town",
+          "type":"string"
+        },
+        "vat_registered":{
+          "examples":[
+            "yes"
+          ],
+          "title":"VAT registered",
+          "type":"string",
+          "enum": ["yes", "no"]
+        }
+      },
+      "required":[
+        "account_number",
+        "address_line_1",
+        "address_line_2",
+        "name",
+        "postcode",
+        "previous_id",
+        "town",
+        "vat_registered"
+      ],
+      "title":"Firm office",
+      "type":"object"
+    },
+    "first_hearing_date":{
+      "examples":[
+        "2012-12-12"
+      ],
+      "title":"First hearing date",
+      "type":"string"
+    },
+    "further_information": {
+      "type": ["array","null"],
+      "title": "Any further information provided",
+      "items": {
+        "type": "object",
+        "title": "Further information",
+        "required": [
+          "information_requested",
+          "caseworker_id",
+          "requested_at"
+        ],
+        "properties": {
+          "information_requested": {
+            "type": "string",
+            "title": "information by the caseworker",
+            "examples": [
+              "Please state your name"
+            ]
+          },
+          "information_supplied": {
+            "type": ["string", "null"],
+            "title": "information by the provider",
+            "examples": [
+              "My name is John Doe"
+            ]
+          },
+          "caseworker_id": {
+            "type": "string",
+            "title": "ID the caseworker who requested further information",
+            "examples": [
+              "123123123"
+            ]
+          },
+          "requested_at": {
+            "type": "string",
+            "title": "timestamp when the information was requested",
+            "examples": [
+              "2024-08-23T09:27:58.613Z"
+            ]
+          },
+          "signatory_name": {
+            "type": "string",
+            "title": "Signatory name",
+            "examples": [
+              "Joe Bloggs"
+            ]
+          },
+          "documents": {
+            "type": "array",
+            "title": "Supporting documents",
+            "items": {
+                "type": "object",
+                "title": "A document",
+                "required": [
+                    "file_name",
+                    "file_type",
+                    "file_size",
+                    "file_path",
+                    "document_type"
+                ],
+                "properties": {
+                    "file_name": {
+                        "type": "string",
+                        "title": "Filename",
+                        "examples": [
+                            "test.png"
+                        ]
+                    },
+                    "file_type": {
+                        "type": "string",
+                        "title": "File type",
+                        "examples": [
+                            "image/png"
+                        ]
+                    },
+                    "file_size": {
+                        "type": "integer",
+                        "title": "File size in bytes",
+                        "examples": [
+                            1234
+                        ]
+                    },
+                    "file_path": {
+                        "type": "string",
+                        "title": "S3 ID of the file",
+                        "examples": [
+                            "test_path"
+                        ]
+                    },
+                    "document_type": {
+                        "type": "string",
+                        "title": "Document type",
+                        "examples": [
+                            "supporting_document"
+                        ]
+                    }
+                },
+                "examples": [{
+                    "file_name": "test.png",
+                    "file_type": "image/png",
+                    "file_size": 1234,
+                    "file_path": "test_path",
+                    "document_type": "supporting_document"
+                },
+                {
+                    "file_name": "test.png",
+                    "file_type": "image/png",
+                    "file_size": 1234,
+                    "file_path": "test_path",
+                    "document_type": "supporting_document"
+                }]
+            },
+            "examples": [
+                [{
+                    "file_name": "test.png",
+                    "file_type": "image/png",
+                    "file_size": 1234,
+                    "file_path": "test_path",
+                    "document_type": "supporting_document"
+                },
+                {
+                    "file_name": "test.png",
+                    "file_type": "image/png",
+                    "file_size": 1234,
+                    "file_path": "test_path",
+                    "document_type": "supporting_document"
+                }]
+            ]
+          }
+        },
+        "examples": [
+          {
+            "information_requested": "What is your name?",
+            "information_supplied": "John Doe",
+            "caseworker_id": "123-123",
+            "requested_at": "TODO",
+            "signatory_name": "Jo Schmo",
+            "documents": [{
+              "file_name": "test.png",
+              "file_type": "image/png",
+              "file_size": 1234,
+              "file_path": "test_path",
+              "document_type": "supporting_document"
+            }]
+          }
+        ]
+      },
+      "examples": [
+        [
+          {
+            "information_requested": "What is your name?",
+            "information_supplied": "John Doe",
+            "caseworker_id": "123-123",
+            "requested_at": "TODO",
+            "signatory_name": "Jo Schmo",
+            "documents": [{
+              "file_name": "test.png",
+              "file_type": "image/png",
+              "file_size": 1234,
+              "file_path": "test_path",
+              "document_type": "supporting_document"
+            }]
+          }
+        ]
+      ]
+    },
+    "gender":{
+      "examples":[
+        "f"
+      ],
+      "title":"Gender",
+      "type":["string", "null"]
+    },
+    "has_disbursements":{
+      "examples":[
+        "no"
+      ],
+      "title":"Whether there are disbursements",
+      "type":"string",
+      "enum": ["no", "yes"]
+    },
+    "hearing_outcome":{
+      "examples":[
+        "CP03"
+      ],
+      "title":"Hearing outcome ID",
+      "type":"string"
+    },
+    "id":{
+      "examples":[
+        "12dc8c8b-5f27-4772-9ae5-585fd554650c"
+      ],
+      "title":"id",
+      "type":"string"
+    },
+    "is_other_info":{
+      "examples":[
+        "yes"
+      ],
+      "title":"Do you want to add any other information?",
+      "type":"string",
+      "enum": ["yes", "no"]
+    },
+    "laa_reference":{
+      "examples":[
+        "LAA-ROGzzc"
+      ],
+      "title":"LAA reference",
+      "type":"string"
+    },
+    "letters_and_calls":{
+      "examples":[
+        [
+          {
+            "count":12,
+            "pricing":4.09,
+            "type":"calls",
+            "uplift":12
+          },
+          {
+            "count":12,
+            "pricing":4.09,
+            "type":"letters",
+            "uplift":12
+          }
+        ]
+      ],
+      "items":{
+        "examples":[
+          {
+            "count":12,
+            "pricing":4.09,
+            "type":"calls",
+            "uplift":12
+          },
+          {
+            "count":12,
+            "pricing":4.09,
+            "type":"letters",
+            "uplift":12
+          }
+        ],
+        "properties":{
+          "count":{
+            "examples":[
+              12
+            ],
+            "title":"count",
+            "type":"integer"
+          },
+          "count_original":{
+            "examples":[
+              12
+            ],
+            "title":"count",
+            "type":["null", "integer"]
+          },
+          "pricing":{
+            "examples":[
+              4.09
+            ],
+            "title":"pricing",
+            "type":"number"
+          },
+          "type":{
+            "examples":[
+              "calls",
+              "letters"
+            ],
+            "title":"type",
+            "type":"string",
+            "enum": ["calls", "letters"]
+          },
+          "uplift":{
+            "examples":[
+              12
+            ],
+            "title":"uplift",
+            "type":["integer", "null"]
+          },
+          "uplift_original":{
+            "examples":[
+              12
+            ],
+            "title":"uplift",
+            "type":["integer", "null"]
+          }
+        },
+        "required":[
+          "count",
+          "pricing",
+          "type",
+          "uplift"
+        ],
+        "title":"Letter or call",
+        "type":"object"
+      },
+      "title":"Letters and calls",
+      "type":"array"
+    },
+    "main_offence":{
+      "examples":[
+        "Assault (common)"
+      ],
+      "title":"Main offence",
+      "type":"string"
+    },
+    "main_offence_date":{
+      "examples":[
+        "2012-12-12"
+      ],
+      "title":"Main offence date",
+      "type":"string"
+    },
+    "matter_type":{
+      "examples":[
+        "2"
+      ],
+      "title":"Matter type ID",
+      "type":"string"
+    },
+    "number_of_hearing":{
+      "examples":[
+        12
+      ],
+      "title":"Number of hearings",
+      "type":"integer"
+    },
+    "number_of_witnesses":{
+      "examples":[
+        12
+      ],
+      "title":"Number of witnesses",
+      "type":"integer"
+    },
+    "office_code":{
+      "examples":[
+        "1A123B"
+      ],
+      "title":"Office code",
+      "type":"string"
+    },
+    "office_in_undesignated_area":{
+      "examples":[
+        true
+      ],
+      "title":"Office in undesignated area",
+      "type":["boolean","null"]
+    },
+    "other_info":{
+      "examples":[
+        "More info"
+      ],
+      "title":"Other info",
+      "type":["string","null"]
+    },
+    "plea":{
+      "examples":[
+        "not_guilty"
+      ],
+      "title":"Plea ID",
+      "type":"string"
+    },
+    "plea_category":{
+      "examples":[
+        "not_guilty_pleas"
+      ],
+      "title":"Plea category",
+      "type":"string",
+      "enum": ["not_guilty_pleas","guilty_pleas"]
+    },
+    "preparation_time":{
+      "examples":[
+        "yes"
+      ],
+      "title":"Did you spend time watching or listening to recorded evidence?",
+      "type":"string",
+      "enum": ["yes", "no"]
+    },
+    "prosecution_evidence":{
+      "examples":[
+        12
+      ],
+      "title":"Number of pages of prosecution evidence",
+      "type":"integer"
+    },
+    "reason_for_claim_other_details":{
+      "examples":[
+        "Some reason"
+      ],
+      "title":"Other details about why a non-standard magistrates' court payment is being claimed",
+      "type":["string","null"]
+    },
+    "reasons_for_claim":{
+      "examples":[
+        [
+          "core_costs_exceed_higher_limit",
+          "enhanced_rates_claimed"
+        ]
+      ],
+      "items":{
+        "examples":[
+          "core_costs_exceed_higher_limit",
+          "enhanced_rates_claimed"
+        ],
+        "title":"Reason for claim",
+        "type":"string"
+      },
+      "title":"Reasons for claim",
+      "type":"array"
+    },
+    "remitted_to_magistrate":{
+      "examples":[
+        "no"
+      ],
+      "title":"Has the case been remitted from the Crown Court to the magistrates' court?",
+      "type":"string",
+      "enum": ["yes", "no"]
+    },
+    "remitted_to_magistrate_date":{
+      "examples":[
+        null
+      ],
+      "title":"Remittal date",
+      "type":["null","string"]
+    },
+    "rep_order_date":{
+      "examples":[
+        "2023-12-12"
+      ],
+      "title":"Representation order date",
+      "type":["string","null"]
+    },
+    "representation_order_withdrawn_date":{
+      "examples":[
+        null
+      ],
+      "title":"Withdrawn date",
+      "type":["string","null"]
+    },
+    "send_back_comment":{
+      "examples":[
+        null
+      ],
+      "title":"Interim comment by caseworker",
+      "type":["null"]
+    },
+    "send_by_post":{
+      "examples":[
+        null
+      ],
+      "title":"Send by post",
+      "type":"null"
+    },
+    "signatory_name":{
+      "examples":[
+        "asd asd"
+      ],
+      "title":"Signatory name",
+      "type":"string"
+    },
+    "solicitor":{
+      "examples":[
+        {
+          "contact_email":"asd@asd.asd",
+          "contact_first_name":"John",
+          "contact_last_name":"Doe",
+          "first_name":"John",
+          "last_name":"Doe",
+          "previous_id":null,
+          "reference_number":"123"
+        }
+      ],
+      "properties":{
+        "contact_email":{
+          "examples":[
+            "asd@asd.asd"
+          ],
+          "title":"Contact email",
+          "type":"string"
+        },
+        "contact_first_name":{
+          "examples":[
+            "asd"
+          ],
+          "title":"Contact first name",
+          "type":"string"
+        },
+        "contact_last_name":{
+          "examples":[
+            "asd"
+          ],
+          "title":"Contact last name",
+          "type":"string"
+        },
+        "first_name":{
+          "examples":[
+            "123"
+          ],
+          "title":"First name",
+          "type":"string"
+        },
+        "last_name":{
+          "examples":[
+            "123"
+          ],
+          "title":"Last name",
+          "type":"string"
+        },
+        "previous_id":{
+          "examples":[
+            null
+          ],
+          "title":"previous_id",
+          "type":"null"
+        },
+        "reference_number":{
+          "examples":[
+            "123"
+          ],
+          "title":"Reference number",
+          "type":"string"
+        }
+      },
+      "required":[
+        "contact_email",
+        "contact_first_name",
+        "contact_last_name",
+        "first_name",
+        "last_name",
+        "previous_id",
+        "reference_number"
+      ],
+      "title":"solicitor",
+      "type":"object"
+    },
+    "stage_reached":{
+      "examples":[
+        "prog"
+      ],
+      "title":"State reached",
+      "type":"string",
+      "enum": ["prog", "prom"]
+    },
+    "status":{
+      "examples":[
+        "submitted"
+      ],
+      "title":"Status",
+      "type":"string"
+    },
+    "submitted_total":{
+      "examples":[
+        null
+      ],
+      "title":"Submitted total",
+      "type":"null"
+    },
+    "submitted_total_inc_vat":{
+      "examples":[
+        null
+      ],
+      "title":"Submitted total inc VAT",
+      "type":"null"
+    },
+    "submitter":{
+      "examples":[
+        {
+          "description":null,
+          "email":"provider@example.com"
+        }
+      ],
+      "properties":{
+        "description":{
+          "examples":[
+            null
+          ],
+          "title":"Description",
+          "type":"null"
+        },
+        "email":{
+          "examples":[
+            "provider@example.com"
+          ],
+          "title":"Email",
+          "type":"string"
+        }
+      },
+      "required":[
+        "description",
+        "email"
+      ],
+      "title":"Submitter",
+      "type":"object"
+    },
+    "supplemental_claim":{
+      "examples":[
+        "yes"
+      ],
+      "title":"Does this bill represent a supplemental claim?",
+      "type":"string",
+      "enum": ["yes", "no"]
+    },
+    "supporting_evidences":{
+      "examples":[
+        [
+          {
+            "created_at":"2024-10-04T08:51:26.791Z",
+            "document_type":null,
+            "documentable_id":"12dc8c8b-5f27-4772-9ae5-585fd554650c",
+            "documentable_type":"Claim",
+            "file_name":"LAA-6QnJdm.pdf",
+            "file_path":"123123123123",
+            "file_size":181805,
+            "file_type":"application/pdf",
+            "id":"17058cee-2289-4695-a51e-93f53ddf7b9b",
+            "updated_at":"2024-10-04T08:51:26.791Z"
+          }
+        ]
+      ],
+      "items":{
+        "examples":[
+          {
+            "created_at":"2024-10-04T08:51:26.791Z",
+            "document_type":null,
+            "documentable_id":"12dc8c8b-5f27-4772-9ae5-585fd554650c",
+            "documentable_type":"Claim",
+            "file_name":"LAA-6QnJdm.pdf",
+            "file_path":"123123123123",
+            "file_size":181805,
+            "file_type":"application/pdf",
+            "id":"17058cee-2289-4695-a51e-93f53ddf7b9b",
+            "updated_at":"2024-10-04T08:51:26.791Z"
+          }
+        ],
+        "properties":{
+          "created_at":{
+            "examples":[
+              "2024-10-04T08:51:26.791Z"
+            ],
+            "title":"Created at",
+            "type":"string"
+          },
+          "document_type":{
+            "examples":[
+              null
+            ],
+            "title":"Document type",
+            "type":["null","string"]
+          },
+          "documentable_id":{
+            "examples":[
+              "12dc8c8b-5f27-4772-9ae5-585fd554650c"
+            ],
+            "title":"Documentable ID",
+            "type":"string"
+          },
+          "documentable_type":{
+            "examples":[
+              "Claim"
+            ],
+            "title":"Documentable type",
+            "type":"string"
+          },
+          "file_name":{
+            "examples":[
+              "LAA-6QnJdm.pdf"
+            ],
+            "title":"File name",
+            "type":"string"
+          },
+          "file_path":{
+            "examples":[
+              "123123123123"
+            ],
+            "title":"File path",
+            "type":"string"
+          },
+          "file_size":{
+            "examples":[
+              181805
+            ],
+            "title":"File size",
+            "type":"integer"
+          },
+          "file_type":{
+            "examples":[
+              "application/pdf"
+            ],
+            "title":"File type",
+            "type":"string"
+          },
+          "id":{
+            "examples":[
+              "17058cee-2289-4695-a51e-93f53ddf7b9b"
+            ],
+            "title":"ID",
+            "type":"string"
+          },
+          "updated_at":{
+            "examples":[
+              "2024-10-04T08:51:26.791Z"
+            ],
+            "title":"Updated at",
+            "type":"string"
+          }
+        },
+        "required":[
+          "created_at",
+          "document_type",
+          "documentable_id",
+          "documentable_type",
+          "file_name",
+          "file_path",
+          "file_size",
+          "file_type",
+          "id",
+          "updated_at"
+        ],
+        "title":"Document",
+        "type":"object"
+      },
+      "title":"Supporting evidence",
+      "type":"array"
+    },
+    "time_spent":{
+      "examples":[
+        732
+      ],
+      "title":"Running time of the recording",
+      "type":["null","integer"]
+    },
+    "transferred_to_undesignated_area":{
+      "examples":[
+        true
+      ],
+      "title":"Did the case transfer to an undesignated area",
+      "type":["boolean","null"]
+    },
+    "ufn":{
+      "examples":[
+        "121212/001"
+      ],
+      "title":"UFN",
+      "type":"string"
+    },
+    "unassigned_counsel":{
+      "examples":[
+        "no"
+      ],
+      "title":"Was there an unassigned counsel?",
+      "type":"string",
+      "enum": ["yes", "no"]
+    },
+    "updated_at":{
+      "examples":[
+        "2024-10-04T08:51:40.130Z"
+      ],
+      "title":"Updated at",
+      "type":"string"
+    },
+    "vat_rate":{
+      "examples":[
+        0.2
+      ],
+      "title":"VAT rate",
+      "type":"number"
+    },
+    "wasted_costs":{
+      "examples":[
+        "yes"
+      ],
+      "title":"Have wasted costs been applied to this case?",
+      "type":"string",
+      "enum": ["yes", "no"]
+    },
+    "work_after":{
+      "examples":[
+        "yes"
+      ],
+      "title":"Did you do any further work after the last court hearing?",
+      "type":"string",
+      "enum": ["yes", "no"]
+    },
+    "work_after_date":{
+      "examples":[
+        "2012-12-12"
+      ],
+      "title":"Date of last court hearing",
+      "type":["null","string"]
+    },
+    "work_before":{
+      "examples":[
+        "yes"
+      ],
+      "title":"Did you do any work before the representation order date?",
+      "type":"string",
+      "enum": ["yes", "no"]
+    },
+    "work_before_date":{
+      "examples":[
+        "2012-12-12"
+      ],
+      "title":"Date you started this work",
+      "type":["null","string"]
+    },
+    "work_completed_date":{
+      "examples":[
+        "2012-12-12"
+      ],
+      "title":"Date work was completed",
+      "type":"string"
+    },
+    "work_item_pricing":{
+      "examples":[
+        {
+          "advocacy":65.42,
+          "attendance_with_counsel":35.68,
+          "attendance_without_counsel":52.15,
+          "preparation":52.15,
+          "travel":27.6,
+          "waiting":27.6
+        }
+      ],
+      "properties":{
+        "advocacy":{
+          "examples":[
+            65.42
+          ],
+          "title":"Advocacy",
+          "type":"number"
+        },
+        "attendance_with_counsel":{
+          "examples":[
+            35.68
+          ],
+          "title":"Attendance with counsel",
+          "type":"number"
+        },
+        "attendance_without_counsel":{
+          "examples":[
+            52.15
+          ],
+          "title":"Attendance without counsel",
+          "type":"number"
+        },
+        "preparation":{
+          "examples":[
+            52.15
+          ],
+          "title":"Preparation",
+          "type":"number"
+        },
+        "travel":{
+          "examples":[
+            27.6
+          ],
+          "title":"Travel",
+          "type":"number"
+        },
+        "waiting":{
+          "examples":[
+            27.6
+          ],
+          "title":"Waiting",
+          "type":"number"
+        }
+      },
+      "required":[
+        "advocacy",
+        "attendance_with_counsel",
+        "attendance_without_counsel",
+        "preparation"
+      ],
+      "title":"Work item pricing",
+      "type":"object"
+    },
+    "work_items":{
+      "examples":[
+        [
+          {
+            "completed_on":"2012-12-12",
+            "fee_earner":"12",
+            "id":"84d673ff-c71a-4230-b657-dcd191177288",
+            "position":1,
+            "pricing":52.15,
+            "time_spent":732,
+            "uplift":12,
+            "work_type":"attendance_without_counsel"
+          },
+          {
+            "completed_on":"2012-12-12",
+            "fee_earner":"12",
+            "id":"cf7063f2-edd6-4622-8b25-1a89d88952c1",
+            "position":2,
+            "pricing":27.6,
+            "time_spent":732,
+            "uplift":0,
+            "work_type":"waiting"
+          }
+        ]
+      ],
+      "items":{
+        "examples":[
+          {
+            "completed_on":"2012-12-12",
+            "fee_earner":"12",
+            "id":"84d673ff-c71a-4230-b657-dcd191177288",
+            "position":1,
+            "pricing":52.15,
+            "time_spent":732,
+            "uplift":12,
+            "work_type":"attendance_without_counsel"
+          },
+          {
+            "completed_on":"2012-12-12",
+            "fee_earner":"12",
+            "id":"cf7063f2-edd6-4622-8b25-1a89d88952c1",
+            "position":2,
+            "pricing":27.6,
+            "time_spent":732,
+            "uplift":0,
+            "work_type":"waiting"
+          }
+        ],
+        "properties":{
+          "completed_on":{
+            "examples":[
+              "2012-12-12"
+            ],
+            "title":"Completed on",
+            "type":"string"
+          },
+          "fee_earner":{
+            "examples":[
+              "AB"
+            ],
+            "title":"Fee earner initias",
+            "type":"string"
+          },
+          "id":{
+            "examples":[
+              "84d673ff-c71a-4230-b657-dcd191177288",
+              "cf7063f2-edd6-4622-8b25-1a89d88952c1"
+            ],
+            "title":"ID",
+            "type":"string"
+          },
+          "position":{
+            "examples":[
+              1,
+              2
+            ],
+            "title":"Position",
+            "type":"integer"
+          },
+          "pricing":{
+            "examples":[
+              27.6,
+              52.15
+            ],
+            "title":"Pricing",
+            "type":"number"
+          },
+          "pricing_original":{
+            "examples":[
+              27.6,
+              52.15
+            ],
+            "title":"Pricing original",
+            "type":["number","null"]
+          },
+          "time_spent":{
+            "examples":[
+              732
+            ],
+            "title":"Time spent",
+            "type":"integer"
+          },
+          "time_spent_original":{
+            "examples":[
+              732
+            ],
+            "title":"Time spent original",
+            "type":["integer","null"]
+          },
+          "uplift":{
+            "examples":[
+              0,
+              12
+            ],
+            "title":"Uplift",
+            "type":"integer"
+          },
+          "uplift_original":{
+            "examples":[
+              0,
+              12
+            ],
+            "title":"Uplift original",
+            "type":["integer","null"]
+          },
+          "work_type":{
+            "examples":[
+              "attendance_without_counsel",
+              "waiting"
+            ],
+            "title":"Work type",
+            "type":"string"
+          },
+          "work_type_original":{
+            "examples":[
+              "attendance_without_counsel",
+              "waiting"
+            ],
+            "title":"Work type",
+            "type":["null", "string"]
+          }
+        },
+        "required":[
+          "completed_on",
+          "fee_earner",
+          "id",
+          "position",
+          "pricing",
+          "time_spent",
+          "uplift",
+          "work_type"
+        ],
+        "title":"Work item",
+        "type":"object"
+      },
+      "title":"Work items",
+      "type":"array"
+    },
+    "youth_court":{
+      "examples":[
+        "no"
+      ],
+      "title":"Is this court a youth court?",
+      "type":"string",
+      "enum": ["yes", "no"]
+    }
+  },
+  "examples":[
+    {
+      "adjusted_total":null,
+      "adjusted_total_inc_vat":null,
+      "agent_instructed":"no",
+      "answer_equality":"yes",
+      "arrest_warrant_date":null,
+      "assessment_comment":null,
+      "assigned_counsel":"no",
+      "claim_type":"non_standard_magistrate",
+      "cntp_date":null,
+      "cntp_order":null,
+      "concluded":"yes",
+      "conclusion":"asdasdasd",
+      "cost_summary":{
+        "disbursements":{
+          "gross_cost":"0.0",
+          "net_cost":"0.0",
+          "vat":"0.0"
+        },
+        "profit_costs":{
+          "gross_cost":"987.02016",
+          "net_cost":"822.5168",
+          "vat":"164.50336"
+        },
+        "travel":{
+          "gross_cost":"0.0",
+          "net_cost":"0.0",
+          "vat":"0.0"
+        },
+        "waiting":{
+          "gross_cost":"404.064",
+          "net_cost":"336.72",
+          "vat":"67.344"
+        }
+      },
+      "court":"asdasdasd - n/a",
+      "court_in_undesignated_area":false,
+      "cracked_trial_date":null,
+      "created_at":"2024-10-04T08:48:30.744Z",
+      "defence_statement":12,
+      "defendants":[
+        {
+          "first_name":"asd",
+          "id":"21a726f3-9f04-40f2-93f4-c834cb16ea02",
+          "last_name":"asd",
+          "maat":"1234567",
+          "main":true,
+          "position":1
+        }
+      ],
+      "disability":"n",
+      "disbursements":[
+
+      ],
+      "ethnic_group":"04_black_or_black_british_caribbean",
+      "firm_office":{
+        "account_number":"1A123B",
+        "address_line_1":"123",
+        "address_line_2":"123",
+        "name":"123",
+        "postcode":"IP1 1AA",
+        "previous_id":null,
+        "town":"123",
+        "vat_registered":"yes"
+      },
+      "first_hearing_date":"2012-12-12",
+      "gender":"f",
+      "has_disbursements":"no",
+      "hearing_outcome":"CP03",
+      "id":"12dc8c8b-5f27-4772-9ae5-585fd554650c",
+      "is_other_info":"yes",
+      "laa_reference":"LAA-ROGzzc",
+      "letters_and_calls":[
+        {
+          "count":12,
+          "pricing":4.09,
+          "type":"calls",
+          "uplift":12
+        },
+        {
+          "count":12,
+          "pricing":4.09,
+          "type":"letters",
+          "uplift":12
+        }
+      ],
+      "main_offence":"asdasdasdasd",
+      "main_offence_date":"2012-12-12",
+      "matter_type":"2",
+      "number_of_hearing":12,
+      "number_of_witnesses":12,
+      "office_code":"1A123B",
+      "office_in_undesignated_area":true,
+      "other_info":"asdasdasdasd",
+      "plea":"not_guilty",
+      "plea_category":"not_guilty_pleas",
+      "preparation_time":"yes",
+      "prosecution_evidence":12,
+      "reason_for_claim_other_details":"",
+      "reasons_for_claim":[
+        "core_costs_exceed_higher_limit",
+        "enhanced_rates_claimed"
+      ],
+      "remitted_to_magistrate":"no",
+      "remitted_to_magistrate_date":null,
+      "rep_order_date":"2023-12-12",
+      "representation_order_withdrawn_date":null,
+      "send_by_post":null,
+      "signatory_name":"asd asd",
+      "solicitor":{
+        "contact_email":"asd@asd.asd",
+        "contact_first_name":"asd",
+        "contact_last_name":"asd",
+        "first_name":"123",
+        "last_name":"123",
+        "previous_id":null,
+        "reference_number":"123"
+      },
+      "stage_reached":"prog",
+      "status":"submitted",
+      "submitted_total":null,
+      "submitted_total_inc_vat":null,
+      "submitter":{
+        "description":null,
+        "email":"provider@example.com"
+      },
+      "supplemental_claim":"yes",
+      "supporting_evidences":[
+        {
+          "created_at":"2024-10-04T08:51:26.791Z",
+          "document_type":null,
+          "documentable_id":"12dc8c8b-5f27-4772-9ae5-585fd554650c",
+          "documentable_type":"Claim",
+          "file_name":"LAA-6QnJdm.pdf",
+          "file_path":"123123123123",
+          "file_size":181805,
+          "file_type":"application/pdf",
+          "id":"17058cee-2289-4695-a51e-93f53ddf7b9b",
+          "updated_at":"2024-10-04T08:51:26.791Z"
+        }
+      ],
+      "time_spent":732,
+      "transferred_to_undesignated_area":true,
+      "ufn":"121212/001",
+      "unassigned_counsel":"no",
+      "updated_at":"2024-10-04T08:51:40.130Z",
+      "vat_rate":0.2,
+      "wasted_costs":"yes",
+      "work_after":"yes",
+      "work_after_date":"2012-12-12",
+      "work_before":"yes",
+      "work_before_date":"2012-12-12",
+      "work_completed_date":"2012-12-12",
+      "work_item_pricing":{
+        "advocacy":65.42,
+        "attendance_with_counsel":35.68,
+        "attendance_without_counsel":52.15,
+        "preparation":52.15,
+        "travel":27.6,
+        "waiting":27.6
+      },
+      "work_items":[
+        {
+          "completed_on":"2012-12-12",
+          "fee_earner":"12",
+          "id":"84d673ff-c71a-4230-b657-dcd191177288",
+          "position":1,
+          "pricing":52.15,
+          "time_spent":732,
+          "uplift":12,
+          "work_type":"attendance_without_counsel"
+        },
+        {
+          "completed_on":"2012-12-12",
+          "fee_earner":"12",
+          "id":"cf7063f2-edd6-4622-8b25-1a89d88952c1",
+          "position":2,
+          "pricing":27.6,
+          "time_spent":732,
+          "uplift":0,
+          "work_type":"waiting"
+        }
+      ],
+      "youth_court":"no"
+    }
+  ]
+}
