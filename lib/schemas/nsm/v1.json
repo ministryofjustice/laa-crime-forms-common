@@ -589,8 +589,8 @@
               "yes"
             ],
             "title":"Prior authority",
-            "type":"string",
-            "enum":["yes","no"]
+            "type":["string", "null"],
+            "enum":["yes","no",null]
           },
           "apply_vat":{
             "examples":[
@@ -941,9 +941,9 @@
       "examples":[
         "no"
       ],
-      "title":"Whether there are any more disbursements to add",
+      "title":"Whether there are disbursements",
       "type":"string",
-      "enum": ["no"]
+      "enum": ["no", "yes"]
     },
     "hearing_outcome":{
       "examples":[
