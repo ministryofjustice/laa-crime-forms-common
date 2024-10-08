@@ -1756,7 +1756,7 @@
               12
             ],
             "title":"Uplift",
-            "type":"integer"
+            "type":["integer","null"]
           },
           "uplift_original":{
             "examples":[
