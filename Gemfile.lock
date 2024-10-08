@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    laa_crime_forms_common (0.2.4)
+    laa_crime_forms_common (0.2.5)
       i18n (>= 1.8.11, < 2)
       json-schema (>= 5.0.0, < 6)
 

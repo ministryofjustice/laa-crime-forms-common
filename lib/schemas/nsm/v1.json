@@ -105,11 +105,11 @@
       "type":["string","object"],
       "properties": {
         "en": {
-          "type": "string",
+          "type": ["string","null"],
           "title": "The translated value"
         },
         "value": {
-          "type": "string",
+          "type": ["string","null"],
           "title": "The translateable key"
         }
       }
@@ -144,11 +144,11 @@
       "type":["string","object"],
       "properties": {
         "en": {
-          "type": "string",
+          "type": ["string","null"],
           "title": "The translated value"
         },
         "value": {
-          "type": "string",
+          "type": ["string","null"],
           "title": "The translateable key"
         }
       }
@@ -500,11 +500,11 @@
       "type":["string","object","null"],
       "properties": {
         "en": {
-          "type": "string",
+          "type": ["string","null"],
           "title": "The translated value"
         },
         "value": {
-          "type": "string",
+          "type": ["string","null"],
           "title": "The translateable key"
         }
       }
@@ -598,31 +598,31 @@
           },
           "miles":{
             "examples":[
-              "12.3"
+              "12.3", 4.0
             ],
             "title":"Miles",
-            "type":["string","null"]
+            "type":["string","number","null"]
           },
           "miles_original":{
             "examples":[
               "12.3"
             ],
             "title":"Miles",
-            "type":["string","null"]
+            "type":["string","number","null"]
           },
           "total_cost_without_vat":{
             "examples":[
               12.3
             ],
             "title":"Total cost without vat",
-            "type":["number","null"]
+            "type":["number","string","null"]
           },
           "total_cost_without_vat_original":{
             "examples":[
               12.3
             ],
             "title":"Total cost without vat",
-            "type":["number","null"]
+            "type":["number","string","null"]
           },
           "details":{
             "examples":[
@@ -657,17 +657,17 @@
           },
           "vat_amount":{
             "examples":[
-              12.3
+              12.3, "12.3"
             ],
             "title":"VAT amount",
-            "type":["number","null"]
+            "type":["number","string","null"]
           },
           "vat_amount_original":{
             "examples":[
-              12.3
+              12.3, "12.3"
             ],
             "title":"VAT amount",
-            "type":["number","null"]
+            "type":["number","string","null"]
           },
           "position":{
             "examples":[
@@ -681,14 +681,14 @@
               12.3
             ],
             "title":"Pricing",
-            "type":"number"
+            "type":["number","string"]
           },
           "vat_rate":{
             "examples":[
               0.2
             ],
             "title":"VAT rate",
-            "type":"number"
+            "type":["number","string"]
           }
         },
         "required":[
@@ -720,11 +720,11 @@
       "type":["string","object","null"],
       "properties": {
         "en": {
-          "type": "string",
+          "type": ["string","null"],
           "title": "The translated value"
         },
         "value": {
-          "type": "string",
+          "type": ["string","null"],
           "title": "The translateable key"
         }
       }
@@ -995,11 +995,11 @@
       "type":["string","object","null"],
       "properties": {
         "en": {
-          "type": "string",
+          "type": ["string","null"],
           "title": "The translated value"
         },
         "value": {
-          "type": "string",
+          "type": ["string","null"],
           "title": "The translateable key"
         }
       }
@@ -1020,11 +1020,11 @@
       "type":["string","object"],
       "properties": {
         "en": {
-          "type": "string",
+          "type": ["string","null"],
           "title": "The translated value"
         },
         "value": {
-          "type": "string",
+          "type": ["string","null"],
           "title": "The translateable key"
         }
       }
@@ -1103,7 +1103,7 @@
               4.09
             ],
             "title":"pricing",
-            "type":"number"
+            "type":["number","string"]
           },
           "type":{
             "examples":[
@@ -1172,11 +1172,11 @@
       "type":["string","object"],
       "properties": {
         "en": {
-          "type": "string",
+          "type": ["string","null"],
           "title": "The translated value"
         },
         "value": {
-          "type": "string",
+          "type": ["string","null"],
           "title": "The translateable key"
         }
       }
@@ -1224,11 +1224,11 @@
       "type":["string","object"],
       "properties": {
         "en": {
-          "type": "string",
+          "type": ["string","null"],
           "title": "The translated value"
         },
         "value": {
-          "type": "string",
+          "type": ["string","null"],
           "title": "The translateable key"
         }
       }
@@ -1241,11 +1241,11 @@
       "type":["string","object"],
       "properties": {
         "en": {
-          "type": "string",
+          "type": ["string","null"],
           "title": "The translated value"
         },
         "value": {
-          "type": "string",
+          "type": ["string","null"],
           "title": "The translateable key"
         }
       }
@@ -1851,7 +1851,7 @@
               52.15
             ],
             "title":"Pricing",
-            "type":"number"
+            "type":["number","string"]
           },
           "pricing_original":{
             "examples":[
@@ -1859,7 +1859,7 @@
               52.15
             ],
             "title":"Pricing original",
-            "type":["number","null"]
+            "type":["number","null","string"]
           },
           "time_spent":{
             "examples":[
