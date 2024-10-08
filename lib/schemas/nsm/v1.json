@@ -102,8 +102,17 @@
         "yes"
       ],
       "title":"Do you want to answer the equality questions?",
-      "type":"string",
-      "enum": ["yes", "no"]
+      "type":["string","object"],
+      "properties": {
+        "en": {
+          "type": "string",
+          "title": "The translated value"
+        },
+        "value": {
+          "type": "string",
+          "title": "The translateable key"
+        }
+      }
     },
     "arrest_warrant_date":{
       "examples":[
@@ -132,8 +141,17 @@
         "non_standard_magistrate"
       ],
       "title":"What are you claiming for?",
-      "type":"string",
-      "enum":["non_standard_magistrate","breach_of_injunction"]
+      "type":["string","object"],
+      "properties": {
+        "en": {
+          "type": "string",
+          "title": "The translated value"
+        },
+        "value": {
+          "type": "string",
+          "title": "The translateable key"
+        }
+      }
     },
     "cntp_date":{
       "examples":[
@@ -479,7 +497,17 @@
         "n"
       ],
       "title":"Disability code",
-      "type":["string", "null"]
+      "type":["string","object","null"],
+      "properties": {
+        "en": {
+          "type": "string",
+          "title": "The translated value"
+        },
+        "value": {
+          "type": "string",
+          "title": "The translateable key"
+        }
+      }
     },
     "disbursements":{
       "examples":[
@@ -536,18 +564,37 @@
           },
           "disbursement_type":{
             "examples":[
-              "card"
+              "car"
             ],
             "title":"Disbursement type",
-            "type":"string",
-            "enum": ["car", "motorcycle","bike", "other"]
+            "type":["string","object"],
+            "properties": {
+              "en": {
+                "type": "string",
+                "title": "The translated value"
+              },
+              "value": {
+                "type": "string",
+                "title": "The translateable key"
+              }
+            }
           },
           "other_type":{
             "examples":[
               "Foo"
             ],
             "title":"Other type",
-            "type":["string","null"]
+            "type":["string","object","null"],
+            "properties": {
+              "en": {
+                "type": "string",
+                "title": "The translated value"
+              },
+              "value": {
+                "type": "string",
+                "title": "The translateable key"
+              }
+            }
           },
           "miles":{
             "examples":[
@@ -670,7 +717,17 @@
         "04_black_or_black_british_caribbean"
       ],
       "title":"Ethnic group",
-      "type":["string","null"]
+      "type":["string","object","null"],
+      "properties": {
+        "en": {
+          "type": "string",
+          "title": "The translated value"
+        },
+        "value": {
+          "type": "string",
+          "title": "The translateable key"
+        }
+      }
     },
     "firm_office":{
       "examples":[
@@ -935,7 +992,17 @@
         "f"
       ],
       "title":"Gender",
-      "type":["string", "null"]
+      "type":["string","object","null"],
+      "properties": {
+        "en": {
+          "type": "string",
+          "title": "The translated value"
+        },
+        "value": {
+          "type": "string",
+          "title": "The translateable key"
+        }
+      }
     },
     "has_disbursements":{
       "examples":[
@@ -950,7 +1017,17 @@
         "CP03"
       ],
       "title":"Hearing outcome ID",
-      "type":"string"
+      "type":["string","object"],
+      "properties": {
+        "en": {
+          "type": "string",
+          "title": "The translated value"
+        },
+        "value": {
+          "type": "string",
+          "title": "The translateable key"
+        }
+      }
     },
     "id":{
       "examples":[
@@ -1034,8 +1111,17 @@
               "letters"
             ],
             "title":"type",
-            "type":"string",
-            "enum": ["calls", "letters"]
+            "type":["string","object"],
+            "properties": {
+              "en": {
+                "type": "string",
+                "title": "The translated value"
+              },
+              "value": {
+                "type": "string",
+                "title": "The translateable key"
+              }
+            }
           },
           "uplift":{
             "examples":[
@@ -1083,7 +1169,17 @@
         "2"
       ],
       "title":"Matter type ID",
-      "type":"string"
+      "type":["string","object"],
+      "properties": {
+        "en": {
+          "type": "string",
+          "title": "The translated value"
+        },
+        "value": {
+          "type": "string",
+          "title": "The translateable key"
+        }
+      }
     },
     "number_of_hearing":{
       "examples":[
@@ -1125,15 +1221,34 @@
         "not_guilty"
       ],
       "title":"Plea ID",
-      "type":"string"
+      "type":["string","object"],
+      "properties": {
+        "en": {
+          "type": "string",
+          "title": "The translated value"
+        },
+        "value": {
+          "type": "string",
+          "title": "The translateable key"
+        }
+      }
     },
     "plea_category":{
       "examples":[
         "not_guilty_pleas"
       ],
       "title":"Plea category",
-      "type":"string",
-      "enum": ["not_guilty_pleas","guilty_pleas"]
+      "type":["string","object"],
+      "properties": {
+        "en": {
+          "type": "string",
+          "title": "The translated value"
+        },
+        "value": {
+          "type": "string",
+          "title": "The translateable key"
+        }
+      }
     },
     "preparation_time":{
       "examples":[
@@ -1170,7 +1285,17 @@
           "enhanced_rates_claimed"
         ],
         "title":"Reason for claim",
-        "type":"string"
+        "type":["string","object"],
+        "properties": {
+          "en": {
+            "type": "string",
+            "title": "The translated value"
+          },
+          "value": {
+            "type": "string",
+            "title": "The translateable key"
+          }
+        }
       },
       "title":"Reasons for claim",
       "type":"array"
@@ -1772,7 +1897,17 @@
               "waiting"
             ],
             "title":"Work type",
-            "type":"string"
+            "type":["string","object"],
+            "properties": {
+              "en": {
+                "type": "string",
+                "title": "The translated value"
+              },
+              "value": {
+                "type": "string",
+                "title": "The translateable key"
+              }
+            }
           },
           "work_type_original":{
             "examples":[
@@ -1780,7 +1915,17 @@
               "waiting"
             ],
             "title":"Work type",
-            "type":["null", "string"]
+            "type":["string","object","null"],
+            "properties": {
+              "en": {
+                "type": "string",
+                "title": "The translated value"
+              },
+              "value": {
+                "type": "string",
+                "title": "The translateable key"
+              }
+            }
           }
         },
         "required":[
