@@ -587,11 +587,11 @@
             "type":["string","object","null"],
             "properties": {
               "en": {
-                "type": "string",
+                "type": ["string","null"],
                 "title": "The translated value"
               },
               "value": {
-                "type": "string",
+                "type": ["string","null"],
                 "title": "The translateable key"
               }
             }
