@@ -80,6 +80,7 @@
         null
       ],
       "title":"Unused",
+      "x-pii": false,
       "type":"null"
     },
     "adjusted_total_inc_vat":{
@@ -87,6 +88,7 @@
         null
       ],
       "title":"Unused",
+      "x-pii": false,
       "type":"null"
     },
     "agent_instructed":{
@@ -94,6 +96,7 @@
         "no"
       ],
       "title":"Was there an instructed agent?",
+      "x-pii": false,
       "type":"string",
       "enum": ["yes", "no"]
     },
@@ -102,13 +105,16 @@
         "yes"
       ],
       "title":"Do you want to answer the equality questions?",
+      "x-pii": false,
       "type":["string","object"],
       "properties": {
         "en": {
+          "x-pii": false,
           "type": ["string","null"],
           "title": "The translated value"
         },
         "value": {
+          "x-pii": false,
           "type": ["string","null"],
           "title": "The translateable key"
         }
@@ -119,6 +125,7 @@
         null
       ],
       "title":"Date arrest warrant was issued, if any",
+      "x-pii": false,
       "type":["null","string"]
     },
     "assessment_comment":{
@@ -126,6 +133,7 @@
         null
       ],
       "title":"Comment by caseworker",
+      "x-pii": true,
       "type":["null","string"]
     },
     "assigned_counsel":{
@@ -133,6 +141,7 @@
         "no"
       ],
       "title":"Was there an assigned counsel?",
+      "x-pii": false,
       "type":"string",
       "enum": ["yes", "no"]
     },
@@ -141,13 +150,16 @@
         "non_standard_magistrate"
       ],
       "title":"What are you claiming for?",
+      "x-pii": false,
       "type":["string","object"],
       "properties": {
         "en": {
+          "x-pii": false,
           "type": ["string","null"],
           "title": "The translated value"
         },
         "value": {
+          "x-pii": false,
           "type": ["string","null"],
           "title": "The translateable key"
         }
@@ -158,6 +170,7 @@
         null
       ],
       "title":"Date the CNTP rep order was issued",
+      "x-pii": false,
       "type":["null","string"]
     },
     "cntp_order":{
@@ -165,6 +178,7 @@
         "CNTP1234"
       ],
       "title":"Clients CNTP (contempt) number",
+      "x-pii": false,
       "type":["null","string"]
     },
     "concluded":{
@@ -172,6 +186,7 @@
         "yes"
       ],
       "title":"Did the proceedings conclude over 3 months ago?",
+      "x-pii": false,
       "type":"string",
       "enum": ["yes", "no"]
     },
@@ -180,6 +195,7 @@
         "Because"
       ],
       "title":"Tell us why you did not make this claim within 3 months of the conclusion of the proceedings",
+      "x-pii": true,
       "type":["string","null"]
     },
     "cost_summary":{
@@ -222,6 +238,7 @@
                 "0.0"
               ],
               "title":"Gross cost",
+              "x-pii": false,
               "type":"string"
             },
             "net_cost":{
@@ -229,6 +246,7 @@
                 "0.0"
               ],
               "title":"Net cost",
+              "x-pii": false,
               "type":"string"
             },
             "vat":{
@@ -236,6 +254,7 @@
                 "0.0"
               ],
               "title":"VAT",
+              "x-pii": false,
               "type":"string"
             }
           },
@@ -261,6 +280,7 @@
                 "987.02016"
               ],
               "title":"Gross cost",
+              "x-pii": false,
               "type":"string"
             },
             "net_cost":{
@@ -268,6 +288,7 @@
                 "822.5168"
               ],
               "title":"Net cost",
+              "x-pii": false,
               "type":"string"
             },
             "vat":{
@@ -275,6 +296,7 @@
                 "164.50336"
               ],
               "title":"VAT",
+              "x-pii": false,
               "type":"string"
             }
           },
@@ -300,6 +322,7 @@
                 "0.0"
               ],
               "title":"Gross cost",
+              "x-pii": false,
               "type":"string"
             },
             "net_cost":{
@@ -307,6 +330,7 @@
                 "0.0"
               ],
               "title":"Net cost",
+              "x-pii": false,
               "type":"string"
             },
             "vat":{
@@ -314,6 +338,7 @@
                 "0.0"
               ],
               "title":"VAT",
+              "x-pii": false,
               "type":"string"
             }
           },
@@ -339,6 +364,7 @@
                 "404.064"
               ],
               "title":"Gross cost",
+              "x-pii": false,
               "type":"string"
             },
             "net_cost":{
@@ -346,6 +372,7 @@
                 "336.72"
               ],
               "title":"Net cost",
+              "x-pii": false,
               "type":"string"
             },
             "vat":{
@@ -353,6 +380,7 @@
                 "67.344"
               ],
               "title":"VAT",
+              "x-pii": false,
               "type":"string"
             }
           },
@@ -380,6 +408,7 @@
         "something else - n/a"
       ],
       "title":"Court",
+      "x-pii": false,
       "type":"string"
     },
     "court_in_undesignated_area":{
@@ -387,6 +416,7 @@
         false
       ],
       "title":"Court in undesignated area",
+      "x-pii": false,
       "type":["boolean","null"]
     },
     "cracked_trial_date":{
@@ -394,6 +424,7 @@
          "2024-10-04"
       ],
       "title":"Cracked trial date",
+      "x-pii": false,
       "type":["null", "string"]
     },
     "created_at":{
@@ -401,6 +432,7 @@
         "2024-10-04T08:48:30.744Z"
       ],
       "title":"Created at",
+      "x-pii": false,
       "type":"string"
     },
     "defence_statement":{
@@ -408,6 +440,7 @@
         12
       ],
       "title":"Number of pages of defence statements",
+      "x-pii": false,
       "type":"integer"
     },
     "defendants":{
@@ -440,6 +473,7 @@
               "Joe"
             ],
             "title":"First name",
+            "x-pii": true,
             "type":"string"
           },
           "id":{
@@ -447,6 +481,7 @@
               "21a726f3-9f04-40f2-93f4-c834cb16ea02"
             ],
             "title":"ID",
+            "x-pii": false,
             "type":"string"
           },
           "last_name":{
@@ -454,6 +489,7 @@
               "Bloggs"
             ],
             "title":"Last name",
+            "x-pii": true,
             "type":"string"
           },
           "maat":{
@@ -461,6 +497,7 @@
               "1234567"
             ],
             "title":"MAAT ID",
+            "x-pii": false,
             "type":["string","null"]
           },
           "main":{
@@ -468,6 +505,7 @@
               true
             ],
             "title":"Main",
+            "x-pii": false,
             "type":"boolean"
           },
           "position":{
@@ -475,6 +513,7 @@
               1
             ],
             "title":"Position",
+            "x-pii": false,
             "type":"integer"
           }
         },
@@ -497,13 +536,16 @@
         "n"
       ],
       "title":"Disability code",
+      "x-pii": true,
       "type":["string","object","null"],
       "properties": {
         "en": {
+          "x-pii": true,
           "type": ["string","null"],
           "title": "The translated value"
         },
         "value": {
+          "x-pii": true,
           "type": ["string","null"],
           "title": "The translateable key"
         }
@@ -553,6 +595,7 @@
               "21a726f3-9f04-40f2-93f4-c834cb16ea02"
             ],
             "title":"ID",
+            "x-pii": false,
             "type":"string"
           },
           "disbursement_date":{
@@ -560,6 +603,7 @@
               "2012-12-12"
             ],
             "title":"Disbursement date",
+            "x-pii": false,
             "type":"string"
           },
           "disbursement_type":{
@@ -567,13 +611,16 @@
               "car"
             ],
             "title":"Disbursement type",
+            "x-pii": false,
             "type":["string","object"],
             "properties": {
               "en": {
+                "x-pii": false,
                 "type": "string",
                 "title": "The translated value"
               },
               "value": {
+                "x-pii": false,
                 "type": "string",
                 "title": "The translateable key"
               }
@@ -584,13 +631,16 @@
               "Foo"
             ],
             "title":"Other type",
+            "x-pii": false,
             "type":["string","object","null"],
             "properties": {
               "en": {
+                "x-pii": false,
                 "type": ["string","null"],
                 "title": "The translated value"
               },
               "value": {
+                "x-pii": false,
                 "type": ["string","null"],
                 "title": "The translateable key"
               }
@@ -601,6 +651,7 @@
               "12.3", 4.0
             ],
             "title":"Miles",
+            "x-pii": false,
             "type":["string","number","null"]
           },
           "miles_original":{
@@ -608,6 +659,7 @@
               "12.3"
             ],
             "title":"Miles",
+            "x-pii": false,
             "type":["string","number","null"]
           },
           "total_cost_without_vat":{
@@ -615,6 +667,7 @@
               12.3
             ],
             "title":"Total cost without vat",
+            "x-pii": false,
             "type":["number","string","null"]
           },
           "total_cost_without_vat_original":{
@@ -622,6 +675,7 @@
               12.3
             ],
             "title":"Total cost without vat",
+            "x-pii": false,
             "type":["number","string","null"]
           },
           "details":{
@@ -629,6 +683,7 @@
               "A disbursement"
             ],
             "title":"Details",
+            "x-pii": false,
             "type":"string"
           },
           "prior_authority":{
@@ -636,6 +691,7 @@
               "yes"
             ],
             "title":"Prior authority",
+            "x-pii": false,
             "type":["string", "null"],
             "enum":["yes","no",null]
           },
@@ -644,6 +700,7 @@
               "true"
             ],
             "title":"Apply VAT",
+            "x-pii": false,
             "type":"string",
             "enum":["true","false"]
           },
@@ -652,6 +709,7 @@
               "true"
             ],
             "title":"Apply VAT",
+            "x-pii": false,
             "type":["null","string"],
             "enum":["true","false", null]
           },
@@ -660,6 +718,7 @@
               12.3, "12.3"
             ],
             "title":"VAT amount",
+            "x-pii": false,
             "type":["number","string","null"]
           },
           "vat_amount_original":{
@@ -667,6 +726,7 @@
               12.3, "12.3"
             ],
             "title":"VAT amount",
+            "x-pii": false,
             "type":["number","string","null"]
           },
           "position":{
@@ -674,6 +734,7 @@
               1
             ],
             "title":"Position",
+            "x-pii": false,
             "type":"integer"
           },
           "pricing":{
@@ -681,6 +742,7 @@
               12.3
             ],
             "title":"Pricing",
+            "x-pii": false,
             "type":["number","string"]
           },
           "vat_rate":{
@@ -688,6 +750,7 @@
               0.2
             ],
             "title":"VAT rate",
+            "x-pii": false,
             "type":["number","string"]
           }
         },
@@ -717,13 +780,16 @@
         "04_black_or_black_british_caribbean"
       ],
       "title":"Ethnic group",
+      "x-pii": true,
       "type":["string","object","null"],
       "properties": {
         "en": {
+          "x-pii": true,
           "type": ["string","null"],
           "title": "The translated value"
         },
         "value": {
+          "x-pii": true,
           "type": ["string","null"],
           "title": "The translateable key"
         }
@@ -748,6 +814,7 @@
             "1A123B"
           ],
           "title":"Account number",
+          "x-pii": false,
           "type":"string"
         },
         "address_line_1":{
@@ -755,6 +822,7 @@
             "123"
           ],
           "title":"Address line 1",
+          "x-pii": false,
           "type":"string"
         },
         "address_line_2":{
@@ -762,6 +830,7 @@
             "123"
           ],
           "title":"Address line 2",
+          "x-pii": false,
           "type":["string","null"]
         },
         "name":{
@@ -769,6 +838,7 @@
             "123"
           ],
           "title":"Nmae",
+          "x-pii": false,
           "type":"string"
         },
         "postcode":{
@@ -776,6 +846,7 @@
             "IP1 1AA"
           ],
           "title":"Postcode",
+          "x-pii": false,
           "type":"string"
         },
         "previous_id":{
@@ -783,6 +854,7 @@
             null
           ],
           "title":"Previous ID",
+          "x-pii": false,
           "type":"null"
         },
         "town":{
@@ -790,6 +862,7 @@
             "123"
           ],
           "title":"Town",
+          "x-pii": false,
           "type":"string"
         },
         "vat_registered":{
@@ -797,6 +870,7 @@
             "yes"
           ],
           "title":"VAT registered",
+          "x-pii": false,
           "type":"string",
           "enum": ["yes", "no"]
         }
@@ -819,6 +893,7 @@
         "2012-12-12"
       ],
       "title":"First hearing date",
+      "x-pii": false,
       "type":"string"
     },
     "further_information": {
@@ -834,6 +909,7 @@
         ],
         "properties": {
           "information_requested": {
+            "x-pii": true,
             "type": "string",
             "title": "information by the caseworker",
             "examples": [
@@ -841,6 +917,7 @@
             ]
           },
           "information_supplied": {
+            "x-pii": true,
             "type": ["string", "null"],
             "title": "information by the provider",
             "examples": [
@@ -848,6 +925,7 @@
             ]
           },
           "caseworker_id": {
+            "x-pii": false,
             "type": "string",
             "title": "ID the caseworker who requested further information",
             "examples": [
@@ -855,6 +933,7 @@
             ]
           },
           "requested_at": {
+            "x-pii": false,
             "type": "string",
             "title": "timestamp when the information was requested",
             "examples": [
@@ -862,6 +941,7 @@
             ]
           },
           "signatory_name": {
+            "x-pii": true,
             "type": "string",
             "title": "Signatory name",
             "examples": [
@@ -872,7 +952,7 @@
             "type": "array",
             "title": "Supporting documents",
             "items": {
-                "type": "object",
+              "type": "object",
                 "title": "A document",
                 "required": [
                     "file_name",
@@ -883,35 +963,40 @@
                 ],
                 "properties": {
                     "file_name": {
-                        "type": "string",
+                      "x-pii": true,  
+                      "type": "string",
                         "title": "Filename",
                         "examples": [
                             "test.png"
                         ]
                     },
                     "file_type": {
-                        "type": "string",
+                      "x-pii": false,  
+                      "type": "string",
                         "title": "File type",
                         "examples": [
                             "image/png"
                         ]
                     },
                     "file_size": {
-                        "type": "integer",
+                      "x-pii": false,  
+                      "type": "integer",
                         "title": "File size in bytes",
                         "examples": [
                             1234
                         ]
                     },
                     "file_path": {
-                        "type": "string",
+                      "x-pii": false,  
+                      "type": "string",
                         "title": "S3 ID of the file",
                         "examples": [
                             "test_path"
                         ]
                     },
                     "document_type": {
-                        "type": "string",
+                      "x-pii": false,  
+                      "type": "string",
                         "title": "Document type",
                         "examples": [
                             "supporting_document"
@@ -992,13 +1077,16 @@
         "f"
       ],
       "title":"Gender",
+      "x-pii": true,
       "type":["string","object","null"],
       "properties": {
         "en": {
+          "x-pii": true,
           "type": ["string","null"],
           "title": "The translated value"
         },
         "value": {
+          "x-pii": true,
           "type": ["string","null"],
           "title": "The translateable key"
         }
@@ -1009,6 +1097,7 @@
         "no"
       ],
       "title":"Whether there are disbursements",
+      "x-pii": false,
       "type":"string",
       "enum": ["no", "yes"]
     },
@@ -1017,13 +1106,16 @@
         "CP03"
       ],
       "title":"Hearing outcome ID",
+      "x-pii": false,
       "type":["string","object"],
       "properties": {
         "en": {
+          "x-pii": false,
           "type": ["string","null"],
           "title": "The translated value"
         },
         "value": {
+          "x-pii": false,
           "type": ["string","null"],
           "title": "The translateable key"
         }
@@ -1034,6 +1126,7 @@
         "12dc8c8b-5f27-4772-9ae5-585fd554650c"
       ],
       "title":"id",
+      "x-pii": false,
       "type":"string"
     },
     "is_other_info":{
@@ -1041,6 +1134,7 @@
         "yes"
       ],
       "title":"Do you want to add any other information?",
+      "x-pii": false,
       "type":"string",
       "enum": ["yes", "no"]
     },
@@ -1049,6 +1143,7 @@
         "LAA-ROGzzc"
       ],
       "title":"LAA reference",
+      "x-pii": false,
       "type":"string"
     },
     "letters_and_calls":{
@@ -1057,12 +1152,14 @@
           {
             "count":12,
             "pricing":4.09,
+            "x-pii": false,
             "type":"calls",
             "uplift":12
           },
           {
             "count":12,
             "pricing":4.09,
+            "x-pii": false,
             "type":"letters",
             "uplift":12
           }
@@ -1073,12 +1170,14 @@
           {
             "count":12,
             "pricing":4.09,
+            "x-pii": false,
             "type":"calls",
             "uplift":12
           },
           {
             "count":12,
             "pricing":4.09,
+            "x-pii": false,
             "type":"letters",
             "uplift":12
           }
@@ -1089,6 +1188,7 @@
               12
             ],
             "title":"count",
+            "x-pii": false,
             "type":"integer"
           },
           "count_original":{
@@ -1096,6 +1196,7 @@
               12
             ],
             "title":"count",
+            "x-pii": false,
             "type":["null", "integer"]
           },
           "pricing":{
@@ -1103,6 +1204,7 @@
               4.09
             ],
             "title":"pricing",
+            "x-pii": false,
             "type":["number","string"]
           },
           "type":{
@@ -1111,13 +1213,16 @@
               "letters"
             ],
             "title":"type",
+            "x-pii": false,
             "type":["string","object"],
             "properties": {
               "en": {
+                "x-pii": false,
                 "type": "string",
                 "title": "The translated value"
               },
               "value": {
+                "x-pii": false,
                 "type": "string",
                 "title": "The translateable key"
               }
@@ -1128,6 +1233,7 @@
               12
             ],
             "title":"uplift",
+            "x-pii": false,
             "type":["integer", "null"]
           },
           "uplift_original":{
@@ -1135,6 +1241,7 @@
               12
             ],
             "title":"uplift",
+            "x-pii": false,
             "type":["integer", "null"]
           }
         },
@@ -1155,6 +1262,7 @@
         "Assault (common)"
       ],
       "title":"Main offence",
+      "x-pii": false,
       "type":"string"
     },
     "main_offence_date":{
@@ -1162,6 +1270,7 @@
         "2012-12-12"
       ],
       "title":"Main offence date",
+      "x-pii": false,
       "type":"string"
     },
     "matter_type":{
@@ -1169,13 +1278,16 @@
         "2"
       ],
       "title":"Matter type ID",
+      "x-pii": false,
       "type":["string","object"],
       "properties": {
         "en": {
+          "x-pii": false,
           "type": ["string","null"],
           "title": "The translated value"
         },
         "value": {
+          "x-pii": false,
           "type": ["string","null"],
           "title": "The translateable key"
         }
@@ -1186,6 +1298,7 @@
         12
       ],
       "title":"Number of hearings",
+      "x-pii": false,
       "type":"integer"
     },
     "number_of_witnesses":{
@@ -1193,6 +1306,7 @@
         12
       ],
       "title":"Number of witnesses",
+      "x-pii": false,
       "type":"integer"
     },
     "office_code":{
@@ -1200,6 +1314,7 @@
         "1A123B"
       ],
       "title":"Office code",
+      "x-pii": false,
       "type":"string"
     },
     "office_in_undesignated_area":{
@@ -1207,6 +1322,7 @@
         true
       ],
       "title":"Office in undesignated area",
+      "x-pii": false,
       "type":["boolean","null"]
     },
     "other_info":{
@@ -1214,6 +1330,7 @@
         "More info"
       ],
       "title":"Other info",
+      "x-pii": true,
       "type":["string","null"]
     },
     "plea":{
@@ -1221,13 +1338,16 @@
         "not_guilty"
       ],
       "title":"Plea ID",
+      "x-pii": false,
       "type":["string","object"],
       "properties": {
         "en": {
+          "x-pii": false,
           "type": ["string","null"],
           "title": "The translated value"
         },
         "value": {
+          "x-pii": false,
           "type": ["string","null"],
           "title": "The translateable key"
         }
@@ -1238,13 +1358,16 @@
         "not_guilty_pleas"
       ],
       "title":"Plea category",
+      "x-pii": false,
       "type":["string","object"],
       "properties": {
         "en": {
+          "x-pii": false,
           "type": ["string","null"],
           "title": "The translated value"
         },
         "value": {
+          "x-pii": false,
           "type": ["string","null"],
           "title": "The translateable key"
         }
@@ -1255,6 +1378,7 @@
         "yes"
       ],
       "title":"Did you spend time watching or listening to recorded evidence?",
+      "x-pii": false,
       "type":"string",
       "enum": ["yes", "no"]
     },
@@ -1263,6 +1387,7 @@
         12
       ],
       "title":"Number of pages of prosecution evidence",
+      "x-pii": false,
       "type":"integer"
     },
     "reason_for_claim_other_details":{
@@ -1270,6 +1395,7 @@
         "Some reason"
       ],
       "title":"Other details about why a non-standard magistrates' court payment is being claimed",
+      "x-pii": true,
       "type":["string","null"]
     },
     "reasons_for_claim":{
@@ -1285,13 +1411,16 @@
           "enhanced_rates_claimed"
         ],
         "title":"Reason for claim",
+        "x-pii": false,
         "type":["string","object"],
         "properties": {
           "en": {
+            "x-pii": false,
             "type": "string",
             "title": "The translated value"
           },
           "value": {
+            "x-pii": false,
             "type": "string",
             "title": "The translateable key"
           }
@@ -1305,6 +1434,7 @@
         "no"
       ],
       "title":"Has the case been remitted from the Crown Court to the magistrates' court?",
+      "x-pii": false,
       "type":"string",
       "enum": ["yes", "no"]
     },
@@ -1313,6 +1443,7 @@
         null
       ],
       "title":"Remittal date",
+      "x-pii": false,
       "type":["null","string"]
     },
     "rep_order_date":{
@@ -1320,6 +1451,7 @@
         "2023-12-12"
       ],
       "title":"Representation order date",
+      "x-pii": false,
       "type":["string","null"]
     },
     "representation_order_withdrawn_date":{
@@ -1327,6 +1459,7 @@
         null
       ],
       "title":"Withdrawn date",
+      "x-pii": false,
       "type":["string","null"]
     },
     "send_back_comment":{
@@ -1334,6 +1467,7 @@
         null
       ],
       "title":"Interim comment by caseworker",
+      "x-pii": false,
       "type":["null"]
     },
     "send_by_post":{
@@ -1341,6 +1475,7 @@
         null
       ],
       "title":"Send by post",
+      "x-pii": false,
       "type":"null"
     },
     "signatory_name":{
@@ -1348,6 +1483,7 @@
         "asd asd"
       ],
       "title":"Signatory name",
+      "x-pii": false,
       "type":"string"
     },
     "solicitor":{
@@ -1368,6 +1504,7 @@
             "asd@asd.asd"
           ],
           "title":"Contact email",
+          "x-pii": true,
           "type":"string"
         },
         "contact_first_name":{
@@ -1375,6 +1512,7 @@
             "asd"
           ],
           "title":"Contact first name",
+          "x-pii": true,
           "type":"string"
         },
         "contact_last_name":{
@@ -1382,6 +1520,7 @@
             "asd"
           ],
           "title":"Contact last name",
+          "x-pii": true,
           "type":"string"
         },
         "first_name":{
@@ -1389,6 +1528,7 @@
             "123"
           ],
           "title":"First name",
+          "x-pii": true,
           "type":"string"
         },
         "last_name":{
@@ -1396,6 +1536,7 @@
             "123"
           ],
           "title":"Last name",
+          "x-pii": true,
           "type":"string"
         },
         "previous_id":{
@@ -1403,6 +1544,7 @@
             null
           ],
           "title":"previous_id",
+          "x-pii": false,
           "type":"null"
         },
         "reference_number":{
@@ -1410,6 +1552,7 @@
             "123"
           ],
           "title":"Reference number",
+          "x-pii": false,
           "type":"string"
         }
       },
@@ -1430,6 +1573,7 @@
         "prog"
       ],
       "title":"State reached",
+      "x-pii": false,
       "type":"string",
       "enum": ["prog", "prom"]
     },
@@ -1438,6 +1582,7 @@
         "submitted"
       ],
       "title":"Status",
+      "x-pii": false,
       "type":"string"
     },
     "submitted_total":{
@@ -1445,6 +1590,7 @@
         null
       ],
       "title":"Submitted total",
+      "x-pii": false,
       "type":"null"
     },
     "submitted_total_inc_vat":{
@@ -1452,6 +1598,7 @@
         null
       ],
       "title":"Submitted total inc VAT",
+      "x-pii": false,
       "type":"null"
     },
     "submitter":{
@@ -1467,6 +1614,7 @@
             null
           ],
           "title":"Description",
+          "x-pii": false,
           "type":"null"
         },
         "email":{
@@ -1474,6 +1622,7 @@
             "provider@example.com"
           ],
           "title":"Email",
+          "x-pii": true,
           "type":"string"
         }
       },
@@ -1489,6 +1638,7 @@
         "yes"
       ],
       "title":"Does this bill represent a supplemental claim?",
+      "x-pii": false,
       "type":"string",
       "enum": ["yes", "no"]
     },
@@ -1530,6 +1680,7 @@
               "2024-10-04T08:51:26.791Z"
             ],
             "title":"Created at",
+            "x-pii": false,
             "type":"string"
           },
           "document_type":{
@@ -1537,6 +1688,7 @@
               null
             ],
             "title":"Document type",
+            "x-pii": false,
             "type":["null","string"]
           },
           "documentable_id":{
@@ -1544,6 +1696,7 @@
               "12dc8c8b-5f27-4772-9ae5-585fd554650c"
             ],
             "title":"Documentable ID",
+            "x-pii": false,
             "type":"string"
           },
           "documentable_type":{
@@ -1551,6 +1704,7 @@
               "Claim"
             ],
             "title":"Documentable type",
+            "x-pii": false,
             "type":"string"
           },
           "file_name":{
@@ -1558,6 +1712,7 @@
               "LAA-6QnJdm.pdf"
             ],
             "title":"File name",
+            "x-pii": true,
             "type":"string"
           },
           "file_path":{
@@ -1565,6 +1720,7 @@
               "123123123123"
             ],
             "title":"File path",
+            "x-pii": false,
             "type":"string"
           },
           "file_size":{
@@ -1572,6 +1728,7 @@
               181805
             ],
             "title":"File size",
+            "x-pii": false,
             "type":"integer"
           },
           "file_type":{
@@ -1579,6 +1736,7 @@
               "application/pdf"
             ],
             "title":"File type",
+            "x-pii": false,
             "type":"string"
           },
           "id":{
@@ -1586,6 +1744,7 @@
               "17058cee-2289-4695-a51e-93f53ddf7b9b"
             ],
             "title":"ID",
+            "x-pii": false,
             "type":"string"
           },
           "updated_at":{
@@ -1593,6 +1752,7 @@
               "2024-10-04T08:51:26.791Z"
             ],
             "title":"Updated at",
+            "x-pii": false,
             "type":"string"
           }
         },
@@ -1619,6 +1779,7 @@
         732
       ],
       "title":"Running time of the recording",
+      "x-pii": false,
       "type":["null","integer"]
     },
     "transferred_to_undesignated_area":{
@@ -1626,6 +1787,7 @@
         true
       ],
       "title":"Did the case transfer to an undesignated area",
+      "x-pii": false,
       "type":["boolean","null"]
     },
     "ufn":{
@@ -1633,6 +1795,7 @@
         "121212/001"
       ],
       "title":"UFN",
+      "x-pii": false,
       "type":"string"
     },
     "unassigned_counsel":{
@@ -1640,6 +1803,7 @@
         "no"
       ],
       "title":"Was there an unassigned counsel?",
+      "x-pii": false,
       "type":"string",
       "enum": ["yes", "no"]
     },
@@ -1648,6 +1812,7 @@
         "2024-10-04T08:51:40.130Z"
       ],
       "title":"Updated at",
+      "x-pii": false,
       "type":"string"
     },
     "vat_rate":{
@@ -1655,6 +1820,7 @@
         0.2
       ],
       "title":"VAT rate",
+      "x-pii": false,
       "type":"number"
     },
     "wasted_costs":{
@@ -1662,6 +1828,7 @@
         "yes"
       ],
       "title":"Have wasted costs been applied to this case?",
+      "x-pii": false,
       "type":"string",
       "enum": ["yes", "no"]
     },
@@ -1670,6 +1837,7 @@
         "yes"
       ],
       "title":"Did you do any further work after the last court hearing?",
+      "x-pii": false,
       "type":"string",
       "enum": ["yes", "no"]
     },
@@ -1678,6 +1846,7 @@
         "2012-12-12"
       ],
       "title":"Date of last court hearing",
+      "x-pii": false,
       "type":["null","string"]
     },
     "work_before":{
@@ -1685,6 +1854,7 @@
         "yes"
       ],
       "title":"Did you do any work before the representation order date?",
+      "x-pii": false,
       "type":"string",
       "enum": ["yes", "no"]
     },
@@ -1693,6 +1863,7 @@
         "2012-12-12"
       ],
       "title":"Date you started this work",
+      "x-pii": false,
       "type":["null","string"]
     },
     "work_completed_date":{
@@ -1700,6 +1871,7 @@
         "2012-12-12"
       ],
       "title":"Date work was completed",
+      "x-pii": false,
       "type":"string"
     },
     "work_item_pricing":{
@@ -1719,6 +1891,7 @@
             65.42
           ],
           "title":"Advocacy",
+          "x-pii": false,
           "type":"number"
         },
         "attendance_with_counsel":{
@@ -1726,6 +1899,7 @@
             35.68
           ],
           "title":"Attendance with counsel",
+          "x-pii": false,
           "type":"number"
         },
         "attendance_without_counsel":{
@@ -1733,6 +1907,7 @@
             52.15
           ],
           "title":"Attendance without counsel",
+          "x-pii": false,
           "type":"number"
         },
         "preparation":{
@@ -1740,6 +1915,7 @@
             52.15
           ],
           "title":"Preparation",
+          "x-pii": false,
           "type":"number"
         },
         "travel":{
@@ -1747,6 +1923,7 @@
             27.6
           ],
           "title":"Travel",
+          "x-pii": false,
           "type":"number"
         },
         "waiting":{
@@ -1754,6 +1931,7 @@
             27.6
           ],
           "title":"Waiting",
+          "x-pii": false,
           "type":"number"
         }
       },
@@ -1820,13 +1998,15 @@
               "2012-12-12"
             ],
             "title":"Completed on",
+            "x-pii": false,
             "type":"string"
           },
           "fee_earner":{
             "examples":[
               "AB"
             ],
-            "title":"Fee earner initias",
+            "title":"Fee earner initials",
+            "x-pii": true,
             "type":"string"
           },
           "id":{
@@ -1835,6 +2015,7 @@
               "cf7063f2-edd6-4622-8b25-1a89d88952c1"
             ],
             "title":"ID",
+            "x-pii": false,
             "type":"string"
           },
           "position":{
@@ -1843,6 +2024,7 @@
               2
             ],
             "title":"Position",
+            "x-pii": false,
             "type":"integer"
           },
           "pricing":{
@@ -1851,6 +2033,7 @@
               52.15
             ],
             "title":"Pricing",
+            "x-pii": false,
             "type":["number","string"]
           },
           "pricing_original":{
@@ -1859,6 +2042,7 @@
               52.15
             ],
             "title":"Pricing original",
+            "x-pii": false,
             "type":["number","null","string"]
           },
           "time_spent":{
@@ -1866,6 +2050,7 @@
               732
             ],
             "title":"Time spent",
+            "x-pii": false,
             "type":"integer"
           },
           "time_spent_original":{
@@ -1873,6 +2058,7 @@
               732
             ],
             "title":"Time spent original",
+            "x-pii": false,
             "type":["integer","null"]
           },
           "uplift":{
@@ -1881,6 +2067,7 @@
               12
             ],
             "title":"Uplift",
+            "x-pii": false,
             "type":["integer","null"]
           },
           "uplift_original":{
@@ -1889,6 +2076,7 @@
               12
             ],
             "title":"Uplift original",
+            "x-pii": false,
             "type":["integer","null"]
           },
           "work_type":{
@@ -1897,13 +2085,16 @@
               "waiting"
             ],
             "title":"Work type",
+            "x-pii": false,
             "type":["string","object"],
             "properties": {
               "en": {
+                "x-pii": false,
                 "type": "string",
                 "title": "The translated value"
               },
               "value": {
+                "x-pii": false,
                 "type": "string",
                 "title": "The translateable key"
               }
@@ -1915,13 +2106,16 @@
               "waiting"
             ],
             "title":"Work type",
+            "x-pii": false,
             "type":["string","object","null"],
             "properties": {
               "en": {
+                "x-pii": false,
                 "type": "string",
                 "title": "The translated value"
               },
               "value": {
+                "x-pii": false,
                 "type": "string",
                 "title": "The translateable key"
               }
@@ -1949,6 +2143,7 @@
         "no"
       ],
       "title":"Is this court a youth court?",
+      "x-pii": false,
       "type":"string",
       "enum": ["yes", "no"]
     }
@@ -2030,12 +2225,14 @@
         {
           "count":12,
           "pricing":4.09,
+          "x-pii": false,
           "type":"calls",
           "uplift":12
         },
         {
           "count":12,
           "pricing":4.09,
+          "x-pii": false,
           "type":"letters",
           "uplift":12
         }
