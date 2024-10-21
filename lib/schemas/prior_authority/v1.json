@@ -54,6 +54,7 @@
         ],
         "properties": {
           "id": {
+            "x-pii": false,
             "type": "string",
             "title": "ID",
             "examples": [
@@ -61,6 +62,7 @@
             ]
           },
           "name": {
+            "x-pii": false,
             "type": "string",
             "title": "Name",
             "examples": [
@@ -68,6 +70,7 @@
             ]
           },
           "description": {
+            "x-pii": false,
             "type": "string",
             "title": "Description",
             "examples": [
@@ -75,6 +78,7 @@
             ]
           },
           "unit_type": {
+            "x-pii": false,
             "type": "string",
             "title": "type cost",
             "enum": ["per_hour", "per_item"],
@@ -84,6 +88,7 @@
             ]
           },
           "cost_per_hour": {
+            "x-pii": false,
             "type": ["string", "null"],
             "title": "Decimal representation of the hourly cost - only required for per_hour costs",
             "examples": [
@@ -91,6 +96,7 @@
             ]
           },
           "cost_per_hour_original": {
+            "x-pii": false,
             "type": ["string", "null"],
             "title": "Pre-adjustment hourly cost",
             "examples": [
@@ -98,6 +104,7 @@
             ]
           },
           "cost_per_item": {
+            "x-pii": false,
             "type": ["string", "null"],
             "title": "Decimal representation of the per-item cost - only required for per_item costs",
             "examples": [
@@ -105,6 +112,7 @@
             ]
           },
           "cost_per_item_original": {
+            "x-pii": false,
             "type": ["string", "null"],
             "title": "Pre-adjustment per-item cost",
             "examples": [
@@ -112,6 +120,7 @@
             ]
           },
           "items": {
+            "x-pii": false,
             "type": ["integer", "null"],
             "title": "number of items for per_item costs",
             "examples": [
@@ -119,6 +128,7 @@
             ]
           },
           "items_original": {
+            "x-pii": false,
             "type": ["integer", "null"],
             "title": "pre-adjustments figure of items for per_item costs",
             "examples": [
@@ -126,6 +136,7 @@
             ]
           },
           "period": {
+            "x-pii": false,
             "type": ["integer", "null"],
             "title": "duration in minutes for per_hour costs",
             "examples": [
@@ -133,6 +144,7 @@
             ]
           },
           "period_original": {
+            "x-pii": false,
             "type": ["integer", "null"],
             "title": "pre-adjustment duration in minutes for per_hour costs",
             "examples": [
@@ -171,6 +183,7 @@
       ]
     },
     "assessment_comment": {
+      "x-pii": true,
       "type": ["string", "null"],
       "title": "Assessment comment",
       "examples": [
@@ -178,6 +191,7 @@
       ]
     },
     "client_detained": {
+      "x-pii": false,
       "type": ["boolean", "null"],
       "title": "Whether the client is detained - not relevant for prison law applications",
       "examples": [
@@ -185,6 +199,7 @@
       ]
     },
     "court_type": {
+      "x-pii": false,
       "type": ["string", "null"],
       "title": "type court - not relevant for prison law applications",
       "enum": ["central_criminal_court", "magistrates_court", "crown_court", null],
@@ -193,6 +208,7 @@
       ]
     },
     "created_at": {
+      "x-pii": false,
       "type": "string",
       "title": "Datetime representation of when the application was first started",
       "examples": [
@@ -200,6 +216,7 @@
       ]
     },
     "custom_main_offence_name": {
+      "x-pii": false,
       "type": ["string", "null"],
       "title": "name the main offence if the main_offence_id is `other`",
       "examples": [
@@ -207,14 +224,16 @@
       ]
     },
     "custom_prison_name": {
-        "type": ["string", "null"],
+      "x-pii": false,  
+      "type": ["string", "null"],
         "title": "name the prison if the prison_id is `other`",
         "examples": [
             "HMP London"
         ]
     },
     "custom_service_name": {
-        "type": ["null", "string"],
+      "x-pii": false,  
+      "type": ["null", "string"],
         "title": "name the service being purchase if service_type is `other`",
         "examples": [
           "Psychic"
@@ -231,6 +250,7 @@
       ],
       "properties": {
         "maat": {
+          "x-pii": false,
           "type": ["string", "null"],
           "title": "MAAT",
           "examples": [
@@ -238,6 +258,7 @@
           ]
         },
         "first_name": {
+          "x-pii": true,
           "type": "string",
           "title": "First name",
           "examples": [
@@ -245,6 +266,7 @@
           ]
         },
         "last_name": {
+          "x-pii": true,
           "type": "string",
           "title": "Last name",
           "examples": [
@@ -252,6 +274,7 @@
           ]
         },
         "date_of_birth": {
+          "x-pii": true,
           "type": "string",
           "title": "date birth in YYYY-MM-DD",
           "examples": [
@@ -280,6 +303,7 @@
       ],
       "properties": {
         "name": {
+          "x-pii": false,
           "type": "string",
           "title": "Firm name",
           "examples": [
@@ -287,6 +311,7 @@
           ]
         },
         "address_line_1": {
+          "x-pii": false,
           "type": "null",
           "title": "Address line 1",
           "examples": [
@@ -294,6 +319,7 @@
           ]
         },
         "address_line_2": {
+          "x-pii": false,
           "type": ["null"],
           "title": "Address line 2",
           "examples": [
@@ -301,6 +327,7 @@
           ]
         },
         "town": {
+          "x-pii": false,
           "type": "null",
           "title": "Town",
           "examples": [
@@ -308,6 +335,7 @@
           ]
         },
         "postcode": {
+          "x-pii": false,
           "type": "null",
           "title": "Postcode",
           "examples": [
@@ -315,6 +343,7 @@
           ]
         },
         "vat_registered": {
+          "x-pii": false,
           "type": "null",
           "title": "String representation of whether the firm is vat registered",
           "examples": [
@@ -322,6 +351,7 @@
           ]
         },
         "account_number": {
+          "x-pii": false,
           "type": "string",
           "title": "account to be associated with this application",
           "examples": [
@@ -352,6 +382,7 @@
         ],
         "properties": {
           "information_requested": {
+            "x-pii": true,
             "type": "string",
             "title": "information by the caseworker",
             "examples": [
@@ -359,6 +390,7 @@
             ]
           },
           "information_supplied": {
+            "x-pii": true,
             "type": ["string", "null"],
             "title": "information by the provider",
             "examples": [
@@ -366,6 +398,7 @@
             ]
           },
           "caseworker_id": {
+            "x-pii": false,
             "type": "string",
             "title": "ID the caseworker who requested further information",
             "examples": [
@@ -373,6 +406,7 @@
             ]
           },
           "requested_at": {
+            "x-pii": false,
             "type": "string",
             "title": "timestamp when the information was requested",
             "examples": [
@@ -380,6 +414,7 @@
             ]
           },
           "new": {
+            "x-pii": false,
             "type": "boolean",
             "title": "Whether this is a newly added",
             "examples": [
@@ -390,7 +425,7 @@
             "type": "array",
             "title": "Supporting documents",
             "items": {
-                "type": "object",
+              "type": "object",
                 "title": "A document",
                 "required": [
                     "file_name",
@@ -401,35 +436,40 @@
                 ],
                 "properties": {
                     "file_name": {
-                        "type": "string",
+                      "x-pii": true,  
+                      "type": "string",
                         "title": "Filename",
                         "examples": [
                             "test.png"
                         ]
                     },
                     "file_type": {
-                        "type": "string",
+                      "x-pii": false,  
+                      "type": "string",
                         "title": "File type",
                         "examples": [
                             "image/png"
                         ]
                     },
                     "file_size": {
-                        "type": "integer",
+                      "x-pii": false,  
+                      "type": "integer",
                         "title": "File size in bytes",
                         "examples": [
                             1234
                         ]
                     },
                     "file_path": {
-                        "type": "string",
+                      "x-pii": false,  
+                      "type": "string",
                         "title": "S3 ID of the file",
                         "examples": [
                             "test_path"
                         ]
                     },
                     "document_type": {
-                        "type": "string",
+                      "x-pii": false,  
+                      "type": "string",
                         "title": "Document type",
                         "examples": [
                             "supporting_document"
@@ -506,6 +546,7 @@
       ]
     },
     "further_information_explanation": {
+      "x-pii": false,
       "type": ["string", "null"],
       "title": "Further information explanation",
       "examples": [
@@ -525,6 +566,7 @@
         ],
         "properties": {
           "information_requested": {
+            "x-pii": true,
             "type": "string",
             "title": "Information requested by the caseworker",
             "examples": [
@@ -535,6 +577,7 @@
             "type": "array",
             "title": "Which sections have been corrected",
             "items": {
+              "x-pii": false,
               "type": "string",
               "title": "Corrected section",
               "examples": [
@@ -548,21 +591,24 @@
             ]
           },
           "caseworker_id": {
-              "type": "string",
+            "x-pii": false,  
+            "type": "string",
               "title": "ID of the requesting caseworker",
               "examples": [
                   "87e88ac6-d89a-4180-80d4-e03285023fb0"
               ]
           },
           "requested_at": {
-              "type": "string",
+            "x-pii": false,  
+            "type": "string",
               "title": "When corrections were requested",
               "examples": [
                   "2024-01-01T01:01:01.000Z"
               ]
           },
           "new": {
-              "type": "boolean",
+            "x-pii": false,  
+            "type": "boolean",
               "title": "If these corrections are new in this submission",
               "examples": [
                   true
@@ -592,6 +638,7 @@
       ]
     },
     "incorrect_information_explanation": {
+      "x-pii": false,
       "type": ["string", "null"],
       "title": "Incorrect information explanation",
       "examples": [
@@ -599,6 +646,7 @@
       ]
     },
     "laa_reference": {
+      "x-pii": false,
       "type": "string",
       "title": "LAA reference",
       "examples": [
@@ -606,6 +654,7 @@
       ]
     },
     "main_offence_id": {
+      "x-pii": false,
       "type": ["string", "null"],
       "title": "ID of the main offence unless this is prison law",
       "examples": [
@@ -613,6 +662,7 @@
       ]
     },
     "next_hearing": {
+      "x-pii": false,
       "type": "boolean",
       "title": "Whether the date of the next hearing is known",
       "examples": [
@@ -620,6 +670,7 @@
       ]
     },
     "next_hearing_date": {
+      "x-pii": false,
       "type": ["string", "null"],
       "title": "next date if known",
       "examples": [
@@ -627,6 +678,7 @@
       ]
     },
     "no_alternative_quote_reason": {
+      "x-pii": false,
       "type": ["string", "null"],
       "title": "Why no alternative quotes are given if none are given",
       "examples": [
@@ -634,6 +686,7 @@
       ]
     },
     "office_code": {
+      "x-pii": false,
       "type": "string",
       "title": "Office code",
       "examples": [
@@ -641,6 +694,7 @@
       ]
     },
     "pending_decision": {
+      "x-pii": false,
       "type": ["string", "null"],
       "title": "Stashed provisional decision",
       "enum": ["granted", "part_grant", "rejected"],
@@ -649,6 +703,7 @@
       ]
     },
     "pending_granted_explanation": {
+      "x-pii": false,
       "type": ["string", "null"],
       "title": "Stashed grant reasoning",
       "examples": [
@@ -656,6 +711,7 @@
       ]
     },
     "pending_part_grant_explanation": {
+      "x-pii": false,
       "type": ["string", "null"],
       "title": "Stashed part grant reasoning",
       "examples": [
@@ -663,6 +719,7 @@
       ]
     },
     "pending_rejected_explanation": {
+      "x-pii": false,
       "type": ["string", "null"],
       "title": "Stashed rejection reasoning",
       "examples": [
@@ -670,6 +727,7 @@
       ]
     },
     "plea": {
+      "x-pii": false,
       "type": ["string", "null"],
       "title": "Plea unless this is prison law",
       "enum": ["guilty", "not_guilty", "mixed", "unknown", null],
@@ -678,13 +736,15 @@
       ]
     },
     "prior_authority_granted": {
-        "type": "boolean",
+      "x-pii": false,
+      "type": "boolean",
         "title": "Whether prior authority has previously been granted",
         "examples": [
             false
         ]
     },
     "prison_id": {
+      "x-pii": false,
       "type": ["string", "null"],
       "title": "prison_id",
       "examples": [
@@ -692,6 +752,7 @@
       ]
     },
     "prison_law": {
+      "x-pii": false,
       "type": "boolean",
       "title": "Is this a Prison Law case",
       "examples": [
@@ -707,6 +768,7 @@
       ],
       "properties": {
         "email": {
+          "x-pii": false,
           "type": "string",
           "title": "Email",
           "examples": [
@@ -714,6 +776,7 @@
           ]
         },
         "description": {
+          "x-pii": false,
           "type": "null",
           "title": "Description",
           "examples": [
@@ -727,6 +790,7 @@
       }]
     },
     "psychiatric_liaison": {
+      "x-pii": false,
       "type": ["boolean", "null"],
       "title": "Psychiatric liaison service accessed",
       "examples": [
@@ -734,6 +798,7 @@
       ]
     },
     "psychiatric_liaison_reason_not": {
+      "x-pii": false,
       "type": ["string", "null"],
       "title": "Why psychiatric liaison service not accessed",
       "examples": [
@@ -773,6 +838,7 @@
         ],
         "properties": {
           "id": {
+            "x-pii": false,
             "type": "string",
             "title": "ID",
             "examples": [
@@ -780,6 +846,7 @@
             ]
           },
           "organisation": {
+            "x-pii": false,
             "type": "string",
             "title": "Organisation",
             "examples": [
@@ -787,6 +854,7 @@
             ]
           },
           "postcode": {
+            "x-pii": false,
             "type": "string",
             "title": "Postcode",
             "examples": [
@@ -794,6 +862,7 @@
             ]
           },
           "primary": {
+            "x-pii": false,
             "type": "boolean",
             "title": "Is this the primary quote",
             "examples": [
@@ -801,6 +870,7 @@
             ]
           },
           "ordered_by_court": {
+            "x-pii": false,
             "type": ["boolean", "null"],
             "title": "Ordered by court",
             "examples": [
@@ -808,6 +878,7 @@
             ]
           },
           "related_to_post_mortem": {
+            "x-pii": false,
             "type": ["boolean", "null"],
             "title": "Related to a post mortem",
             "examples": [
@@ -815,6 +886,7 @@
             ]
           },
           "cost_per_hour": {
+            "x-pii": false,
             "type": ["string", "null"],
             "title": "Cost per hour",
             "examples": [
@@ -822,6 +894,7 @@
             ]
           },
           "cost_per_hour_original": {
+            "x-pii": false,
             "type": ["string", "null"],
             "title": "Pre-adjustment cost per hour",
             "examples": [
@@ -829,6 +902,7 @@
             ]
           },
           "cost_per_item": {
+            "x-pii": false,
             "type": ["string", "null"],
             "title": "Cost per item",
             "examples": [
@@ -836,6 +910,7 @@
             ]
           },
           "cost_per_item_original": {
+            "x-pii": false,
             "type": ["string", "null"],
             "title": "Pre-adjustment cost per item",
             "examples": [
@@ -843,6 +918,7 @@
             ]
           },
           "items": {
+            "x-pii": false,
             "type": ["integer", "null"],
             "title": "items",
             "examples": [
@@ -850,6 +926,7 @@
             ]
           },
           "items_original": {
+            "x-pii": false,
             "type": ["integer", "null"],
             "title": "Pre-adjustment items",
             "examples": [
@@ -857,6 +934,7 @@
             ]
           },
           "period": {
+            "x-pii": false,
             "type": ["integer", "null"],
             "title": "period",
             "examples": [
@@ -864,6 +942,7 @@
             ]
           },
           "period_original": {
+            "x-pii": false,
             "type": ["integer", "null"],
             "title": "Pre-adjustment period",
             "examples": [
@@ -871,6 +950,7 @@
             ]
           },
           "travel_time": {
+            "x-pii": false,
             "type": ["integer", "null"],
             "title": "Travel time",
             "examples": [
@@ -878,6 +958,7 @@
             ]
           },
           "travel_time_original": {
+            "x-pii": false,
             "type": ["integer", "null"],
             "title": "Pre-adjustment travel time",
             "examples": [
@@ -885,6 +966,7 @@
             ]
           },
           "travel_cost_per_hour": {
+            "x-pii": false,
             "type": ["string", "null"],
             "title": "Travel cost per hour",
             "examples": [
@@ -892,6 +974,7 @@
             ]
           },
           "travel_cost_per_hour_original": {
+            "x-pii": false,
             "type": ["string", "null"],
             "title": "Pre-adjustment travel cost per hour",
             "examples": [
@@ -899,6 +982,7 @@
             ]
           },
           "travel_cost_reason": {
+            "x-pii": false,
             "type": ["string", "null"],
             "title": "Travel cost reason",
             "examples": [
@@ -906,6 +990,7 @@
             ]
           },
           "additional_cost_list": {
+            "x-pii": false,
             "type": ["string", "null"],
             "title": "Additional costs for non-primary quotes",
             "examples": [
@@ -913,6 +998,7 @@
             ]
           },
           "additional_cost_total": {
+            "x-pii": false,
             "type": ["string", "null"],
             "title": "Total of additional costs for non-primary quotes",
             "examples": [
@@ -920,6 +1006,7 @@
             ]
           },
           "contact_first_name": {
+            "x-pii": true,
             "type": "string",
             "title": "Contact ifrst name",
             "examples": [
@@ -927,6 +1014,7 @@
             ]
           },
           "contact_last_name": {
+            "x-pii": true,
             "type": "string",
             "title": "contact_last_name",
             "examples": [
@@ -934,6 +1022,7 @@
             ]
           },
           "town": {
+            "x-pii": false,
             "type": ["string", "null"],
             "title": "town",
             "examples": [
@@ -952,6 +1041,7 @@
             ],
             "properties": {
               "file_name": {
+                "x-pii": true,
                 "type": ["string", "null"],
                 "title": "file_name",
                 "examples": [
@@ -959,6 +1049,7 @@
                 ]
               },
               "file_type": {
+                "x-pii": false,
                 "type": ["string", "null"],
                 "title": "file_type",
                 "examples": [
@@ -966,6 +1057,7 @@
                 ]
               },
               "file_size": {
+                "x-pii": false,
                 "type": ["integer", "null"],
                 "title": "file_size",
                 "examples": [
@@ -973,6 +1065,7 @@
                 ]
               },
               "file_path": {
+                "x-pii": false,
                 "type": ["string", "null"],
                 "title": "file_path",
                 "examples": [
@@ -980,6 +1073,7 @@
                 ]
               },
               "document_type": {
+                "x-pii": false,
                 "type": ["string", "null"],
                 "title": "document_type",
                 "examples": [
@@ -996,6 +1090,7 @@
             }]
           },
           "cost_type": {
+            "x-pii": false,
             "type": "string",
             "title": "Cost type",
             "enum": ["per_hour", "per_item"],
@@ -1004,6 +1099,7 @@
             ]
           },
           "item_type": {
+            "x-pii": false,
             "type": ["string", "null"],
             "title": "Item type",
             "enum": ["item", "minute", "word", "page", null],
@@ -1012,6 +1108,7 @@
             ]
           },
           "cost_item_type": {
+            "x-pii": false,
             "type": ["string", "null"],
             "title": "Cost item type",
             "enum": ["item", "minute", "thousand_words", "page", null],
@@ -1020,6 +1117,7 @@
             ]
           },
           "cost_multiplier": {
+            "x-pii": false,
             "type": ["integer", "string"],
             "title": "Cost multiplier (integer or decimal number represented as string)",
             "examples": [
@@ -1156,6 +1254,7 @@
       ]
     },
     "reason_why": {
+      "x-pii": true,
       "type": "string",
       "title": "Reason why prior authority is requested",
       "examples": [
@@ -1163,6 +1262,7 @@
       ]
     },
     "rep_order_date": {
+      "x-pii": false,
       "type": ["string", "null"],
       "title": "Representation order date",
       "examples": [
@@ -1170,6 +1270,7 @@
       ]
     },
     "resubmission_deadline": {
+      "x-pii": false,
       "type": ["string", "null"],
       "title": "Resubmission deadline timestamp",
       "examples": [
@@ -1177,6 +1278,7 @@
       ]
     },
     "service_type": {
+      "x-pii": false,
       "type": "string",
       "title": "service type identifier",
       "examples": [
@@ -1194,10 +1296,12 @@
       ],
       "properties": {
         "reference_number": {
+          "x-pii": false,
           "type": "null",
           "title": "reference_number"
         },
         "contact_email": {
+          "x-pii": true,
           "type": "string",
           "title": "Email",
           "examples": [
@@ -1205,6 +1309,7 @@
           ]
         },
         "contact_first_name": {
+          "x-pii": true,
           "type": "string",
           "title": "First name",
           "examples": [
@@ -1212,6 +1317,7 @@
           ]
         },
         "contact_last_name": {
+          "x-pii": true,
           "type": "string",
           "title": "Last name",
           "examples": [
@@ -1227,6 +1333,7 @@
       }]
     },
     "status": {
+      "x-pii": false,
       "type": "string",
       "title": "current state of application",
       "examples": [
@@ -1234,6 +1341,7 @@
       ]
     },
     "subject_to_poca": {
+      "x-pii": false,
       "type": ["boolean", "null"],
       "title": "Case is subject to POCA",
       "examples": [
@@ -1255,6 +1363,7 @@
         ],
         "properties": {
           "file_name": {
+            "x-pii": true,
             "type": "string",
             "title": "file_name",
             "examples": [
@@ -1262,6 +1371,7 @@
             ]
           },
           "file_type": {
+            "x-pii": false,
             "type": "string",
             "title": "file_type",
             "examples": [
@@ -1269,6 +1379,7 @@
             ]
           },
           "file_size": {
+            "x-pii": false,
             "type": "integer",
             "title": "file_size",
             "examples": [
@@ -1276,6 +1387,7 @@
             ]
           },
           "file_path": {
+            "x-pii": false,
             "type": "string",
             "title": "file_path",
             "examples": [
@@ -1283,6 +1395,7 @@
             ]
           },
           "document_type": {
+            "x-pii": false,
             "type": "string",
             "title": "document_type",
             "examples": [
@@ -1323,6 +1436,7 @@
       ]
     },
     "ufn": {
+      "x-pii": false,
       "type": "string",
       "title": "ufn",
       "examples": [
@@ -1330,6 +1444,7 @@
       ]
     },
     "updated_at": {
+      "x-pii": false,
       "type": "string",
       "title": "updated_at",
       "examples": [
@@ -1340,6 +1455,7 @@
       "type": ["array", "null"],
       "title": "List of changes that need to be made in an RFI loop",
       "items": {
+        "x-pii": false,
         "type": "string",
         "enum": ["further_information", "incorrect_information"]
       },
@@ -1348,6 +1464,7 @@
       ]
     },
     "youth_court": {
+      "x-pii": false,
       "type": ["boolean", "null"],
       "title": "Is this a youth court case",
       "examples": [
