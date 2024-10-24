@@ -17,3 +17,8 @@ It may one day be used for:
 - Shared search functionality
 - And more
 
+## Licence
+Unless stated otherwise, the codebase is released under the [MIT License][mit].
+
+[mit]: LICENCE
+
