@@ -1,4 +1,5 @@
 require "simplecov"
+require "debug"
 unless ENV["NOCOVERAGE"]
   SimpleCov.start do
     enable_coverage :branch
