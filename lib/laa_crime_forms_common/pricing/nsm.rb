@@ -1,7 +1,9 @@
 require_relative "nsm/rates"
 require_relative "nsm/wrappers/claim"
 require_relative "nsm/wrappers/work_item"
+require_relative "nsm/wrappers/disbursement"
 require_relative "nsm/work_item_calculator"
+require_relative "nsm/disbursement_calculator"
 
 module LaaCrimeFormsCommon
   module Pricing
@@ -19,8 +21,8 @@ module LaaCrimeFormsCommon
         WorkItemCalculator.call(wrap(claim), Wrappers::WorkItem.new(work_item))
       end
 
-      def calculate_disbursement(_claim, _disbursement)
-        nil
+      def calculate_disbursement(claim, disbursement)
+        DisbursementCalculator.call(wrap(claim), Wrappers::Disbursement.new(disbursement))
       end
 
       def calculate_letter_or_call(_claim, _letter_or_call)

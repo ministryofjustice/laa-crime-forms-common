@@ -15,21 +15,21 @@ module LaaCrimeFormsCommon
 
         def call
           {
-            claimed_total_without_uplift:,
-            claimed_total_with_uplift:,
-            assessed_total_without_uplift:,
-            assessed_total_with_uplift:,
+            claimed_subtotal_without_uplift:,
+            claimed_total:,
+            assessed_subtotal_without_uplift:,
+            assessed_total:,
           }
         end
 
       private
 
-        def claimed_total_without_uplift
-          @claimed_total_without_uplift ||= Rational(work_item.claimed_time_spent_in_minutes * claimed_rate_per_hour, 60)
+        def claimed_subtotal_without_uplift
+          @claimed_subtotal_without_uplift ||= Rational(work_item.claimed_time_spent_in_minutes * claimed_rate_per_hour, 60)
         end
 
-        def claimed_total_with_uplift
-          @claimed_total_with_uplift ||= claimed_total_without_uplift * claimed_uplift_multiplier
+        def claimed_total
+          claimed_subtotal_without_uplift * claimed_uplift_multiplier
         end
 
         def claimed_rate_per_hour
@@ -40,12 +40,12 @@ module LaaCrimeFormsCommon
           Rational(100 + work_item.claimed_uplift_percentage, 100)
         end
 
-        def assessed_total_without_uplift
-          @assessed_total_without_uplift ||= Rational(work_item.assessed_time_spent_in_minutes * assessed_rate_per_hour, 60)
+        def assessed_subtotal_without_uplift
+          @assessed_subtotal_without_uplift ||= Rational(work_item.assessed_time_spent_in_minutes * assessed_rate_per_hour, 60)
         end
 
-        def assessed_total_with_uplift
-          @assessed_total_with_uplift ||= assessed_total_without_uplift * assessed_uplift_multiplier
+        def assessed_total
+          assessed_subtotal_without_uplift * assessed_uplift_multiplier
         end
 
         def assessed_rate_per_hour

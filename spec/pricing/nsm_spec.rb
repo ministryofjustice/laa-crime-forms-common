@@ -1,3 +1,4 @@
+require "bigdecimal"
 require "spec_helper"
 require_relative "../../lib/laa_crime_forms_common/pricing/nsm"
 
@@ -30,10 +31,10 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
 
     it "returns calculated values" do
       expect(described_class.calculate_work_item(claim, work_item)).to eq({
-        claimed_total_without_uplift: Rational(3271, 60),
-        claimed_total_with_uplift: Rational(3271, 50),
-        assessed_total_without_uplift: Rational(23, 2),
-        assessed_total_with_uplift: Rational(851, 40),
+        claimed_subtotal_without_uplift: Rational(3271, 60),
+        claimed_total: Rational(3271, 50),
+        assessed_subtotal_without_uplift: Rational(23, 2),
+        assessed_total: Rational(851, 40),
       })
     end
 
@@ -50,6 +51,48 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
       expect { described_class.calculate_work_item(claim, work_item) }.to raise_error(
         "'claimed_uplift_percentage' in Hash is nil, but must not be",
       )
+    end
+  end
+
+  describe "#calculate_disbursement" do
+    let(:claim) { { claim_type: "breach_of_injunction", cntp_date: "2024-10-10" } }
+
+    context 'when disbursement is "other" type' do
+      let(:disbursement) do
+        {
+          disbursement_type: "other",
+          claimed_cost: BigDecimal("123.45"),
+          assessed_cost: BigDecimal("85.67"),
+          claimed_miles: nil,
+          assessed_miles: nil,
+        }
+      end
+
+      it "returns provided values" do
+        expect(described_class.calculate_disbursement(claim, disbursement)).to eq({
+          claimed_total: BigDecimal("123.45"),
+          assessed_total: BigDecimal("85.67"),
+        })
+      end
+    end
+
+    context "when disbursement is miles-based type" do
+      let(:disbursement) do
+        {
+          disbursement_type: "car",
+          claimed_cost: nil,
+          assessed_cost: nil,
+          claimed_miles: BigDecimal("12.3"),
+          assessed_miles: BigDecimal("12.2"),
+        }
+      end
+
+      it "returns provided values" do
+        expect(described_class.calculate_disbursement(claim, disbursement)).to eq({
+          claimed_total: BigDecimal("5.535"),
+          assessed_total: BigDecimal("5.49"),
+        })
+      end
     end
   end
 end
