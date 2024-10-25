@@ -24,6 +24,8 @@ module LaaCrimeFormsCommon
                 options[:default]
               elsif raw_value.nil?
                 raise "'#{attribute}' in #{@wrapped_object.class} is nil, but must not be"
+              elsif raw_value.is_a?(type)
+                raw_value
               else
                 type.new(raw_value)
               end
