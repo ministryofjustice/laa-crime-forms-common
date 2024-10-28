@@ -58,10 +58,22 @@ module LaaCrimeFormsCommon
                 assessed_time_spent_in_minutes: assessed_items.sum(Rational(0, 1)) { _1[:assessed_time_spent_in_minutes] },
                 assessed_total_exc_vat:,
                 assessed_vatable: claim.vat_registered ? assessed_total_exc_vat : Rational(0, 1),
+                type_changes: claimed_items.any? { _1[:claimed_work_type] != _1[:assessed_work_type] },
+                cost_summary_group_changes: claimed_items.any? { cost_summary_group_changed?(_1) },
               )
             end
 
             data
+          end
+
+          def cost_summary_group_changed?(work_item_calculation)
+            cost_summary_group(work_item_calculation[:claimed_work_type]) != cost_summary_group(work_item_calculation[:assessed_work_type])
+          end
+
+          def cost_summary_group(work_type)
+            return work_type if %w[travel waiting].include?(work_type)
+
+            "profit_costs"
           end
 
           attr_reader :claim, :show_assessed, :rates

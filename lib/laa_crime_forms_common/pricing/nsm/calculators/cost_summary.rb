@@ -19,7 +19,7 @@ module LaaCrimeFormsCommon
           def call
             {
               profit_costs: profit_costs_summary_row,
-              disbusements: disbursements_summary_row,
+              disbursements: disbursements_summary_row,
               travel: travel_summary_row,
               waiting: waiting_summary_row,
             }
@@ -48,7 +48,9 @@ module LaaCrimeFormsCommon
             figures = %i[claimed_total_exc_vat claimed_vatable]
             figures += %i[assessed_total_exc_vat assessed_vatable] if show_assessed
 
-            figures.to_h { |figure| [figure, rows.sum(BigDecimal("0")) { _1[figure] }] }
+            figures.to_h { |figure| [figure, rows.sum(BigDecimal("0")) { _1[figure] }] }.tap do |basic_data|
+              basic_data[:group_changes] = rows.any? { _1[:cost_summary_group_changes] } if show_assessed
+            end
           end
 
           def augment_with_vat(row)
