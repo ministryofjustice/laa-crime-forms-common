@@ -50,9 +50,9 @@ module LaaCrimeFormsCommon
       private
 
         def transform(field)
-          return field unless field.is_a?(Hash)
+          return BigDecimal(field.to_s) unless field.is_a?(Hash)
 
-          field.transform_keys(&:to_sym)
+          field.transform_keys(&:to_sym).transform_values { BigDecimal(_1.to_s) }
         end
       end
     end
