@@ -4,22 +4,26 @@ module LaaCrimeFormsCommon
       module Calculators
         class LetterOrCall
           class << self
-            def call(claim, letter_or_call, rates = Rates.call(claim))
-              new(claim, letter_or_call, rates).call
+            def call(claim, letter_or_call, show_assessed:, rates: Rates.call(claim))
+              new(claim, letter_or_call, show_assessed, rates).call
             end
           end
 
-          def initialize(claim, letter_or_call, rates)
+          def initialize(claim, letter_or_call, show_assessed, rates)
             @claim = claim
             @letter_or_call = letter_or_call
+            @show_assessed = show_assessed
             @rates = rates
           end
 
           def call
-            {
+            claimed = {
               claimed_total_exc_vat:,
-              assessed_total_exc_vat:,
             }
+
+            return claimed unless show_assessed
+
+            claimed.merge(assessed_total_exc_vat:)
           end
 
         private
@@ -36,7 +40,7 @@ module LaaCrimeFormsCommon
             @cost_per_item ||= rates.letters_and_calls[letter_or_call.type.to_sym]
           end
 
-          attr_reader :letter_or_call, :claim, :rates
+          attr_reader :letter_or_call, :claim, :show_assessed, :rates
         end
       end
     end

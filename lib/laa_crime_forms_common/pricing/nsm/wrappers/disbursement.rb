@@ -13,7 +13,7 @@ module LaaCrimeFormsCommon
           wrap :claimed_apply_vat, Bool
           wrap :assessed_cost, BigDecimal, default: nil
           wrap :assessed_miles, BigDecimal, default: nil
-          wrap :assessed_apply_vat, Bool
+          wrap :assessed_apply_vat, Bool, default: nil
         end
       end
     end

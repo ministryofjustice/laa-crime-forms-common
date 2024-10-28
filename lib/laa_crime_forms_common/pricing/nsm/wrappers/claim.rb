@@ -15,8 +15,8 @@ module LaaCrimeFormsCommon
           wrap :vat_registered, Bool
           wrap :claimed_letters, Integer
           wrap :claimed_calls, Integer
-          wrap :assessed_letters, Integer
-          wrap :assessed_calls, Integer
+          wrap :assessed_letters, Integer, default: nil
+          wrap :assessed_calls, Integer, default: nil
         end
       end
     end

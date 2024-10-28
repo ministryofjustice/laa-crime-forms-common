@@ -17,44 +17,66 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
   end
 
   describe "#calculate_work_item" do
-    let(:claim) { { claim_type: "breach_of_injunction", cntp_date: "2024-10-10" } }
-    let(:work_item) do
-      {
-        claimed_time_spent_in_minutes: 50,
-        claimed_work_type: "advocacy",
-        claimed_uplift_percentage: 20,
-        assessed_time_spent_in_minutes: 25,
-        assessed_work_type: "travel",
-        assessed_uplift_percentage: 85,
-      }
+    context "when showing assessed values" do
+      let(:claim) { { claim_type: "breach_of_injunction", cntp_date: "2024-10-10" } }
+      let(:work_item) do
+        {
+          claimed_time_spent_in_minutes: 50,
+          claimed_work_type: "advocacy",
+          claimed_uplift_percentage: 20,
+          assessed_time_spent_in_minutes: 25,
+          assessed_work_type: "travel",
+          assessed_uplift_percentage: 85,
+        }
+      end
+
+      it "returns calculated values" do
+        expect(described_class.calculate_work_item(claim, work_item, show_assessed: true)).to eq({
+          claimed_time_spent_in_minutes: 50,
+          claimed_work_type: "advocacy",
+          claimed_subtotal_without_uplift: 54.52,
+          claimed_total_exc_vat: 65.42,
+          assessed_time_spent_in_minutes: 25,
+          assessed_work_type: "travel",
+          assessed_subtotal_without_uplift: 11.5,
+          assessed_total_exc_vat: 21.28,
+        })
+      end
+
+      it "errors on invalid data" do
+        work_item = {
+          claimed_time_spent_in_minutes: 50,
+          claimed_work_type: "advocacy",
+          claimed_uplift_percentage: nil,
+          assessed_time_spent_in_minutes: 25.2,
+          assessed_work_type: "travel",
+          assessed_uplift_percentage: 85,
+        }
+
+        expect { described_class.calculate_work_item(claim, work_item, show_assessed: true) }.to raise_error(
+          "'claimed_uplift_percentage' in Hash is nil, but must not be",
+        )
+      end
     end
 
-    it "returns calculated values" do
-      expect(described_class.calculate_work_item(claim, work_item)).to eq({
-        claimed_time_spent_in_minutes: 50,
-        claimed_work_type: "advocacy",
-        claimed_subtotal_without_uplift: 54.52,
-        claimed_total_exc_vat: 65.42,
-        assessed_time_spent_in_minutes: 25,
-        assessed_work_type: "travel",
-        assessed_subtotal_without_uplift: 11.5,
-        assessed_total_exc_vat: 21.28,
-      })
-    end
+    context "when not showing assessed data" do
+      let(:claim) { { claim_type: "breach_of_injunction", cntp_date: "2024-10-10" } }
+      let(:work_item) do
+        {
+          claimed_time_spent_in_minutes: 50,
+          claimed_work_type: "advocacy",
+          claimed_uplift_percentage: 20,
+        }
+      end
 
-    it "errors on invalid data" do
-      work_item = {
-        claimed_time_spent_in_minutes: 50,
-        claimed_work_type: "advocacy",
-        claimed_uplift_percentage: nil,
-        assessed_time_spent_in_minutes: 25.2,
-        assessed_work_type: "travel",
-        assessed_uplift_percentage: 85,
-      }
-
-      expect { described_class.calculate_work_item(claim, work_item) }.to raise_error(
-        "'claimed_uplift_percentage' in Hash is nil, but must not be",
-      )
+      it "returns calculated values" do
+        expect(described_class.calculate_work_item(claim, work_item, show_assessed: false)).to eq({
+          claimed_time_spent_in_minutes: 50,
+          claimed_work_type: "advocacy",
+          claimed_subtotal_without_uplift: 54.52,
+          claimed_total_exc_vat: 65.42,
+        })
+      end
     end
   end
 
@@ -75,7 +97,7 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
       end
 
       it "returns provided values" do
-        expect(described_class.calculate_disbursement(claim, disbursement)).to eq({
+        expect(described_class.calculate_disbursement(claim, disbursement, show_assessed: true)).to eq({
           assessed_total_exc_vat: 85.67,
           assessed_total_inc_vat: 85.67,
           assessed_vat: 0,
@@ -102,7 +124,7 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
       end
 
       it "returns calculated values" do
-        expect(described_class.calculate_disbursement(claim, disbursement)).to eq({
+        expect(described_class.calculate_disbursement(claim, disbursement, show_assessed: true)).to eq({
           assessed_total_exc_vat: 5.49,
           assessed_total_inc_vat: 6.59,
           assessed_vat: 1.1,
@@ -113,6 +135,26 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
           claimed_vatable: 0.0,
         })
       end
+
+      context "when not showing assessed values" do
+        let(:disbursement) do
+          {
+            disbursement_type: "car",
+            claimed_cost: nil,
+            claimed_miles: BigDecimal("12.3"),
+            claimed_apply_vat: false,
+          }
+        end
+
+        it "returns calculated values" do
+          expect(described_class.calculate_disbursement(claim, disbursement, show_assessed: false)).to eq({
+            claimed_total_exc_vat: 5.54,
+            claimed_total_inc_vat: 5.54,
+            claimed_vat: 0.0,
+            claimed_vatable: 0.0,
+          })
+        end
+      end
     end
   end
 
@@ -120,11 +162,22 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
     let(:claim) { { claim_type: "breach_of_injunction", cntp_date: "2024-10-10" } }
     let(:letter_or_call) { { type: :letter, claimed_items: 10, assessed_items: 8 } }
 
-    it "applies rates correctly" do
-      expect(described_class.calculate_letter_or_call(claim, letter_or_call)).to eq({
-        claimed_total_exc_vat: BigDecimal("40.9"),
-        assessed_total_exc_vat: BigDecimal("32.72"),
-      })
+    context "when showing assessed" do
+      it "applies rates correctly" do
+        expect(described_class.calculate_letter_or_call(claim, letter_or_call, show_assessed: true)).to eq({
+          claimed_total_exc_vat: 40.9,
+          assessed_total_exc_vat: 32.72,
+        })
+      end
+    end
+
+    context "when not showing assessed" do
+      let(:letter_or_call) { { type: :letter, claimed_items: 10 } }
+      it "applies rates correctly" do
+        expect(described_class.calculate_letter_or_call(claim, letter_or_call, show_assessed: false)).to eq({
+          claimed_total_exc_vat: 40.9,
+        })
+      end
     end
   end
 
@@ -187,198 +240,266 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
       ]
     end
 
-    context "when claim is vat-registered" do
+    context "when showing assessed" do
+      context "when claim is vat-registered" do
+        let(:vat_registered) { true }
+        it "applies calculates the totals" do
+          expect(described_class.totals(claim, show_assessed: true)).to eq({
+            work_types: {
+              travel: {
+                claimed_time_spent_in_minutes: 0.0,
+                claimed_total_exc_vat: 0.0,
+                assessed_time_spent_in_minutes: 25.0,
+                assessed_total_exc_vat: 21.28,
+              },
+              waiting: {
+                claimed_time_spent_in_minutes: 133.0,
+                claimed_total_exc_vat: 67.3,
+                assessed_time_spent_in_minutes: 132.0,
+                assessed_total_exc_vat: 60.72,
+              },
+              attendance_with_counsel: {
+                claimed_time_spent_in_minutes: 0.0,
+                claimed_total_exc_vat: 0.0,
+                assessed_time_spent_in_minutes: 0.0,
+                assessed_total_exc_vat: 0.0,
+              },
+              attendance_without_counsel: {
+                claimed_time_spent_in_minutes: 0.0,
+                claimed_total_exc_vat: 0.0,
+                assessed_time_spent_in_minutes: 0.0,
+                assessed_total_exc_vat: 0.0,
+              },
+              preparation: {
+                claimed_time_spent_in_minutes: 0.0,
+                claimed_total_exc_vat: 0.0,
+                assessed_time_spent_in_minutes: 0.0,
+                assessed_total_exc_vat: 0.0,
+              },
+              advocacy: {
+                claimed_time_spent_in_minutes: 50.0,
+                claimed_total_exc_vat: 65.42,
+                assessed_time_spent_in_minutes: 0.0,
+                assessed_total_exc_vat: 0.0,
+              },
+            },
+            cost_summary: {
+              profit_costs: {
+                claimed_total_exc_vat: 98.14,
+                assessed_total_exc_vat: 32.72,
+                claimed_vatable: 98.14,
+                claimed_vat: 19.63,
+                claimed_total_inc_vat: 117.77,
+                assessed_vatable: 32.72,
+                assessed_vat: 6.54,
+                assessed_total_inc_vat: 39.26,
+              },
+              disbusements: {
+                claimed_total_exc_vat: 129.39,
+                claimed_vatable: 123.85,
+                claimed_vat: 24.77,
+                claimed_total_inc_vat: 154.16,
+                assessed_total_exc_vat: 128.34,
+                assessed_vatable: 122.85,
+                assessed_vat: 24.57,
+                assessed_total_inc_vat: 152.91,
+              },
+              travel: {
+                claimed_total_exc_vat: 0.0,
+                assessed_total_exc_vat: 21.28,
+                claimed_vatable: 0.0,
+                claimed_vat: 0.0,
+                claimed_total_inc_vat: 0.0,
+                assessed_vatable: 21.28,
+                assessed_vat: 4.26,
+                assessed_total_inc_vat: 25.53,
+              },
+              waiting: {
+                claimed_total_exc_vat: 67.3,
+                assessed_total_exc_vat: 60.72,
+                claimed_vatable: 67.3,
+                claimed_vat: 13.46,
+                claimed_total_inc_vat: 80.76,
+                assessed_vatable: 60.72,
+                assessed_vat: 12.14,
+                assessed_total_inc_vat: 72.86,
+              },
+            },
+            totals: {
+              claimed_total_exc_vat: 294.82,
+              claimed_vatable: 289.29,
+              assessed_total_exc_vat: 243.06,
+              assessed_vatable: 237.57,
+              claimed_vat: 57.86,
+              assessed_vat: 47.51,
+              claimed_total_inc_vat: 352.68,
+              assessed_total_inc_vat: 290.57,
+            },
+          })
+        end
+      end
+
+      context "when claim is not vat-registered" do
+        let(:vat_registered) { false }
+
+        it "applies calculates the totals" do
+          expect(described_class.totals(claim, show_assessed: true)).to eq({
+            work_types: {
+              travel: {
+                claimed_time_spent_in_minutes: 0.0,
+                claimed_total_exc_vat: 0.0,
+                assessed_time_spent_in_minutes: 25.0,
+                assessed_total_exc_vat: 21.28,
+              },
+              waiting: {
+                claimed_time_spent_in_minutes: 133.0,
+                claimed_total_exc_vat: 67.3,
+                assessed_time_spent_in_minutes: 132.0,
+                assessed_total_exc_vat: 60.72,
+              },
+              attendance_with_counsel: {
+                claimed_time_spent_in_minutes: 0.0,
+                claimed_total_exc_vat: 0.0,
+                assessed_time_spent_in_minutes: 0.0,
+                assessed_total_exc_vat: 0.0,
+              },
+              attendance_without_counsel: {
+                claimed_time_spent_in_minutes: 0.0,
+                claimed_total_exc_vat: 0.0,
+                assessed_time_spent_in_minutes: 0.0,
+                assessed_total_exc_vat: 0.0,
+              },
+              preparation: {
+                claimed_time_spent_in_minutes: 0.0,
+                claimed_total_exc_vat: 0.0,
+                assessed_time_spent_in_minutes: 0.0,
+                assessed_total_exc_vat: 0.0,
+              },
+              advocacy: {
+                claimed_time_spent_in_minutes: 50.0,
+                claimed_total_exc_vat: 65.42,
+                assessed_time_spent_in_minutes: 0.0,
+                assessed_total_exc_vat: 0.0,
+              },
+            },
+            cost_summary: {
+              profit_costs: {
+                claimed_total_exc_vat: 98.14,
+                assessed_total_exc_vat: 32.72,
+                claimed_vatable: 0,
+                claimed_vat: 0,
+                claimed_total_inc_vat: 98.14,
+                assessed_vatable: 0,
+                assessed_vat: 0,
+                assessed_total_inc_vat: 32.72,
+              },
+              disbusements: {
+                claimed_total_exc_vat: 129.39,
+                claimed_vatable: 123.85,
+                claimed_vat: 24.77,
+                claimed_total_inc_vat: 154.16,
+                assessed_total_exc_vat: 128.34,
+                assessed_vatable: 122.85,
+                assessed_vat: 24.57,
+                assessed_total_inc_vat: 152.91,
+              },
+              travel: {
+                claimed_total_exc_vat: 0.0,
+                assessed_total_exc_vat: 21.28,
+                claimed_vatable: 0.0,
+                claimed_vat: 0.0,
+                claimed_total_inc_vat: 0.0,
+                assessed_vatable: 0.0,
+                assessed_vat: 0.0,
+                assessed_total_inc_vat: 21.28,
+              },
+              waiting: {
+                claimed_total_exc_vat: 67.3,
+                assessed_total_exc_vat: 60.72,
+                claimed_vatable: 0.0,
+                claimed_vat: 0.0,
+                claimed_total_inc_vat: 67.3,
+                assessed_vatable: 0.0,
+                assessed_vat: 0.0,
+                assessed_total_inc_vat: 60.72,
+              },
+            },
+            totals: {
+              claimed_total_exc_vat: 294.82,
+              claimed_vatable: 123.85,
+              assessed_total_exc_vat: 243.06,
+              assessed_vatable: 122.85,
+              claimed_vat: 24.77,
+              assessed_vat: 24.57,
+              claimed_total_inc_vat: 319.59,
+              assessed_total_inc_vat: 267.63,
+            },
+          })
+        end
+      end
+    end
+
+    context "when not showing assessed" do
       let(:vat_registered) { true }
       it "applies calculates the totals" do
-        expect(described_class.totals(claim)).to eq({
+        expect(described_class.totals(claim, show_assessed: false)).to eq({
           work_types: {
             travel: {
               claimed_time_spent_in_minutes: 0.0,
               claimed_total_exc_vat: 0.0,
-              assessed_time_spent_in_minutes: 25.0,
-              assessed_total_exc_vat: 21.28,
             },
             waiting: {
               claimed_time_spent_in_minutes: 133.0,
               claimed_total_exc_vat: 67.3,
-              assessed_time_spent_in_minutes: 132.0,
-              assessed_total_exc_vat: 60.72,
             },
             attendance_with_counsel: {
               claimed_time_spent_in_minutes: 0.0,
               claimed_total_exc_vat: 0.0,
-              assessed_time_spent_in_minutes: 0.0,
-              assessed_total_exc_vat: 0.0,
             },
             attendance_without_counsel: {
               claimed_time_spent_in_minutes: 0.0,
               claimed_total_exc_vat: 0.0,
-              assessed_time_spent_in_minutes: 0.0,
-              assessed_total_exc_vat: 0.0,
             },
             preparation: {
               claimed_time_spent_in_minutes: 0.0,
               claimed_total_exc_vat: 0.0,
-              assessed_time_spent_in_minutes: 0.0,
-              assessed_total_exc_vat: 0.0,
             },
             advocacy: {
               claimed_time_spent_in_minutes: 50.0,
               claimed_total_exc_vat: 65.42,
-              assessed_time_spent_in_minutes: 0.0,
-              assessed_total_exc_vat: 0.0,
             },
           },
           cost_summary: {
             profit_costs: {
               claimed_total_exc_vat: 98.14,
-              assessed_total_exc_vat: 32.72,
               claimed_vatable: 98.14,
               claimed_vat: 19.63,
               claimed_total_inc_vat: 117.77,
-              assessed_vatable: 32.72,
-              assessed_vat: 6.54,
-              assessed_total_inc_vat: 39.26,
             },
             disbusements: {
               claimed_total_exc_vat: 129.39,
               claimed_vatable: 123.85,
               claimed_vat: 24.77,
               claimed_total_inc_vat: 154.16,
-              assessed_total_exc_vat: 128.34,
-              assessed_vatable: 122.85,
-              assessed_vat: 24.57,
-              assessed_total_inc_vat: 152.91,
             },
             travel: {
               claimed_total_exc_vat: 0.0,
-              assessed_total_exc_vat: 21.28,
               claimed_vatable: 0.0,
               claimed_vat: 0.0,
               claimed_total_inc_vat: 0.0,
-              assessed_vatable: 21.28,
-              assessed_vat: 4.26,
-              assessed_total_inc_vat: 25.53,
             },
             waiting: {
               claimed_total_exc_vat: 67.3,
-              assessed_total_exc_vat: 60.72,
               claimed_vatable: 67.3,
               claimed_vat: 13.46,
               claimed_total_inc_vat: 80.76,
-              assessed_vatable: 60.72,
-              assessed_vat: 12.14,
-              assessed_total_inc_vat: 72.86,
             },
           },
           totals: {
             claimed_total_exc_vat: 294.82,
             claimed_vatable: 289.29,
-            assessed_total_exc_vat: 243.06,
-            assessed_vatable: 237.57,
             claimed_vat: 57.86,
-            assessed_vat: 47.51,
             claimed_total_inc_vat: 352.68,
-            assessed_total_inc_vat: 290.57,
-          },
-        })
-      end
-    end
-
-    context "when claim is not vat-registered" do
-      let(:vat_registered) { false }
-
-      it "applies calculates the totals" do
-        expect(described_class.totals(claim)).to eq({
-          work_types: {
-            travel: {
-              claimed_time_spent_in_minutes: 0.0,
-              claimed_total_exc_vat: 0.0,
-              assessed_time_spent_in_minutes: 25.0,
-              assessed_total_exc_vat: 21.28,
-            },
-            waiting: {
-              claimed_time_spent_in_minutes: 133.0,
-              claimed_total_exc_vat: 67.3,
-              assessed_time_spent_in_minutes: 132.0,
-              assessed_total_exc_vat: 60.72,
-            },
-            attendance_with_counsel: {
-              claimed_time_spent_in_minutes: 0.0,
-              claimed_total_exc_vat: 0.0,
-              assessed_time_spent_in_minutes: 0.0,
-              assessed_total_exc_vat: 0.0,
-            },
-            attendance_without_counsel: {
-              claimed_time_spent_in_minutes: 0.0,
-              claimed_total_exc_vat: 0.0,
-              assessed_time_spent_in_minutes: 0.0,
-              assessed_total_exc_vat: 0.0,
-            },
-            preparation: {
-              claimed_time_spent_in_minutes: 0.0,
-              claimed_total_exc_vat: 0.0,
-              assessed_time_spent_in_minutes: 0.0,
-              assessed_total_exc_vat: 0.0,
-            },
-            advocacy: {
-              claimed_time_spent_in_minutes: 50.0,
-              claimed_total_exc_vat: 65.42,
-              assessed_time_spent_in_minutes: 0.0,
-              assessed_total_exc_vat: 0.0,
-            },
-          },
-          cost_summary: {
-            profit_costs: {
-              claimed_total_exc_vat: 98.14,
-              assessed_total_exc_vat: 32.72,
-              claimed_vatable: 0,
-              claimed_vat: 0,
-              claimed_total_inc_vat: 98.14,
-              assessed_vatable: 0,
-              assessed_vat: 0,
-              assessed_total_inc_vat: 32.72,
-            },
-            disbusements: {
-              claimed_total_exc_vat: 129.39,
-              claimed_vatable: 123.85,
-              claimed_vat: 24.77,
-              claimed_total_inc_vat: 154.16,
-              assessed_total_exc_vat: 128.34,
-              assessed_vatable: 122.85,
-              assessed_vat: 24.57,
-              assessed_total_inc_vat: 152.91,
-            },
-            travel: {
-              claimed_total_exc_vat: 0.0,
-              assessed_total_exc_vat: 21.28,
-              claimed_vatable: 0.0,
-              claimed_vat: 0.0,
-              claimed_total_inc_vat: 0.0,
-              assessed_vatable: 0.0,
-              assessed_vat: 0.0,
-              assessed_total_inc_vat: 21.28,
-            },
-            waiting: {
-              claimed_total_exc_vat: 67.3,
-              assessed_total_exc_vat: 60.72,
-              claimed_vatable: 0.0,
-              claimed_vat: 0.0,
-              claimed_total_inc_vat: 67.3,
-              assessed_vatable: 0.0,
-              assessed_vat: 0.0,
-              assessed_total_inc_vat: 60.72,
-            },
-          },
-          totals: {
-            claimed_total_exc_vat: 294.82,
-            claimed_vatable: 123.85,
-            assessed_total_exc_vat: 243.06,
-            assessed_vatable: 122.85,
-            claimed_vat: 24.77,
-            assessed_vat: 24.57,
-            claimed_total_inc_vat: 319.59,
-            assessed_total_inc_vat: 267.63,
           },
         })
       end

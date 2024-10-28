@@ -20,20 +20,20 @@ module LaaCrimeFormsCommon
         Rates.call(wrap(claim))
       end
 
-      def calculate_work_item(claim, work_item)
-        deep_round(Calculators::WorkItem.call(wrap(claim), Wrappers::WorkItem.new(work_item)))
+      def calculate_work_item(claim, work_item, show_assessed:)
+        deep_round(Calculators::WorkItem.call(wrap(claim), Wrappers::WorkItem.new(work_item), show_assessed:))
       end
 
-      def calculate_disbursement(claim, disbursement)
-        deep_round(Calculators::Disbursement.call(wrap(claim), Wrappers::Disbursement.new(disbursement)))
+      def calculate_disbursement(claim, disbursement, show_assessed:)
+        deep_round(Calculators::Disbursement.call(wrap(claim), Wrappers::Disbursement.new(disbursement), show_assessed:))
       end
 
-      def calculate_letter_or_call(claim, letter_or_call)
-        deep_round(Calculators::LetterOrCall.call(wrap(claim), Wrappers::LetterOrCall.new(letter_or_call)))
+      def calculate_letter_or_call(claim, letter_or_call, show_assessed:)
+        deep_round(Calculators::LetterOrCall.call(wrap(claim), Wrappers::LetterOrCall.new(letter_or_call), show_assessed:))
       end
 
-      def totals(claim)
-        deep_round(Calculators::Totals.call(wrap(claim)))
+      def totals(claim, show_assessed:)
+        deep_round(Calculators::Totals.call(wrap(claim), show_assessed:))
       end
 
     private
