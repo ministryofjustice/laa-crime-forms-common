@@ -28,17 +28,21 @@ module LaaCrimeFormsCommon
             WORK_TYPES.to_h do |work_type|
               calculations = work_items.map { Calculators::WorkItem.call(claim, _1, show_assessed:, rates:) }
               claimed_items = calculations.select { _1[:claimed_work_type] == work_type }
+              claimed_total_exc_vat = claimed_items.sum(Rational(0, 1)) { _1[:claimed_total_exc_vat] }
 
               data = {
-                claimed_time_spent_in_minutes: claimed_items.sum(0) { _1[:claimed_time_spent_in_minutes] },
-                claimed_total_exc_vat: claimed_items.sum(Rational(0, 1)) { _1[:claimed_total_exc_vat] },
+                claimed_time_spent_in_minutes: claimed_items.sum(Rational(0, 1)) { _1[:claimed_time_spent_in_minutes] },
+                claimed_total_exc_vat:,
+                claimed_vatable: claim.vat_registered ? claimed_total_exc_vat : Rational(0, 1),
               }
 
               if show_assessed
                 assessed_items = calculations.select { _1[:assessed_work_type] == work_type }
+                assessed_total_exc_vat = assessed_items.sum(Rational(0, 1)) { _1[:assessed_total_exc_vat] }
                 data.merge!(
-                  assessed_time_spent_in_minutes: assessed_items.sum(0) { _1[:assessed_time_spent_in_minutes] },
-                  assessed_total_exc_vat: assessed_items.sum(Rational(0, 1)) { _1[:assessed_total_exc_vat] },
+                  assessed_time_spent_in_minutes: assessed_items.sum(Rational(0, 1)) { _1[:assessed_time_spent_in_minutes] },
+                  assessed_total_exc_vat:,
+                  assessed_vatable: claim.vat_registered ? assessed_total_exc_vat : Rational(0, 1),
                 )
               end
 

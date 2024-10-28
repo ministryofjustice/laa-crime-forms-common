@@ -28,62 +28,45 @@ module LaaCrimeFormsCommon
           def profit_costs_summary_row
             work_item_rows = work_types.except(:travel, :waiting).values
             letter_and_call_rows = letters_and_calls.map { Calculators::LetterOrCall.call(claim, _1, show_assessed:, rates:) }
-            rows = work_item_rows + letter_and_call_rows
-
-            data = { claimed_total_exc_vat: rows.sum(Rational(0, 1)) { _1[:claimed_total_exc_vat] } }
-            data[:assessed_total_exc_vat] = rows.sum(Rational(0, 1)) { _1[:assessed_total_exc_vat] } if show_assessed
-
-            augment_with_vat(data)
+            augment_with_vat(calculate_pre_vat_totals(work_item_rows + letter_and_call_rows))
           end
 
           def disbursements_summary_row
             calculations = disbursements.map { Calculators::Disbursement.call(claim, _1, show_assessed:, rates:) }
-            figures = %i[claimed_total_exc_vat
-                         claimed_vatable
-                         claimed_vat
-                         claimed_total_inc_vat]
-
-            if show_assessed
-              figures += %i[assessed_total_exc_vat
-                            assessed_vatable
-                            assessed_vat
-                            assessed_total_inc_vat]
-            end
-
-            figures.to_h { |figure| [figure, calculations.sum(BigDecimal("0")) { _1[figure] }] }
+            augment_with_vat(calculate_pre_vat_totals(calculations))
           end
 
           def travel_summary_row
-            augment_with_vat(work_types[:travel].dup.slice(:claimed_total_exc_vat, :assessed_total_exc_vat))
+            augment_with_vat(calculate_pre_vat_totals([work_types[:travel]]))
           end
 
           def waiting_summary_row
-            augment_with_vat(work_types[:waiting].dup.slice(:claimed_total_exc_vat, :assessed_total_exc_vat))
+            augment_with_vat(calculate_pre_vat_totals([work_types[:waiting]]))
+          end
+
+          def calculate_pre_vat_totals(rows)
+            figures = %i[claimed_total_exc_vat claimed_vatable]
+            figures += %i[assessed_total_exc_vat assessed_vatable] if show_assessed
+
+            figures.to_h { |figure| [figure, rows.sum(BigDecimal("0")) { _1[figure] }] }
           end
 
           def augment_with_vat(row)
-            if claim.vat_registered
-              claimed_vatable = row[:claimed_total_exc_vat]
-              claimed_vat = claimed_vatable * rates.vat
-              if show_assessed
-                assessed_vatable = row[:assessed_total_exc_vat]
-                assessed_vat = assessed_vatable * rates.vat
-              end
-            end
+            claimed_vat = row[:claimed_vatable] * rates.vat
+            assessed_vat = row[:assessed_vatable] * rates.vat if show_assessed
 
             new_data = {
-              claimed_vatable: claimed_vatable || Rational(0, 1),
-              claimed_vat: claimed_vat || Rational(0, 1),
-              claimed_total_inc_vat: row[:claimed_total_exc_vat] + (claimed_vat || Rational(0, 1)),
+              claimed_vat:,
+              claimed_total_inc_vat: row[:claimed_total_exc_vat] + claimed_vat,
             }
 
             if show_assessed
               new_data.merge!(
-                assessed_vatable: assessed_vatable || Rational(0, 1),
-                assessed_vat: assessed_vat || Rational(0, 1),
-                assessed_total_inc_vat: row[:assessed_total_exc_vat] + (assessed_vat || Rational(0, 1)),
+                assessed_vat:,
+                assessed_total_inc_vat: row[:assessed_total_exc_vat] + assessed_vat,
               )
             end
+
             row.merge(new_data)
           end
 

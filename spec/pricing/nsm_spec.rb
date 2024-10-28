@@ -159,23 +159,40 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
   end
 
   describe "#calculate_letter_or_call" do
-    let(:claim) { { claim_type: "breach_of_injunction", cntp_date: "2024-10-10" } }
+    let(:claim) { { claim_type: "breach_of_injunction", cntp_date: "2024-10-10", vat_registered: true } }
     let(:letter_or_call) { { type: :letter, claimed_items: 10, assessed_items: 8 } }
 
     context "when showing assessed" do
       it "applies rates correctly" do
         expect(described_class.calculate_letter_or_call(claim, letter_or_call, show_assessed: true)).to eq({
           claimed_total_exc_vat: 40.9,
+          claimed_vatable: 40.9,
           assessed_total_exc_vat: 32.72,
+          assessed_vatable: 32.72,
         })
       end
     end
 
     context "when not showing assessed" do
       let(:letter_or_call) { { type: :letter, claimed_items: 10 } }
+
       it "applies rates correctly" do
         expect(described_class.calculate_letter_or_call(claim, letter_or_call, show_assessed: false)).to eq({
           claimed_total_exc_vat: 40.9,
+          claimed_vatable: 40.9,
+        })
+      end
+    end
+
+    context "when not vat registered" do
+      let(:claim) { { claim_type: "breach_of_injunction", cntp_date: "2024-10-10", vat_registered: false } }
+
+      it "applies rates correctly" do
+        expect(described_class.calculate_letter_or_call(claim, letter_or_call, show_assessed: true)).to eq({
+          claimed_total_exc_vat: 40.9,
+          claimed_vatable: 0.0,
+          assessed_total_exc_vat: 32.72,
+          assessed_vatable: 0.0,
         })
       end
     end
@@ -249,38 +266,50 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
               travel: {
                 claimed_time_spent_in_minutes: 0.0,
                 claimed_total_exc_vat: 0.0,
+                claimed_vatable: 0.0,
                 assessed_time_spent_in_minutes: 25.0,
                 assessed_total_exc_vat: 21.28,
+                assessed_vatable: 21.28,
               },
               waiting: {
                 claimed_time_spent_in_minutes: 133.0,
                 claimed_total_exc_vat: 67.3,
+                claimed_vatable: 67.3,
                 assessed_time_spent_in_minutes: 132.0,
                 assessed_total_exc_vat: 60.72,
+                assessed_vatable: 60.72,
               },
               attendance_with_counsel: {
                 claimed_time_spent_in_minutes: 0.0,
                 claimed_total_exc_vat: 0.0,
+                claimed_vatable: 0.0,
                 assessed_time_spent_in_minutes: 0.0,
                 assessed_total_exc_vat: 0.0,
+                assessed_vatable: 0.0,
               },
               attendance_without_counsel: {
                 claimed_time_spent_in_minutes: 0.0,
                 claimed_total_exc_vat: 0.0,
+                claimed_vatable: 0.0,
                 assessed_time_spent_in_minutes: 0.0,
                 assessed_total_exc_vat: 0.0,
+                assessed_vatable: 0.0,
               },
               preparation: {
                 claimed_time_spent_in_minutes: 0.0,
                 claimed_total_exc_vat: 0.0,
+                claimed_vatable: 0.0,
                 assessed_time_spent_in_minutes: 0.0,
                 assessed_total_exc_vat: 0.0,
+                assessed_vatable: 0.0,
               },
               advocacy: {
                 claimed_time_spent_in_minutes: 50.0,
                 claimed_total_exc_vat: 65.42,
+                claimed_vatable: 65.42,
                 assessed_time_spent_in_minutes: 0.0,
                 assessed_total_exc_vat: 0.0,
+                assessed_vatable: 0.0,
               },
             },
             cost_summary: {
@@ -348,38 +377,50 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
               travel: {
                 claimed_time_spent_in_minutes: 0.0,
                 claimed_total_exc_vat: 0.0,
+                claimed_vatable: 0.0,
                 assessed_time_spent_in_minutes: 25.0,
                 assessed_total_exc_vat: 21.28,
+                assessed_vatable: 0.0,
               },
               waiting: {
                 claimed_time_spent_in_minutes: 133.0,
                 claimed_total_exc_vat: 67.3,
+                claimed_vatable: 0.0,
                 assessed_time_spent_in_minutes: 132.0,
                 assessed_total_exc_vat: 60.72,
+                assessed_vatable: 0.0,
               },
               attendance_with_counsel: {
                 claimed_time_spent_in_minutes: 0.0,
                 claimed_total_exc_vat: 0.0,
+                claimed_vatable: 0.0,
                 assessed_time_spent_in_minutes: 0.0,
                 assessed_total_exc_vat: 0.0,
+                assessed_vatable: 0.0,
               },
               attendance_without_counsel: {
                 claimed_time_spent_in_minutes: 0.0,
                 claimed_total_exc_vat: 0.0,
+                claimed_vatable: 0.0,
                 assessed_time_spent_in_minutes: 0.0,
                 assessed_total_exc_vat: 0.0,
+                assessed_vatable: 0.0,
               },
               preparation: {
                 claimed_time_spent_in_minutes: 0.0,
                 claimed_total_exc_vat: 0.0,
+                claimed_vatable: 0.0,
                 assessed_time_spent_in_minutes: 0.0,
                 assessed_total_exc_vat: 0.0,
+                assessed_vatable: 0.0,
               },
               advocacy: {
                 claimed_time_spent_in_minutes: 50.0,
                 claimed_total_exc_vat: 65.42,
+                claimed_vatable: 0.0,
                 assessed_time_spent_in_minutes: 0.0,
                 assessed_total_exc_vat: 0.0,
+                assessed_vatable: 0.0,
               },
             },
             cost_summary: {
@@ -441,32 +482,39 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
 
     context "when not showing assessed" do
       let(:vat_registered) { true }
+
       it "applies calculates the totals" do
         expect(described_class.totals(claim, show_assessed: false)).to eq({
           work_types: {
             travel: {
               claimed_time_spent_in_minutes: 0.0,
               claimed_total_exc_vat: 0.0,
+              claimed_vatable: 0.0,
             },
             waiting: {
               claimed_time_spent_in_minutes: 133.0,
               claimed_total_exc_vat: 67.3,
+              claimed_vatable: 67.3,
             },
             attendance_with_counsel: {
               claimed_time_spent_in_minutes: 0.0,
               claimed_total_exc_vat: 0.0,
+              claimed_vatable: 0.0,
             },
             attendance_without_counsel: {
               claimed_time_spent_in_minutes: 0.0,
               claimed_total_exc_vat: 0.0,
+              claimed_vatable: 0.0,
             },
             preparation: {
               claimed_time_spent_in_minutes: 0.0,
               claimed_total_exc_vat: 0.0,
+              claimed_vatable: 0.0,
             },
             advocacy: {
               claimed_time_spent_in_minutes: 50.0,
               claimed_total_exc_vat: 65.42,
+              claimed_vatable: 65.42,
             },
           },
           cost_summary: {

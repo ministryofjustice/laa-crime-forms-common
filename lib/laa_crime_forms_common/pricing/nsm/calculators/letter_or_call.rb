@@ -19,21 +19,25 @@ module LaaCrimeFormsCommon
           def call
             claimed = {
               claimed_total_exc_vat:,
+              claimed_vatable: claim.vat_registered ? claimed_total_exc_vat : BigDecimal("0"),
             }
 
             return claimed unless show_assessed
 
-            claimed.merge(assessed_total_exc_vat:)
+            claimed.merge(
+              assessed_total_exc_vat:,
+              assessed_vatable: claim.vat_registered ? assessed_total_exc_vat : BigDecimal("0"),
+            )
           end
 
         private
 
           def claimed_total_exc_vat
-            letter_or_call.claimed_items * cost_per_item
+            @claimed_total_exc_vat ||= letter_or_call.claimed_items * cost_per_item
           end
 
           def assessed_total_exc_vat
-            letter_or_call.assessed_items * cost_per_item
+            @assessed_total_exc_vat ||= letter_or_call.assessed_items * cost_per_item
           end
 
           def cost_per_item
