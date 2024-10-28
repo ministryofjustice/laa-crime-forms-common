@@ -51,7 +51,7 @@ module LaaCrimeFormsCommon
         when Numeric
           # At the point where no more maths is going to be done, we convert to the most readable figure at the level of
           # accuracy needed
-          object.to_f.round(2)
+          object.round(2).to_f
         else
           object
         end
