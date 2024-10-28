@@ -26,7 +26,7 @@ module LaaCrimeFormsCommon
           end
 
           def profit_costs_summary_row
-            work_item_rows = work_types.except(:travel, :waiting).values
+            work_item_rows = work_types.except(:travel, :waiting, :total).values
             letter_and_call_rows = letters_and_calls.map { Calculators::LetterOrCall.call(claim, _1, show_assessed:, rates:) }
             augment_with_vat(calculate_pre_vat_totals(work_item_rows + letter_and_call_rows))
           end

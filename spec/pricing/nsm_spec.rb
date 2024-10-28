@@ -311,6 +311,14 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
                 assessed_total_exc_vat: 0.0,
                 assessed_vatable: 0.0,
               },
+              total: {
+                assessed_time_spent_in_minutes: 157.0,
+                assessed_total_exc_vat: 82.0,
+                assessed_vatable: 82.0,
+                claimed_time_spent_in_minutes: 183.0,
+                claimed_total_exc_vat: 132.72,
+                claimed_vatable: 132.72,
+              },
             },
             cost_summary: {
               profit_costs: {
@@ -422,6 +430,14 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
                 assessed_total_exc_vat: 0.0,
                 assessed_vatable: 0.0,
               },
+              total: {
+                assessed_time_spent_in_minutes: 157.0,
+                assessed_total_exc_vat: 82.0,
+                assessed_vatable: 0.0,
+                claimed_time_spent_in_minutes: 183.0,
+                claimed_total_exc_vat: 132.72,
+                claimed_vatable: 0.0,
+              },
             },
             cost_summary: {
               profit_costs: {
@@ -515,6 +531,11 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
               claimed_time_spent_in_minutes: 50.0,
               claimed_total_exc_vat: 65.42,
               claimed_vatable: 65.42,
+            },
+            total: {
+              claimed_time_spent_in_minutes: 183.0,
+              claimed_total_exc_vat: 132.72,
+              claimed_vatable: 132.72,
             },
           },
           cost_summary: {
