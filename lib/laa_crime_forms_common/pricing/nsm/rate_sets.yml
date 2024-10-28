@@ -9,8 +9,8 @@
       travel: 24.0
       waiting: 24.0
     letters_and_calls:
-      letters: 3.56
-      calls: 3.56
+      letter: 3.56
+      call: 3.56
     disbursements:
       car: 0.45
       motorcycle: 0.45
@@ -27,8 +27,8 @@
       travel: 27.60
       waiting: 27.60
     letters_and_calls:
-      letters: 4.09
-      calls: 4.09
+      letter: 4.09
+      call: 4.09
     disbursements:
       car: 0.45
       motorcycle: 0.45

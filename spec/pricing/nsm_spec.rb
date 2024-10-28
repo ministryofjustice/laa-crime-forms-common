@@ -87,12 +87,24 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
         }
       end
 
-      it "returns provided values" do
+      it "returns calculated values" do
         expect(described_class.calculate_disbursement(claim, disbursement)).to eq({
           claimed_total: BigDecimal("5.535"),
           assessed_total: BigDecimal("5.49"),
         })
       end
+    end
+  end
+
+  describe "#calculate_letter_or_call" do
+    let(:claim) { { claim_type: "breach_of_injunction", cntp_date: "2024-10-10" } }
+    let(:letter_or_call) { { type: :letter, claimed_items: 10, assessed_items: 8 } }
+
+    it "applies rates correctly" do
+      expect(described_class.calculate_letter_or_call(claim, letter_or_call)).to eq({
+        claimed_total: BigDecimal("40.9"),
+        assessed_total: BigDecimal("32.72"),
+      })
     end
   end
 end
