@@ -18,6 +18,7 @@ module LaaCrimeFormsCommon
 
           def call
             claimed = {
+              claimed_subtotal_without_uplift:,
               claimed_total_exc_vat:,
               claimed_vatable: claim.vat_registered ? claimed_total_exc_vat : BigDecimal("0"),
             }
@@ -25,6 +26,7 @@ module LaaCrimeFormsCommon
             return claimed unless show_assessed
 
             claimed.merge(
+              assessed_subtotal_without_uplift:,
               assessed_total_exc_vat:,
               assessed_vatable: claim.vat_registered ? assessed_total_exc_vat : BigDecimal("0"),
             )
@@ -32,12 +34,28 @@ module LaaCrimeFormsCommon
 
         private
 
+          def claimed_subtotal_without_uplift
+            @claimed_subtotal_without_uplift ||= letter_or_call.claimed_items * cost_per_item
+          end
+
+          def claimed_uplift_multiplier
+            Rational(100 + letter_or_call.claimed_uplift_percentage, 100)
+          end
+
           def claimed_total_exc_vat
-            @claimed_total_exc_vat ||= letter_or_call.claimed_items * cost_per_item
+            claimed_uplift_multiplier * claimed_subtotal_without_uplift
+          end
+
+          def assessed_subtotal_without_uplift
+            @assessed_subtotal_without_uplift ||= letter_or_call.assessed_items * cost_per_item
+          end
+
+          def assessed_uplift_multiplier
+            Rational(100 + letter_or_call.assessed_uplift_percentage, 100)
           end
 
           def assessed_total_exc_vat
-            @assessed_total_exc_vat ||= letter_or_call.assessed_items * cost_per_item
+            assessed_uplift_multiplier * assessed_subtotal_without_uplift
           end
 
           def cost_per_item

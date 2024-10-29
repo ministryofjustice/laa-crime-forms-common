@@ -45,16 +45,16 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
 
       it "errors on invalid data" do
         work_item = {
-          claimed_time_spent_in_minutes: 50,
+          claimed_time_spent_in_minutes: nil,
           claimed_work_type: "advocacy",
-          claimed_uplift_percentage: nil,
-          assessed_time_spent_in_minutes: 25.2,
+          claimed_uplift_percentage: 10,
+          assessed_time_spent_in_minutes: 25,
           assessed_work_type: "travel",
           assessed_uplift_percentage: 85,
         }
 
         expect { described_class.calculate_work_item(claim, work_item, show_assessed: true) }.to raise_error(
-          "'claimed_uplift_percentage' in Hash is nil, but must not be",
+          "'claimed_time_spent_in_minutes' in Hash is nil, but must not be",
         )
       end
     end
@@ -160,13 +160,15 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
 
   describe "#calculate_letter_or_call" do
     let(:claim) { { claim_type: "breach_of_injunction", cntp_date: "2024-10-10", vat_registered: true } }
-    let(:letter_or_call) { { type: :letter, claimed_items: 10, assessed_items: 8 } }
+    let(:letter_or_call) { { type: :letters, claimed_items: 10, assessed_items: 8, claimed_uplift_percentage: 20, assessed_uplift_percentage: 0 } }
 
     context "when showing assessed" do
       it "applies rates correctly" do
         expect(described_class.calculate_letter_or_call(claim, letter_or_call, show_assessed: true)).to eq({
-          claimed_total_exc_vat: 40.9,
-          claimed_vatable: 40.9,
+          claimed_subtotal_without_uplift: 40.9,
+          claimed_total_exc_vat: 49.08,
+          claimed_vatable: 49.08,
+          assessed_subtotal_without_uplift: 32.72,
           assessed_total_exc_vat: 32.72,
           assessed_vatable: 32.72,
         })
@@ -174,10 +176,11 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
     end
 
     context "when not showing assessed" do
-      let(:letter_or_call) { { type: :letter, claimed_items: 10 } }
+      let(:letter_or_call) { { type: :letters, claimed_items: 10, claimed_uplift_percentage: nil } }
 
       it "applies rates correctly" do
         expect(described_class.calculate_letter_or_call(claim, letter_or_call, show_assessed: false)).to eq({
+          claimed_subtotal_without_uplift: 40.9,
           claimed_total_exc_vat: 40.9,
           claimed_vatable: 40.9,
         })
@@ -189,8 +192,10 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
 
       it "applies rates correctly" do
         expect(described_class.calculate_letter_or_call(claim, letter_or_call, show_assessed: true)).to eq({
-          claimed_total_exc_vat: 40.9,
+          claimed_subtotal_without_uplift: 40.9,
           claimed_vatable: 0.0,
+          claimed_total_exc_vat: 49.08,
+          assessed_subtotal_without_uplift: 32.72,
           assessed_total_exc_vat: 32.72,
           assessed_vatable: 0.0,
         })
@@ -206,10 +211,7 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
         work_items:,
         disbursements:,
         vat_registered:,
-        claimed_letters: 5,
-        claimed_calls: 3,
-        assessed_letters: 5,
-        assessed_calls: 3,
+        letters_and_calls:,
       }
     end
 
@@ -253,6 +255,25 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
           assessed_miles: nil,
           claimed_apply_vat: true,
           assessed_apply_vat: true,
+        },
+      ]
+    end
+
+    let(:letters_and_calls) do
+      [
+        {
+          type: :letters,
+          claimed_items: 5,
+          claimed_uplift_percentage: 50,
+          assessed_items: 5,
+          assessed_uplift_percentage: 40,
+        },
+        {
+          type: :calls,
+          claimed_items: 3,
+          claimed_uplift_percentage: 30,
+          assessed_items: 2,
+          assessed_uplift_percentage: 20,
         },
       ]
     end
@@ -336,14 +357,14 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
             },
             cost_summary: {
               profit_costs: {
-                claimed_total_exc_vat: 98.14,
-                assessed_total_exc_vat: 32.72,
-                claimed_vatable: 98.14,
-                claimed_vat: 19.63,
-                claimed_total_inc_vat: 117.77,
-                assessed_vatable: 32.72,
-                assessed_vat: 6.54,
-                assessed_total_inc_vat: 39.26,
+                claimed_total_exc_vat: 112.05,
+                assessed_total_exc_vat: 38.45,
+                claimed_vatable: 112.05,
+                claimed_vat: 22.41,
+                claimed_total_inc_vat: 134.46,
+                assessed_vatable: 38.45,
+                assessed_vat: 7.69,
+                assessed_total_inc_vat: 46.14,
                 group_changes: true,
               },
               disbursements: {
@@ -381,14 +402,14 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
               },
             },
             totals: {
-              claimed_total_exc_vat: 294.82,
-              claimed_vatable: 289.29,
-              assessed_total_exc_vat: 243.06,
-              assessed_vatable: 237.57,
-              claimed_vat: 57.86,
-              assessed_vat: 47.51,
-              claimed_total_inc_vat: 352.68,
-              assessed_total_inc_vat: 290.57,
+              claimed_total_exc_vat: 308.73,
+              claimed_vatable: 303.19,
+              assessed_total_exc_vat: 248.78,
+              assessed_vatable: 243.29,
+              claimed_vat: 60.64,
+              assessed_vat: 48.66,
+              claimed_total_inc_vat: 369.37,
+              assessed_total_inc_vat: 297.44,
             },
           })
         end
@@ -473,14 +494,14 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
             },
             cost_summary: {
               profit_costs: {
-                claimed_total_exc_vat: 98.14,
-                assessed_total_exc_vat: 32.72,
-                claimed_vatable: 0.0,
-                claimed_vat: 0.0,
-                claimed_total_inc_vat: 98.14,
-                assessed_vatable: 0.0,
+                assessed_total_exc_vat: 38.45,
+                assessed_total_inc_vat: 38.45,
                 assessed_vat: 0.0,
-                assessed_total_inc_vat: 32.72,
+                assessed_vatable: 0.0,
+                claimed_total_exc_vat: 112.05,
+                claimed_total_inc_vat: 112.05,
+                claimed_vat: 0.0,
+                claimed_vatable: 0.0,
                 group_changes: true,
               },
               disbursements: {
@@ -518,14 +539,14 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
               },
             },
             totals: {
-              claimed_total_exc_vat: 294.82,
-              claimed_vatable: 123.85,
-              assessed_total_exc_vat: 243.06,
-              assessed_vatable: 122.85,
-              claimed_vat: 24.77,
+              assessed_total_exc_vat: 248.78,
+              assessed_total_inc_vat: 273.35,
               assessed_vat: 24.57,
-              claimed_total_inc_vat: 319.59,
-              assessed_total_inc_vat: 267.63,
+              assessed_vatable: 122.85,
+              claimed_total_exc_vat: 308.73,
+              claimed_total_inc_vat: 333.5,
+              claimed_vat: 24.77,
+              claimed_vatable: 123.85,
             },
           })
         end
@@ -576,10 +597,10 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
           },
           cost_summary: {
             profit_costs: {
-              claimed_total_exc_vat: 98.14,
-              claimed_vatable: 98.14,
-              claimed_vat: 19.63,
-              claimed_total_inc_vat: 117.77,
+              claimed_total_exc_vat: 112.05,
+              claimed_total_inc_vat: 134.46,
+              claimed_vat: 22.41,
+              claimed_vatable: 112.05,
             },
             disbursements: {
               claimed_total_exc_vat: 129.39,
@@ -601,10 +622,10 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
             },
           },
           totals: {
-            claimed_total_exc_vat: 294.82,
-            claimed_vatable: 289.29,
-            claimed_vat: 57.86,
-            claimed_total_inc_vat: 352.68,
+            claimed_total_exc_vat: 308.73,
+            claimed_total_inc_vat: 369.37,
+            claimed_vat: 60.64,
+            claimed_vatable: 303.19,
           },
         })
       end

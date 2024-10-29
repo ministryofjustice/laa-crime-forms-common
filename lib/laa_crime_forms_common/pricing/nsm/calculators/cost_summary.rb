@@ -73,10 +73,7 @@ module LaaCrimeFormsCommon
           end
 
           def letters_and_calls
-            [
-              Wrappers::LetterOrCall.new(type: :letter, claimed_items: claim.claimed_letters, assessed_items: claim.assessed_letters),
-              Wrappers::LetterOrCall.new(type: :call, claimed_items: claim.claimed_calls, assessed_items: claim.assessed_calls),
-            ]
+            @letters_and_calls ||= claim.letters_and_calls.map { Wrappers::LetterOrCall.new(_1) }
           end
 
           def disbursements
