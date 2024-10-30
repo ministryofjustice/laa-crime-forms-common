@@ -34,7 +34,7 @@ module LaaCrimeFormsCommon
               [work_type.to_sym, build_summary(claimed_items, assessed_items)]
             end
 
-            types[:total] = build_summary(calculations)
+            types[:total] = add_vat(build_summary(calculations))
 
             types
           end
@@ -74,6 +74,15 @@ module LaaCrimeFormsCommon
             return work_type if %w[travel waiting].include?(work_type)
 
             "profit_costs"
+          end
+
+          def add_vat(hash)
+            hash[:claimed_vat] = hash[:claimed_vatable] * rates.vat
+            hash[:assessed_vat] = (hash[:assessed_vatable] * rates.vat) if show_assessed
+            hash[:claimed_total_inc_vat] = hash[:claimed_total_exc_vat] + hash[:claimed_vat]
+            hash[:assessed_total_inc_vat] = (hash[:assessed_total_exc_vat] + hash[:assessed_vat]) if show_assessed
+
+            hash
           end
 
           attr_reader :claim, :show_assessed, :rates
