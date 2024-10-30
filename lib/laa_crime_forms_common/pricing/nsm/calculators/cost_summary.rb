@@ -4,14 +4,15 @@ module LaaCrimeFormsCommon
       module Calculators
         class CostSummary
           class << self
-            def call(claim, work_types, show_assessed:, rates:)
-              new(claim, work_types, show_assessed, rates).call
+            def call(claim, work_types, letters_and_calls, show_assessed:, rates:)
+              new(claim, work_types, letters_and_calls, show_assessed, rates).call
             end
           end
 
-          def initialize(claim, work_types, show_assessed, rates)
+          def initialize(claim, work_types, letters_and_calls, show_assessed, rates)
             @claim = claim
             @work_types = work_types
+            @letters_and_calls = letters_and_calls
             @show_assessed = show_assessed
             @rates = rates
           end
@@ -27,8 +28,7 @@ module LaaCrimeFormsCommon
 
           def profit_costs_summary_row
             work_item_rows = work_types.except(:travel, :waiting, :total).values
-            letter_and_call_rows = letters_and_calls.map { Calculators::LetterOrCall.call(claim, _1, show_assessed:, rates:) }
-            augment_with_vat(calculate_pre_vat_totals(work_item_rows + letter_and_call_rows))
+            augment_with_vat(calculate_pre_vat_totals(work_item_rows + [letters_and_calls]))
           end
 
           def disbursements_summary_row
@@ -72,15 +72,11 @@ module LaaCrimeFormsCommon
             row.merge(new_data)
           end
 
-          def letters_and_calls
-            @letters_and_calls ||= claim.letters_and_calls.map { Wrappers::LetterOrCall.new(_1) }
-          end
-
           def disbursements
             @disbursements ||= claim.disbursements.map { Wrappers::Disbursement.new(_1) }
           end
 
-          attr_reader :claim, :work_types, :show_assessed, :rates
+          attr_reader :claim, :work_types, :letters_and_calls, :show_assessed, :rates
         end
       end
     end

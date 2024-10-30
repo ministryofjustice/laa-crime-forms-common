@@ -1,4 +1,5 @@
 require_relative "work_types"
+require_relative "letters_and_calls"
 require_relative "cost_summary"
 
 module LaaCrimeFormsCommon
@@ -20,6 +21,7 @@ module LaaCrimeFormsCommon
           def call
             {
               work_types:,
+              letters_and_calls:,
               cost_summary:,
               totals:,
             }
@@ -31,8 +33,12 @@ module LaaCrimeFormsCommon
             @work_types ||= Calculators::WorkTypes.call(claim, show_assessed:, rates:)
           end
 
+          def letters_and_calls
+            @letters_and_calls ||= Calculators::LettersAndCalls.call(claim, show_assessed:, rates:)
+          end
+
           def cost_summary
-            @cost_summary ||= Calculators::CostSummary.call(claim, work_types, show_assessed:, rates:)
+            @cost_summary ||= Calculators::CostSummary.call(claim, work_types, letters_and_calls, show_assessed:, rates:)
           end
 
           def totals

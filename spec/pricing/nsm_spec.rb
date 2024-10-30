@@ -355,6 +355,16 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
                 cost_summary_group_changes: true,
               },
             },
+            letters_and_calls: {
+              assessed_total_exc_vat: 38.45,
+              assessed_total_inc_vat: 46.14,
+              assessed_vat: 7.69,
+              assessed_vatable: 38.45,
+              claimed_total_exc_vat: 46.63,
+              claimed_total_inc_vat: 55.95,
+              claimed_vat: 9.33,
+              claimed_vatable: 46.63,
+            },
             cost_summary: {
               profit_costs: {
                 claimed_total_exc_vat: 112.05,
@@ -492,6 +502,16 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
                 cost_summary_group_changes: true,
               },
             },
+            letters_and_calls: {
+              assessed_total_exc_vat: 38.45,
+              assessed_total_inc_vat: 38.45,
+              assessed_vat: 0.0,
+              assessed_vatable: 0.0,
+              claimed_total_exc_vat: 46.63,
+              claimed_total_inc_vat: 46.63,
+              claimed_vat: 0.0,
+              claimed_vatable: 0.0,
+            },
             cost_summary: {
               profit_costs: {
                 assessed_total_exc_vat: 38.45,
@@ -594,6 +614,12 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
               claimed_total_exc_vat: 132.72,
               claimed_vatable: 132.72,
             },
+          },
+          letters_and_calls: {
+            claimed_total_exc_vat: 46.63,
+            claimed_total_inc_vat: 55.95,
+            claimed_vat: 9.33,
+            claimed_vatable: 46.63,
           },
           cost_summary: {
             profit_costs: {
