@@ -4,16 +4,15 @@ module LaaCrimeFormsCommon
       module Calculators
         class CostSummary
           class << self
-            def call(claim, work_types, letters_and_calls, show_assessed:, rates:)
-              new(claim, work_types, letters_and_calls, show_assessed, rates).call
+            def call(claim, work_types, letters_and_calls, rates:)
+              new(claim, work_types, letters_and_calls, rates).call
             end
           end
 
-          def initialize(claim, work_types, letters_and_calls, show_assessed, rates)
+          def initialize(claim, work_types, letters_and_calls, rates)
             @claim = claim
             @work_types = work_types
             @letters_and_calls = letters_and_calls
-            @show_assessed = show_assessed
             @rates = rates
           end
 
@@ -32,7 +31,7 @@ module LaaCrimeFormsCommon
           end
 
           def disbursements_summary_row
-            calculations = disbursements.map { Calculators::Disbursement.call(claim, _1, show_assessed:, rates:) }
+            calculations = disbursements.map { Calculators::Disbursement.call(claim, _1, rates:) }
             augment_with_vat(calculate_pre_vat_totals(calculations))
           end
 
@@ -45,38 +44,31 @@ module LaaCrimeFormsCommon
           end
 
           def calculate_pre_vat_totals(rows)
-            figures = %i[claimed_total_exc_vat claimed_vatable]
-            figures += %i[assessed_total_exc_vat assessed_vatable] if show_assessed
-
-            figures.to_h { |figure| [figure, rows.sum(BigDecimal("0")) { _1[figure] }] }.tap do |basic_data|
-              basic_data[:group_changes] = rows.any? { _1[:cost_summary_group_changes] } if show_assessed
+            %i[claimed_total_exc_vat
+               claimed_vatable
+               assessed_total_exc_vat
+               assessed_vatable].to_h { |figure| [figure, rows.sum(BigDecimal("0")) { _1[figure] }] }.tap do |basic_data|
+              basic_data[:at_least_one_claimed_work_item_assessed_as_type_with_different_summary_group] = rows.any? { _1[:at_least_one_claimed_work_item_assessed_as_type_with_different_summary_group] }
             end
           end
 
           def augment_with_vat(row)
             claimed_vat = row[:claimed_vatable] * rates.vat
-            assessed_vat = row[:assessed_vatable] * rates.vat if show_assessed
+            assessed_vat = row[:assessed_vatable] * rates.vat
 
-            new_data = {
+            row.merge(
               claimed_vat:,
+              assessed_vat:,
               claimed_total_inc_vat: row[:claimed_total_exc_vat] + claimed_vat,
-            }
-
-            if show_assessed
-              new_data.merge!(
-                assessed_vat:,
-                assessed_total_inc_vat: row[:assessed_total_exc_vat] + assessed_vat,
-              )
-            end
-
-            row.merge(new_data)
+              assessed_total_inc_vat: row[:assessed_total_exc_vat] + assessed_vat,
+            )
           end
 
           def disbursements
             @disbursements ||= claim.disbursements.map { Wrappers::Disbursement.new(_1) }
           end
 
-          attr_reader :claim, :work_types, :letters_and_calls, :show_assessed, :rates
+          attr_reader :claim, :work_types, :letters_and_calls, :rates
         end
       end
     end

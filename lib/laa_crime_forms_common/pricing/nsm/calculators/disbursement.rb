@@ -4,34 +4,28 @@ module LaaCrimeFormsCommon
       module Calculators
         class Disbursement
           class << self
-            def call(claim, disbursement, show_assessed:, rates: Rates.call(claim))
-              new(claim, disbursement, show_assessed, rates).call
+            def call(claim, disbursement, rates: Rates.call(claim))
+              new(claim, disbursement, rates).call
             end
           end
 
-          def initialize(claim, disbursement, show_assessed, rates)
+          def initialize(claim, disbursement, rates)
             @claim = claim
             @disbursement = disbursement
             @rates = rates
-            @show_assessed = show_assessed
           end
 
           def call
-            claimed = {
+            {
               claimed_total_exc_vat:,
               claimed_vatable:,
               claimed_vat:,
               claimed_total_inc_vat:,
-            }
-
-            return claimed unless show_assessed
-
-            claimed.merge(
               assessed_total_exc_vat:,
               assessed_vatable:,
               assessed_vat:,
               assessed_total_inc_vat:,
-            )
+            }
           end
 
         private
@@ -80,7 +74,7 @@ module LaaCrimeFormsCommon
             assessed_total_exc_vat + assessed_vat
           end
 
-          attr_reader :disbursement, :claim, :show_assessed, :rates
+          attr_reader :disbursement, :claim, :rates
         end
       end
     end

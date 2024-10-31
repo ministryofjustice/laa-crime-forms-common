@@ -4,31 +4,31 @@ module LaaCrimeFormsCommon
       module Calculators
         class LettersAndCalls
           class << self
-            def call(claim, show_assessed:, rates:)
-              new(claim, show_assessed, rates).call
+            def call(claim, rates:)
+              new(claim, rates).call
             end
           end
 
-          def initialize(claim, show_assessed, rates)
+          def initialize(claim, rates)
             @claim = claim
-            @show_assessed = show_assessed
             @rates = rates
           end
 
           def call
-            letter_and_call_rows = letters_and_calls.map { Calculators::LetterOrCall.call(claim, _1, show_assessed:, rates:) }
+            letter_and_call_rows = letters_and_calls.map { Calculators::LetterOrCall.call(claim, _1, rates:) }
             calculate_totals(letter_and_call_rows)
           end
 
           def calculate_totals(rows)
-            figures = %i[claimed_total_exc_vat claimed_vatable]
-            figures += %i[assessed_total_exc_vat assessed_vatable] if show_assessed
-
-            figures.to_h { |figure| [figure, rows.sum(BigDecimal("0")) { _1[figure] }] }.tap do |hash|
+            %i[claimed_total_exc_vat
+               claimed_vatable
+               assessed_total_exc_vat
+               assessed_vatable].to_h { |figure| [figure, rows.sum(BigDecimal("0")) { _1[figure] }] }
+                                .tap do |hash|
               hash[:claimed_vat] = hash[:claimed_vatable] * rates.vat
-              hash[:assessed_vat] = (hash[:assessed_vatable] * rates.vat) if show_assessed
+              hash[:assessed_vat] = (hash[:assessed_vatable] * rates.vat)
               hash[:claimed_total_inc_vat] = hash[:claimed_total_exc_vat] + hash[:claimed_vat]
-              hash[:assessed_total_inc_vat] = (hash[:assessed_total_exc_vat] + hash[:assessed_vat]) if show_assessed
+              hash[:assessed_total_inc_vat] = (hash[:assessed_total_exc_vat] + hash[:assessed_vat])
             end
           end
 
@@ -36,7 +36,7 @@ module LaaCrimeFormsCommon
             @letters_and_calls ||= claim.letters_and_calls.map { Wrappers::LetterOrCall.new(_1) }
           end
 
-          attr_reader :claim, :show_assessed, :rates
+          attr_reader :claim, :rates
         end
       end
     end

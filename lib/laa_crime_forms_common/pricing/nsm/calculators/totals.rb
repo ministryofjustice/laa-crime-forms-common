@@ -8,14 +8,13 @@ module LaaCrimeFormsCommon
       module Calculators
         class Totals
           class << self
-            def call(claim, show_assessed:)
-              new(claim, show_assessed).call
+            def call(claim)
+              new(claim).call
             end
           end
 
-          def initialize(claim, show_assessed)
+          def initialize(claim)
             @claim = claim
-            @show_assessed = show_assessed
           end
 
           def call
@@ -30,23 +29,19 @@ module LaaCrimeFormsCommon
         private
 
           def work_types
-            @work_types ||= Calculators::WorkTypes.call(claim, show_assessed:, rates:)
+            @work_types ||= Calculators::WorkTypes.call(claim, rates:)
           end
 
           def letters_and_calls
-            @letters_and_calls ||= Calculators::LettersAndCalls.call(claim, show_assessed:, rates:)
+            @letters_and_calls ||= Calculators::LettersAndCalls.call(claim, rates:)
           end
 
           def cost_summary
-            @cost_summary ||= Calculators::CostSummary.call(claim, work_types, letters_and_calls, show_assessed:, rates:)
+            @cost_summary ||= Calculators::CostSummary.call(claim, work_types, letters_and_calls, rates:)
           end
 
           def totals
-            claimed = partial_totals(:claimed)
-
-            return claimed unless show_assessed
-
-            claimed.merge(partial_totals(:assessed))
+            partial_totals(:claimed).merge(partial_totals(:assessed))
           end
 
           def partial_totals(prefix)
@@ -67,7 +62,7 @@ module LaaCrimeFormsCommon
             @rates ||= Rates.call(claim)
           end
 
-          attr_reader :claim, :show_assessed
+          attr_reader :claim
         end
       end
     end
