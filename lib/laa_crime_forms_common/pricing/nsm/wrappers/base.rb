@@ -27,7 +27,7 @@ module LaaCrimeFormsCommon
               elsif type.respond_to?(:call)
                 type.call(raw_value)
               else
-                type.new(raw_value)
+                raise "'#{attribute}' in #{self.class} is of type #{raw_value.class} but should be of type #{type}"
               end
             end
           end

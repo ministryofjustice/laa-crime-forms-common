@@ -35,5 +35,29 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm::Wrappers do
         expect { subject.attribute }.to raise_error "Hash does not have 'attribute' attribute"
       end
     end
+
+    context "when initialized with an object with unconvertable attributes" do
+      let(:input) { { attribute: [] } }
+
+      it "raises an error" do
+        expect { subject.attribute }.to raise_error(/'attribute' in .* is of type Array but should be of type String/)
+      end
+    end
+
+    context "when initialized with an object with a nil value but there is a default" do
+      let(:input) { { attribute_with_default: nil } }
+
+      it "uses the default" do
+        expect(subject.attribute_with_default).to eq "DEFAULT"
+      end
+    end
+
+    context "when initialized with an object with a nil value and there is no default" do
+      let(:input) { { attribute: nil } }
+
+      it "raises an error" do
+        expect { subject.attribute }.to raise_error(/'attribute' in .* is nil, but must not be/)
+      end
+    end
   end
 end
