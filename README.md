@@ -5,10 +5,10 @@ It is currently used for:
 
 - Shared L10n of strings
 - JSON schema definition and validation
+- Pricing and fees
 
 It may one day be used for:
 
-- Shared Non-standard magistrate work item pricing data
 - Shared logic relating to the LAA crime application store including:
   - Generating tokens to authenticate outgoing requests
   - Verifying tokens on incoming requests

@@ -224,6 +224,12 @@
         }
       ],
       "properties":{
+        "high_value": {
+          "examples": [true, false],
+          "title": "High value",
+          "x-pii": false,
+          "type": "boolean"
+        },
         "disbursements":{
           "examples":[
             {
@@ -237,7 +243,7 @@
               "examples":[
                 "0.0"
               ],
-              "title":"Gross cost",
+              "title":"Gross cost DEPRECATED",
               "x-pii": false,
               "type":"string"
             },
@@ -245,7 +251,7 @@
               "examples":[
                 "0.0"
               ],
-              "title":"Net cost",
+              "title":"Net cost DEPRECATED",
               "x-pii": false,
               "type":"string"
             },
@@ -253,7 +259,7 @@
               "examples":[
                 "0.0"
               ],
-              "title":"VAT",
+              "title":"VAT DEPRECATED",
               "x-pii": false,
               "type":"string"
             }
@@ -279,7 +285,7 @@
               "examples":[
                 "987.02016"
               ],
-              "title":"Gross cost",
+              "title":"Gross cost DEPRECATED",
               "x-pii": false,
               "type":"string"
             },
@@ -287,7 +293,7 @@
               "examples":[
                 "822.5168"
               ],
-              "title":"Net cost",
+              "title":"Net cost DEPRECATED",
               "x-pii": false,
               "type":"string"
             },
@@ -295,7 +301,7 @@
               "examples":[
                 "164.50336"
               ],
-              "title":"VAT",
+              "title":"VAT DEPRECATED",
               "x-pii": false,
               "type":"string"
             }
@@ -321,7 +327,7 @@
               "examples":[
                 "0.0"
               ],
-              "title":"Gross cost",
+              "title":"Gross cost DEPRECATED",
               "x-pii": false,
               "type":"string"
             },
@@ -329,7 +335,7 @@
               "examples":[
                 "0.0"
               ],
-              "title":"Net cost",
+              "title":"Net cost DEPRECATED",
               "x-pii": false,
               "type":"string"
             },
@@ -337,7 +343,7 @@
               "examples":[
                 "0.0"
               ],
-              "title":"VAT",
+              "title":"VAT DEPRECATED",
               "x-pii": false,
               "type":"string"
             }
@@ -363,7 +369,7 @@
               "examples":[
                 "404.064"
               ],
-              "title":"Gross cost",
+              "title":"Gross cost DEPRECATED",
               "x-pii": false,
               "type":"string"
             },
@@ -371,7 +377,7 @@
               "examples":[
                 "336.72"
               ],
-              "title":"Net cost",
+              "title":"Net cost DEPRECATED",
               "x-pii": false,
               "type":"string"
             },
@@ -379,7 +385,7 @@
               "examples":[
                 "67.344"
               ],
-              "title":"VAT",
+              "title":"VAT DEPRECATED",
               "x-pii": false,
               "type":"string"
             }
@@ -725,7 +731,7 @@
             "examples":[
               12.3, "12.3"
             ],
-            "title":"VAT amount",
+            "title":"VAT amount DEPRECATED",
             "x-pii": false,
             "type":["number","string","null"]
           },
@@ -741,7 +747,7 @@
             "examples":[
               12.3
             ],
-            "title":"Pricing",
+            "title":"Pricing DEPRECATED",
             "x-pii": false,
             "type":["number","string"]
           },
@@ -749,7 +755,7 @@
             "examples":[
               0.2
             ],
-            "title":"VAT rate",
+            "title":"VAT rate DEPRECATED",
             "x-pii": false,
             "type":["number","string"]
           }
@@ -1203,7 +1209,7 @@
             "examples":[
               4.09
             ],
-            "title":"pricing",
+            "title":"pricing DEPRECATED",
             "x-pii": false,
             "type":["number","string"]
           },
@@ -1819,7 +1825,7 @@
       "examples":[
         0.2
       ],
-      "title":"VAT rate",
+      "title":"VAT rate DEPRECATED",
       "x-pii": false,
       "type":"number"
     },
@@ -1890,7 +1896,7 @@
           "examples":[
             65.42
           ],
-          "title":"Advocacy",
+          "title":"Advocacy DEPRECATED",
           "x-pii": false,
           "type":"number"
         },
@@ -1898,7 +1904,7 @@
           "examples":[
             35.68
           ],
-          "title":"Attendance with counsel",
+          "title":"Attendance with counsel DEPRECATED",
           "x-pii": false,
           "type":"number"
         },
@@ -1906,7 +1912,7 @@
           "examples":[
             52.15
           ],
-          "title":"Attendance without counsel",
+          "title":"Attendance without counsel DEPRECATED",
           "x-pii": false,
           "type":"number"
         },
@@ -1914,7 +1920,7 @@
           "examples":[
             52.15
           ],
-          "title":"Preparation",
+          "title":"Preparation DEPRECATED",
           "x-pii": false,
           "type":"number"
         },
@@ -1922,7 +1928,7 @@
           "examples":[
             27.6
           ],
-          "title":"Travel",
+          "title":"Travel DEPRECATED",
           "x-pii": false,
           "type":"number"
         },
@@ -1930,7 +1936,7 @@
           "examples":[
             27.6
           ],
-          "title":"Waiting",
+          "title":"Waiting DEPRECATED",
           "x-pii": false,
           "type":"number"
         }
@@ -2182,7 +2188,8 @@
           "gross_cost":"404.064",
           "net_cost":"336.72",
           "vat":"67.344"
-        }
+        },
+        "high_value": true
       },
       "court":"asdasdasd - n/a",
       "court_in_undesignated_area":false,
