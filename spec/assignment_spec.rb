@@ -87,5 +87,13 @@ RSpec.describe LaaCrimeFormsCommon::Assignment do
         )
       end
     end
+
+    context "when other" do
+      let(:application_type) { "crm5" }
+
+      it "raises and error" do
+        expect { subject }.to raise_error "Unknown application type 'crm5'"
+      end
+    end
   end
 end

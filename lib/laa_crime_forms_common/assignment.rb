@@ -15,6 +15,8 @@ module LaaCrimeFormsCommon
                                    options.fetch(:updated_at_column),
                                    options.fetch(:data_column),
                                    options.fetch(:risk_column))
+      else
+        raise "Unknown application type '#{application_type}'"
       end
     end
 
