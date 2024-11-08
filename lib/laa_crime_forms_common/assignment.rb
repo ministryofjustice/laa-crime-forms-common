@@ -2,6 +2,8 @@ module LaaCrimeFormsCommon
   module Assignment
     extend self
 
+    NSM_HIGH_VALUE_CLAIM_PROFIT_COST_THRESHOLD = 5000
+
     def build_assignment_query(base_query, application_type, options)
       case application_type
       when "crm4"
@@ -48,12 +50,11 @@ module LaaCrimeFormsCommon
     end
 
     def build_nsm_assignment_query(query, updated_at_column, data_column, risk_column)
-      high_value_threshold = 5000
       query.where("(#{data_column}->'cost_summary'->'high_value' IS NOT NULL AND NOT (#{data_column}->'cost_summary'->'high_value')::boolean) OR " \
                   "(#{data_column}->'cost_summary'->'high_value' IS NULL AND #{data_column}->'cost_summary' IS NOT NULL AND " \
                   "(#{data_column}->'cost_summary'->'profit_costs'->>'gross_cost')::decimal < ?) OR " \
                   "(#{data_column}->'cost_summary' IS NULL AND #{risk_column} != 'high')",
-                  high_value_threshold)
+                  NSM_HIGH_VALUE_CLAIM_PROFIT_COST_THRESHOLD)
            .order(updated_at_column => :asc)
     end
   end
