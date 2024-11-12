@@ -16,4 +16,5 @@ group :test do
   gem "rspec_junit_formatter", require: false
   gem "simplecov"
   gem "simplecov-rcov"
+  gem "webmock"
 end

@@ -1,0 +1,6 @@
+en:
+  laa_crime_forms_common:
+    prior_authority:
+      messages:
+        further_information: Further information request
+        incorrect_information: Amendment request
