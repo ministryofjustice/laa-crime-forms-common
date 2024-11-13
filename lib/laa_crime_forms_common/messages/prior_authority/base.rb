@@ -87,10 +87,6 @@ module LaaCrimeFormsCommon
             BigDecimal(quote_attribute("cost_multiplier", original:))
         end
 
-        def original_total_item_cost
-          original_items * BigDecimal(original_cost_per_item) * BigDecimal(cost_multiplier)
-        end
-
         def quote_attribute(key, original:)
           cost_attribute(quote, key, original:)
         end

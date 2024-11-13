@@ -1,4 +1,5 @@
 require_relative "base"
+require "i18n"
 
 module LaaCrimeFormsCommon
   module Messages
@@ -25,17 +26,17 @@ module LaaCrimeFormsCommon
         def comments
           comments = []
 
-          if further_information_explanation.present?
+          if further_information_explanation && further_information_explanation.strip != ""
             comments << "## #{I18n.t('laa_crime_forms_common.prior_authority.messages.further_information')}"
             comments << further_information_explanation
           end
 
-          if incorrect_information_explanation.present?
+          if incorrect_information_explanation && incorrect_information_explanation.strip != ""
             comments << "## #{I18n.t('laa_crime_forms_common.prior_authority.messages.incorrect_information')}"
             comments << incorrect_information_explanation
           end
 
-          comments.compact_blank.join("\n\n")
+          comments.join("\n\n")
         end
 
         def incorrect_information_explanation

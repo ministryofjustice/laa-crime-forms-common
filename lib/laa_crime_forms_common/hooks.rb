@@ -1,4 +1,5 @@
 require_relative "autogrant/prior_authority"
+require_relative "messages/prior_authority"
 
 module LaaCrimeFormsCommon
   module Hooks
@@ -11,7 +12,7 @@ module LaaCrimeFormsCommon
       return unless Autogrant::PriorAuthority.autograntable?(submission.latest_version.application, sql_executor)
 
       add_auto_grant_event(submission, now)
-      yield "auto_grant"
+      yield "auto_grant", LaaCrimeFormsCommon::Messages::PriorAuthority::Granted
     end
 
     def submission_updated(submission, now)
