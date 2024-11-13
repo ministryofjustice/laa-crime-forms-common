@@ -1,0 +1,5 @@
+require_relative "prior_authority/base"
+require_relative "prior_authority/further_information_request"
+require_relative "prior_authority/granted"
+require_relative "prior_authority/part_granted"
+require_relative "prior_authority/rejected"
