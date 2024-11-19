@@ -4,7 +4,7 @@ module LaaCrimeFormsCommon
       module Calculators
         class LettersAndCalls
           class << self
-            def call(claim, rates:)
+            def call(claim, rates: Rates.call(claim))
               new(claim, rates).call
             end
           end
