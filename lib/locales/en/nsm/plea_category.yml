@@ -4,3 +4,8 @@ en:
       plea_category:
         guilty_pleas: Category 1
         not_guilty_pleas: Category 2
+        category_1a: Category 1A
+        category_1b: Category 1B
+        category_2: Category 2
+        category_2a: Category 2A
+        category_2b: Category 2B
