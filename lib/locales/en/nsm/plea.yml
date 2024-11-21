@@ -13,4 +13,7 @@
         contested: Contested breach
         discontinuance_cat1: Discontinuance or withdrawal
         discontinuance_cat2: Discontinuance or withdrawal
+        discontinuance: Discontinuance
+        contested_trial: Contested trial
         mixed: Mixed plea
+        other: Other
