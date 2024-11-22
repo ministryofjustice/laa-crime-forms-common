@@ -22,7 +22,12 @@ module LaaCrimeFormsCommon
               disbursements: disbursements_summary_row,
               travel: travel_summary_row,
               waiting: waiting_summary_row,
+              additional_fees: additional_fees_row
             }
+          end
+
+          def additional_fees_row
+            Calculators::AdditionalFees.call(claim, rates:)
           end
 
           def profit_costs_summary_row
