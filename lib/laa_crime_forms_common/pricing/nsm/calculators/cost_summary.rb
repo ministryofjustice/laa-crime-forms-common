@@ -22,7 +22,7 @@ module LaaCrimeFormsCommon
               disbursements: disbursements_summary_row,
               travel: travel_summary_row,
               waiting: waiting_summary_row,
-              additional_fees: additional_fees_row
+              additional_fees: additional_fees_row,
             }
           end
 
