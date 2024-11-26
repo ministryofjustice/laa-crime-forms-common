@@ -3,7 +3,6 @@ module LaaCrimeFormsCommon
     module Nsm
       module Calculators
         class YouthCourtFee
-          ELLIGIBLE_DATE = Date.new(2024, 12, 6)
           class << self
             def call(claim, rates: Rates.call(claim))
               new(claim, rates).call
@@ -47,7 +46,6 @@ module LaaCrimeFormsCommon
 
           def youth_court_fee_applicable
             [
-              claim_date >= ELLIGIBLE_DATE,
               claim.youth_court == "yes",
               %w[category_1a category_2a].include?(claim.plea_category),
             ].all? { |criteria| criteria == true }
