@@ -25,17 +25,6 @@ module LaaCrimeFormsCommon
 
         private
 
-          def claim_date
-            case claim.claim_type
-            when "non_standard_magistrate"
-              claim.rep_order_date
-            when "breach_of_injunction"
-              claim.cntp_date
-            else
-              raise "Unrecognised claim type '#{claim.claim_type}'"
-            end
-          end
-
           def claimed_total_exc_vat
             claim.claimed_youth_court_fee_included && youth_court_fee_applicable ? rates.additional_fees[:youth_court] : BigDecimal("0")
           end
