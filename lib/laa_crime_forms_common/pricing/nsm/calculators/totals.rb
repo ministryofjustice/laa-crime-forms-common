@@ -37,7 +37,11 @@ module LaaCrimeFormsCommon
           end
 
           def cost_summary
-            @cost_summary ||= Calculators::CostSummary.call(claim, work_types, letters_and_calls, rates:, include_additional_fees: false)
+            @cost_summary ||= Calculators::CostSummary.call(claim, work_types, letters_and_calls, rates:)
+          end
+
+          def cost_summary_for_totals
+            cost_summary.reject { |key, _value| key == :additional_fees }
           end
 
           def totals
@@ -47,7 +51,7 @@ module LaaCrimeFormsCommon
           def partial_totals(prefix)
             pre_vat = %i[total_exc_vat vatable].to_h do |suffix|
               figure = "#{prefix}_#{suffix}".to_sym
-              [figure, cost_summary.values.sum(Rational(0, 1)) { _1[figure] }]
+              [figure, cost_summary_for_totals.values.sum(Rational(0, 1)) { _1[figure] }]
             end
 
             vat = pre_vat[:"#{prefix}_vatable"] * rates.vat
