@@ -4,25 +4,35 @@ module LaaCrimeFormsCommon
       module Calculators
         class CostSummary
           class << self
-            def call(claim, work_types, letters_and_calls, rates:)
-              new(claim, work_types, letters_and_calls, rates).call
+            def call(claim, work_types, letters_and_calls, rates:, include_additional_fees: true)
+              new(claim, work_types, letters_and_calls, rates, include_additional_fees).call
             end
           end
 
-          def initialize(claim, work_types, letters_and_calls, rates)
+          def initialize(claim, work_types, letters_and_calls, rates, include_additional_fees)
             @claim = claim
             @work_types = work_types
             @letters_and_calls = letters_and_calls
             @rates = rates
+            @include_additional_fees = include_additional_fees
           end
 
           def call
+            include_additional_fees ? fees.merge(additional_fees) : fees
+          end
+
+          def fees 
             {
               profit_costs: profit_costs_summary_row,
               disbursements: disbursements_summary_row,
               travel: travel_summary_row,
-              waiting: waiting_summary_row,
-              additional_fees: additional_fees_row,
+              waiting: waiting_summary_row
+            }
+          end
+
+          def additional_fees
+            {
+              additional_fees: additional_fees_row
             }
           end
 
@@ -74,7 +84,7 @@ module LaaCrimeFormsCommon
             @disbursements ||= claim.disbursements.map { Wrappers::Disbursement.new(_1) }
           end
 
-          attr_reader :claim, :work_types, :letters_and_calls, :rates
+          attr_reader :claim, :work_types, :letters_and_calls, :rates, :include_additional_fees
 
         private
 

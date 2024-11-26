@@ -33,6 +33,10 @@ module LaaCrimeFormsCommon
         deep_round(Calculators::LetterOrCall.call(wrap(claim), Wrappers::LetterOrCall.new(letter_or_call)))
       end
 
+      def calculate_youth_court_fee(claim)
+        deep_round(Calculators::YouthCourtFee.call(wrap(claim)))
+      end
+
       def totals(claim)
         deep_round(Calculators::Totals.call(wrap(claim)))
       end

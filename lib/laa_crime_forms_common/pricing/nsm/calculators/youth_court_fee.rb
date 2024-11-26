@@ -3,7 +3,7 @@ module LaaCrimeFormsCommon
     module Nsm
       module Calculators
         class YouthCourtFee
-          ELLIGIBLE_DATE = Date.new(2024, 12, 7)
+          ELLIGIBLE_DATE = Date.new(2024, 12, 6)
           class << self
             def call(claim, rates: Rates.call(claim))
               new(claim, rates).call
@@ -42,7 +42,7 @@ module LaaCrimeFormsCommon
           end
 
           def assessed_total_exc_vat
-            claim.assessed_youth_court_fee_included ? rates.additional_fees[:youth_court] : BigDecimal("0")
+            claim.assessed_youth_court_fee_included ? claimed_total_exc_vat : BigDecimal("0")
           end
 
           def youth_court_fee_applicable
