@@ -37,6 +37,7 @@ module LaaCrimeFormsCommon
           letters_and_calls
           disbursements
           vat
+          additional_fees
         ].freeze
 
         attr_reader(*FIELDS)

@@ -7,6 +7,7 @@ require_relative "nsm/calculators/disbursement"
 require_relative "nsm/calculators/letter_or_call"
 require_relative "nsm/calculators/totals"
 require_relative "nsm/calculators/work_item"
+require_relative "nsm/calculators/youth_court_fee"
 
 module LaaCrimeFormsCommon
   module Pricing

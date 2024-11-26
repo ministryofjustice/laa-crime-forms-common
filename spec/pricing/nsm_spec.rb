@@ -152,10 +152,18 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
   end
 
   describe "#totals" do
+    let(:claimed_youth_court_fee_included) { false }
+    let(:assessed_youth_court_fee_included) { false }
+    let(:youth_court) { 'no' }
+    let(:plea_category) { 'category_1a' }
     let(:claim) do
       {
         claim_type: "breach_of_injunction",
         cntp_date: "2024-10-10",
+        claimed_youth_court_fee_included:,
+        assessed_youth_court_fee_included:,
+        youth_court:,
+        plea_category:,
         work_items:,
         disbursements:,
         vat_registered:,
@@ -362,6 +370,17 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
                 assessed_total_inc_vat: 72.86,
                 at_least_one_claimed_work_item_assessed_as_type_with_different_summary_group: false,
               },
+              additional_fees: {
+                claimed_total_exc_vat: 0.0,
+                assessed_total_exc_vat: 0.0,
+                claimed_total_inc_vat: 0.0,
+                assessed_total_inc_vat: 0.0,
+                claimed_vatable: 0.0,
+                claimed_vat: 0.0,
+                assessed_vatable: 0.0, 
+                assessed_vat: 0.0,
+                at_least_one_claimed_work_item_assessed_as_type_with_different_summary_group: false,     
+              }
             },
             totals: {
               claimed_total_exc_vat: 308.73,
@@ -513,6 +532,17 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
                 assessed_total_inc_vat: 60.72,
                 at_least_one_claimed_work_item_assessed_as_type_with_different_summary_group: false,
               },
+              additional_fees: {
+                claimed_total_exc_vat: 0.0,
+                assessed_total_exc_vat: 0.0,
+                claimed_total_inc_vat: 0.0,
+                assessed_total_inc_vat: 0.0,
+                claimed_vatable: 0.0,
+                claimed_vat: 0.0,
+                assessed_vatable: 0.0, 
+                assessed_vat: 0.0,
+                at_least_one_claimed_work_item_assessed_as_type_with_different_summary_group: false,     
+              }
             },
             totals: {
               assessed_total_exc_vat: 248.78,

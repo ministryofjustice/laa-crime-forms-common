@@ -1,6 +1,8 @@
 - from: null
   until: "2022-09-29"
   values:
+    additional_fees:
+      youth_court: 0
     work_items:
       preparation: 45.35
       advocacy: 56.89

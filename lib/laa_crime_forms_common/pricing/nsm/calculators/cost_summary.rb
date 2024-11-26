@@ -1,3 +1,4 @@
+require 'pry'
 module LaaCrimeFormsCommon
   module Pricing
     module Nsm
@@ -27,7 +28,8 @@ module LaaCrimeFormsCommon
           end
 
           def additional_fees_row
-            Calculators::AdditionalFees.call(claim, rates:)
+            calculations = [Calculators::YouthCourtFee.call(claim, rates:)]
+            augment_with_vat(calculate_pre_vat_totals(calculations))
           end
 
           def profit_costs_summary_row

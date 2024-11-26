@@ -2153,7 +2153,16 @@
       "type":"string",
       "enum": ["yes", "no"]
     },
-    "youth_court_fee_claimed":{
+    "include_youth_court_fee":{
+      "examples":[
+        true,
+        false
+      ],
+      "title":"Do you want to claim the youth court additional fee?",
+      "x-pii": false,
+      "type":"boolean"
+    },
+    "include_youth_court_fee_original":{
       "examples":[
         true,
         false
