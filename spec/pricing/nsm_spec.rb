@@ -168,7 +168,7 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
     let(:vat_registered) { true }
     let(:claimed_youth_court_fee_included) { true }
     let(:assessed_youth_court_fee_included) { nil }
-    let(:youth_court) { "yes" }
+    let(:youth_court) { true }
     let(:plea_category) { "category_1a" }
 
     context "claim date pre december 6th (Non-standard magistrate)" do
@@ -223,7 +223,7 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
       end
 
       context "hearing not in youth court" do
-        let(:youth_court) { "no" }
+        let(:youth_court) { false }
 
         it "does not apply the fee" do
           expect(described_class.calculate_youth_court_fee(claim)).to eq({
@@ -290,7 +290,7 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
   describe "#totals" do
     let(:claimed_youth_court_fee_included) { true }
     let(:assessed_youth_court_fee_included) { true }
-    let(:youth_court) { "yes" }
+    let(:youth_court) { true }
     let(:plea_category) { "category_1a" }
     let(:claim) do
       {

@@ -16,7 +16,7 @@ module LaaCrimeFormsCommon
           wrap :vat_registered, Bool
           wrap :claimed_youth_court_fee_included, Bool, default: false
           wrap :assessed_youth_court_fee_included, Bool, default: nil
-          wrap :youth_court, String
+          wrap :youth_court, Bool
           wrap :plea_category, String
         end
       end

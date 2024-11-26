@@ -45,10 +45,7 @@ module LaaCrimeFormsCommon
           end
 
           def youth_court_fee_applicable
-            [
-              claim.youth_court == "yes",
-              %w[category_1a category_2a].include?(claim.plea_category),
-            ].all? { |criteria| criteria == true }
+            claim.youth_court && claim.plea_category.in?(%w[category_1a category_2a])
           end
 
           attr_reader :claim, :rates
