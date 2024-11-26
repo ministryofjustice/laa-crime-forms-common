@@ -20,7 +20,7 @@ module LaaCrimeFormsCommon
               claimed_total_exc_vat:,
               assessed_total_exc_vat:,
               claimed_vatable: claim.vat_registered ? claimed_total_exc_vat : BigDecimal("0"),
-              assessed_vatable: claim.vat_registered ? assessed_total_exc_vat : BigDecimal("0"), 
+              assessed_vatable: claim.vat_registered ? assessed_total_exc_vat : BigDecimal("0"),
             }
           end
 
@@ -44,7 +44,7 @@ module LaaCrimeFormsCommon
           def assessed_total_exc_vat
             claim.assessed_youth_court_fee_included ? rates.additional_fees[:youth_court] : BigDecimal("0")
           end
-          
+
           def youth_court_fee_applicable
             [
               claim_date >= ELLIGIBLE_DATE,

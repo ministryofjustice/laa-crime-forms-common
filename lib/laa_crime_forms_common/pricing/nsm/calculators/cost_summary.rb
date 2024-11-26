@@ -1,4 +1,3 @@
-require 'pry'
 module LaaCrimeFormsCommon
   module Pricing
     module Nsm
@@ -77,8 +76,8 @@ module LaaCrimeFormsCommon
 
           attr_reader :claim, :work_types, :letters_and_calls, :rates
 
-          private
-          
+        private
+
           def youth_court_calculation
             @youth_court_calculation ||= Calculators::YouthCourtFee.call(claim, rates:)
           end

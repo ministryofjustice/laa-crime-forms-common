@@ -154,8 +154,8 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
   describe "#totals" do
     let(:claimed_youth_court_fee_included) { false }
     let(:assessed_youth_court_fee_included) { false }
-    let(:youth_court) { 'no' }
-    let(:plea_category) { 'category_1a' }
+    let(:youth_court) { "no" }
+    let(:plea_category) { "category_1a" }
     let(:claim) do
       {
         claim_type: "breach_of_injunction",
@@ -377,10 +377,10 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
                 assessed_total_inc_vat: 0.0,
                 claimed_vatable: 0.0,
                 claimed_vat: 0.0,
-                assessed_vatable: 0.0, 
+                assessed_vatable: 0.0,
                 assessed_vat: 0.0,
-                at_least_one_claimed_work_item_assessed_as_type_with_different_summary_group: false,     
-              }
+                at_least_one_claimed_work_item_assessed_as_type_with_different_summary_group: false,
+              },
             },
             totals: {
               claimed_total_exc_vat: 308.73,
@@ -539,10 +539,10 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
                 assessed_total_inc_vat: 0.0,
                 claimed_vatable: 0.0,
                 claimed_vat: 0.0,
-                assessed_vatable: 0.0, 
+                assessed_vatable: 0.0,
                 assessed_vat: 0.0,
-                at_least_one_claimed_work_item_assessed_as_type_with_different_summary_group: false,     
-              }
+                at_least_one_claimed_work_item_assessed_as_type_with_different_summary_group: false,
+              },
             },
             totals: {
               assessed_total_exc_vat: 248.78,
