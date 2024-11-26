@@ -21,18 +21,18 @@ module LaaCrimeFormsCommon
             include_additional_fees ? fees.merge(additional_fees) : fees
           end
 
-          def fees 
+          def fees
             {
               profit_costs: profit_costs_summary_row,
               disbursements: disbursements_summary_row,
               travel: travel_summary_row,
-              waiting: waiting_summary_row
+              waiting: waiting_summary_row,
             }
           end
 
           def additional_fees
             {
-              additional_fees: additional_fees_row
+              additional_fees: additional_fees_row,
             }
           end
 

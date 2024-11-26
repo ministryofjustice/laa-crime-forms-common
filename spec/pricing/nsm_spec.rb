@@ -203,7 +203,7 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
           claimed_vatable: 0.0,
           assessed_vatable: 0.0,
         })
-      end      
+      end
     end
 
     context "claim date december 6th and onwards" do
@@ -211,7 +211,7 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
 
       context "youth court fee not claimed" do
         let(:claimed_youth_court_fee_included) { false }
-        
+
         it "does not apply the fee" do
           expect(described_class.calculate_youth_court_fee(claim)).to eq({
             claimed_total_exc_vat: 0.0,
@@ -256,12 +256,12 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
             claimed_vatable: 598.59,
             assessed_vatable: 0.0,
           })
-        end       
+        end
       end
 
       context "youth court fee applicable, claimed and granted" do
         let(:assessed_youth_court_fee_included) { true }
-        
+
         it "applies the fee" do
           expect(described_class.calculate_youth_court_fee(claim)).to eq({
             claimed_total_exc_vat: 598.59,
@@ -269,12 +269,12 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
             claimed_vatable: 598.59,
             assessed_vatable: 598.59,
           })
-        end 
+        end
       end
 
       context "youth court fee applicable, claimed and rejected" do
         let(:assessed_youth_court_fee_included) { false }
-        
+
         it "shows the original claim but does not apply the fee in assessed values" do
           expect(described_class.calculate_youth_court_fee(claim)).to eq({
             claimed_total_exc_vat: 598.59,
@@ -282,7 +282,7 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
             claimed_vatable: 598.59,
             assessed_vatable: 0.0,
           })
-        end 
+        end
       end
     end
   end
