@@ -28,13 +28,13 @@ module LaaCrimeFormsCommon
           end
 
           def additional_fees_row
-            calculations = [Calculators::YouthCourtFee.call(claim, rates:)]
+            calculations = [youth_court_calculation]
             augment_with_vat(calculate_pre_vat_totals(calculations))
           end
 
           def profit_costs_summary_row
             work_item_rows = work_types.except(:travel, :waiting, :total).values
-            augment_with_vat(calculate_pre_vat_totals(work_item_rows + [letters_and_calls]))
+            augment_with_vat(calculate_pre_vat_totals(work_item_rows + [letters_and_calls] + [youth_court_calculation]))
           end
 
           def disbursements_summary_row
@@ -76,6 +76,12 @@ module LaaCrimeFormsCommon
           end
 
           attr_reader :claim, :work_types, :letters_and_calls, :rates
+
+          private
+          
+          def youth_court_calculation
+            @youth_court_calculation ||= Calculators::YouthCourtFee.call(claim, rates:)
+          end
         end
       end
     end
