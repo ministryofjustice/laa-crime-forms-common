@@ -21,6 +21,7 @@ module LaaCrimeFormsCommon
             {
               work_types:,
               letters_and_calls:,
+              additional_fees:,
               cost_summary:,
               totals:,
             }
@@ -38,6 +39,10 @@ module LaaCrimeFormsCommon
 
           def cost_summary
             @cost_summary ||= Calculators::CostSummary.call(claim, work_types, letters_and_calls, rates:)
+          end
+
+          def additional_fees
+            @additional_fees ||= Calculators::AdditionalFees.call(claim, rates:)
           end
 
           def totals

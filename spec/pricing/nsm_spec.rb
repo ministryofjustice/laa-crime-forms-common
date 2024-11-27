@@ -151,11 +151,156 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
     end
   end
 
-  describe "#totals" do
+  describe "#youth_court_fee" do
     let(:claim) do
       {
-        claim_type: "breach_of_injunction",
-        cntp_date: "2024-10-10",
+        claim_type:,
+        rep_order_date: claim_date,
+        vat_registered: true,
+        claimed_youth_court_fee_included:,
+        assessed_youth_court_fee_included:,
+        youth_court:,
+        plea_category:,
+      }
+    end
+    let(:claim_type) { "non_standard_magistrate" }
+    let(:claim_date) { "2024-10-10" }
+    let(:vat_registered) { true }
+    let(:claimed_youth_court_fee_included) { true }
+    let(:assessed_youth_court_fee_included) { nil }
+    let(:youth_court) { true }
+    let(:plea_category) { "category_1a" }
+
+    context "claim date pre december 6th (Non-standard magistrate)" do
+      it "does not apply the fee" do
+        expect(described_class.calculate_youth_court_fee(claim)).to eq({
+          claimed_total_exc_vat: 0.0,
+          assessed_total_exc_vat: 0.0,
+          claimed_vatable: 0.0,
+          assessed_vatable: 0.0,
+        })
+      end
+    end
+
+    context "claim date on december 6th (Breach of inunction)" do
+      let(:claim_type) { "breach_of_injunction" }
+      let(:claim_date) { "2024-12-06" }
+      let(:claim) do
+        {
+          claim_type:,
+          cntp_date: claim_date,
+          vat_registered: true,
+          claimed_youth_court_fee_included:,
+          assessed_youth_court_fee_included:,
+          youth_court:,
+          plea_category:,
+        }
+      end
+
+      it "it does not apply the fee" do
+        expect(described_class.calculate_youth_court_fee(claim)).to eq({
+          claimed_total_exc_vat: 0.0,
+          assessed_total_exc_vat: 0.0,
+          claimed_vatable: 0.0,
+          assessed_vatable: 0.0,
+        })
+      end
+    end
+
+    context "claim date december 6th and onwards" do
+      let(:claim_date) { "2024-12-06" }
+
+      context "youth court fee not claimed" do
+        let(:claimed_youth_court_fee_included) { false }
+
+        it "does not apply the fee" do
+          expect(described_class.calculate_youth_court_fee(claim)).to eq({
+            claimed_total_exc_vat: 0.0,
+            assessed_total_exc_vat: 0.0,
+            claimed_vatable: 0.0,
+            assessed_vatable: 0.0,
+          })
+        end
+      end
+
+      context "hearing not in youth court" do
+        let(:youth_court) { false }
+
+        it "does not apply the fee" do
+          expect(described_class.calculate_youth_court_fee(claim)).to eq({
+            claimed_total_exc_vat: 0.0,
+            assessed_total_exc_vat: 0.0,
+            claimed_vatable: 0.0,
+            assessed_vatable: 0.0,
+          })
+        end
+      end
+
+      context "plea category not applicable to fee" do
+        let(:plea_category) { "category_1b" }
+
+        it "does not apply the fee" do
+          expect(described_class.calculate_youth_court_fee(claim)).to eq({
+            claimed_total_exc_vat: 0.0,
+            assessed_total_exc_vat: 0.0,
+            claimed_vatable: 0.0,
+            assessed_vatable: 0.0,
+          })
+        end
+      end
+
+      context "youth court fee applicable and claimed" do
+        it "applies the fee" do
+          expect(described_class.calculate_youth_court_fee(claim)).to eq({
+            claimed_total_exc_vat: 598.59,
+            assessed_total_exc_vat: 0.0,
+            claimed_vatable: 598.59,
+            assessed_vatable: 0.0,
+          })
+        end
+      end
+
+      context "youth court fee applicable, claimed and granted" do
+        let(:assessed_youth_court_fee_included) { true }
+
+        it "applies the fee" do
+          expect(described_class.calculate_youth_court_fee(claim)).to eq({
+            claimed_total_exc_vat: 598.59,
+            assessed_total_exc_vat: 598.59,
+            claimed_vatable: 598.59,
+            assessed_vatable: 598.59,
+          })
+        end
+      end
+
+      context "youth court fee applicable, claimed and rejected" do
+        let(:assessed_youth_court_fee_included) { false }
+
+        it "shows the original claim but does not apply the fee in assessed values" do
+          expect(described_class.calculate_youth_court_fee(claim)).to eq({
+            claimed_total_exc_vat: 598.59,
+            assessed_total_exc_vat: 0.0,
+            claimed_vatable: 598.59,
+            assessed_vatable: 0.0,
+          })
+        end
+      end
+    end
+  end
+
+  describe "#totals" do
+    let(:claimed_youth_court_fee_included) { true }
+    let(:assessed_youth_court_fee_included) { true }
+    let(:youth_court) { true }
+    let(:plea_category) { "category_1a" }
+    let(:claim) do
+      {
+        claim_type: "non_standard_magistrate",
+        rep_order_date: "2024-12-06",
+        claimed_youth_court_fee_included:,
+        assessed_youth_court_fee_included:,
+        youth_court:,
+        plea_category:,
         work_items:,
         disbursements:,
         vat_registered:,
@@ -317,16 +462,38 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
               claimed_vat: 9.33,
               claimed_vatable: 46.63,
             },
+            additional_fees: {
+              youth_court_fee: {
+                claimed_total_exc_vat: 598.59,
+                assessed_total_exc_vat: 598.59,
+                claimed_vatable: 598.59,
+                claimed_vat: 119.72,
+                claimed_total_inc_vat: 718.31,
+                assessed_vatable: 598.59,
+                assessed_vat: 119.72,
+                assessed_total_inc_vat: 718.31,
+              },
+              total: {
+                claimed_total_exc_vat: 598.59,
+                assessed_total_exc_vat: 598.59,
+                claimed_vatable: 598.59,
+                claimed_vat: 119.72,
+                claimed_total_inc_vat: 718.31,
+                assessed_vatable: 598.59,
+                assessed_vat: 119.72,
+                assessed_total_inc_vat: 718.31,
+              },
+            },
             cost_summary: {
               profit_costs: {
-                claimed_total_exc_vat: 112.05,
-                assessed_total_exc_vat: 38.45,
-                claimed_vatable: 112.05,
-                claimed_vat: 22.41,
-                claimed_total_inc_vat: 134.46,
-                assessed_vatable: 38.45,
-                assessed_vat: 7.69,
-                assessed_total_inc_vat: 46.14,
+                claimed_total_exc_vat: 710.64,
+                assessed_total_exc_vat: 637.04,
+                claimed_vatable: 710.64,
+                claimed_vat: 142.13,
+                claimed_total_inc_vat: 852.76,
+                assessed_vatable: 637.04,
+                assessed_vat: 127.41,
+                assessed_total_inc_vat: 764.44,
                 at_least_one_claimed_work_item_assessed_as_type_with_different_summary_group: true,
               },
               disbursements: {
@@ -364,14 +531,14 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
               },
             },
             totals: {
-              claimed_total_exc_vat: 308.73,
-              claimed_vatable: 303.19,
-              assessed_total_exc_vat: 248.78,
-              assessed_vatable: 243.29,
-              claimed_vat: 60.64,
-              assessed_vat: 48.66,
-              claimed_total_inc_vat: 369.37,
-              assessed_total_inc_vat: 297.44,
+              claimed_total_exc_vat: 907.32,
+              claimed_vatable: 901.78,
+              assessed_total_exc_vat: 847.37,
+              assessed_vatable: 841.88,
+              claimed_vat: 180.36,
+              assessed_vat: 168.38,
+              claimed_total_inc_vat: 1087.68,
+              assessed_total_inc_vat: 1015.75,
             },
           })
         end
@@ -468,14 +635,36 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
               claimed_vat: 0.0,
               claimed_vatable: 0.0,
             },
+            additional_fees: {
+              youth_court_fee: {
+                claimed_total_exc_vat: 598.59,
+                assessed_total_exc_vat: 598.59,
+                claimed_vatable: 0.0,
+                claimed_vat: 0.0,
+                claimed_total_inc_vat: 598.59,
+                assessed_vatable: 0.0,
+                assessed_vat: 0.0,
+                assessed_total_inc_vat: 598.59,
+              },
+              total: {
+                claimed_total_exc_vat: 598.59,
+                assessed_total_exc_vat: 598.59,
+                claimed_vatable: 0.0,
+                claimed_vat: 0.0,
+                claimed_total_inc_vat: 598.59,
+                assessed_vatable: 0.0,
+                assessed_vat: 0.0,
+                assessed_total_inc_vat: 598.59,
+              },
+            },
             cost_summary: {
               profit_costs: {
-                assessed_total_exc_vat: 38.45,
-                assessed_total_inc_vat: 38.45,
+                assessed_total_exc_vat: 637.04,
+                assessed_total_inc_vat: 637.04,
                 assessed_vat: 0.0,
                 assessed_vatable: 0.0,
-                claimed_total_exc_vat: 112.05,
-                claimed_total_inc_vat: 112.05,
+                claimed_total_exc_vat: 710.64,
+                claimed_total_inc_vat: 710.64,
                 claimed_vat: 0.0,
                 claimed_vatable: 0.0,
                 at_least_one_claimed_work_item_assessed_as_type_with_different_summary_group: true,
@@ -515,12 +704,12 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
               },
             },
             totals: {
-              assessed_total_exc_vat: 248.78,
-              assessed_total_inc_vat: 273.35,
+              assessed_total_exc_vat: 847.37,
+              assessed_total_inc_vat: 871.94,
               assessed_vat: 24.57,
               assessed_vatable: 122.85,
-              claimed_total_exc_vat: 308.73,
-              claimed_total_inc_vat: 333.5,
+              claimed_total_exc_vat: 907.32,
+              claimed_total_inc_vat: 932.09,
               claimed_vat: 24.77,
               claimed_vatable: 123.85,
             },

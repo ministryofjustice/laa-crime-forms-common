@@ -2,7 +2,7 @@ module LaaCrimeFormsCommon
   module Pricing
     module Nsm
       module Calculators
-        class LettersAndCalls
+        class AdditionalFees
           class << self
             def call(claim, rates:)
               new(claim, rates).call
@@ -15,12 +15,18 @@ module LaaCrimeFormsCommon
           end
 
           def call
-            letter_and_call_rows = letters_and_calls.map { Calculators::LetterOrCall.call(claim, _1, rates:) }
-            calculate_totals(letter_and_call_rows)
+            {
+              youth_court_fee: calculate_totals([youth_court_fee_row]),
+              total: calculate_totals(additional_fee_rows),
+            }
           end
 
-          def letters_and_calls
-            @letters_and_calls ||= claim.letters_and_calls.map { Wrappers::LetterOrCall.new(_1) }
+          def additional_fee_rows
+            [youth_court_fee_row]
+          end
+
+          def youth_court_fee_row
+            @youth_court_fee_row ||= Calculators::YouthCourtFee.call(claim, rates:)
           end
 
           def calculate_totals(rows)

@@ -1,6 +1,8 @@
 - from: null
   until: "2022-09-29"
   values:
+    additional_fees:
+      youth_court: 0
     work_items:
       preparation: 45.35
       advocacy: 56.89
@@ -17,8 +19,30 @@
       bike: 0.25
     vat: 0.2
 - from: "2022-09-30"
+  until: "2024-12-05"
+  values:
+    additional_fees:
+      youth_court: 0
+    work_items:
+      preparation: 52.15
+      advocacy: 65.42
+      attendance_with_counsel: 35.68
+      attendance_without_counsel: 52.15
+      travel: 27.60
+      waiting: 27.60
+    letters_and_calls:
+      letters: 4.09
+      calls: 4.09
+    disbursements:
+      car: 0.45
+      motorcycle: 0.45
+      bike: 0.25
+    vat: 0.2
+- from: "2024-12-06"
   until: null
   values:
+    additional_fees:
+      youth_court: 598.59
     work_items:
       preparation: 52.15
       advocacy: 65.42

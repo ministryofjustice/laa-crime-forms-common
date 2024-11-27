@@ -5,8 +5,10 @@ require_relative "nsm/wrappers/letter_or_call"
 require_relative "nsm/wrappers/work_item"
 require_relative "nsm/calculators/disbursement"
 require_relative "nsm/calculators/letter_or_call"
+require_relative "nsm/calculators/additional_fees"
 require_relative "nsm/calculators/totals"
 require_relative "nsm/calculators/work_item"
+require_relative "nsm/calculators/youth_court_fee"
 
 module LaaCrimeFormsCommon
   module Pricing
@@ -30,6 +32,10 @@ module LaaCrimeFormsCommon
 
       def calculate_letter_or_call(claim, letter_or_call)
         deep_round(Calculators::LetterOrCall.call(wrap(claim), Wrappers::LetterOrCall.new(letter_or_call)))
+      end
+
+      def calculate_youth_court_fee(claim)
+        deep_round(Calculators::YouthCourtFee.call(wrap(claim)))
       end
 
       def totals(claim)

@@ -14,6 +14,10 @@ module LaaCrimeFormsCommon
           wrap :rep_order_date, DateOrDateString, default: nil
           wrap :cntp_date, DateOrDateString, default: nil
           wrap :vat_registered, Bool
+          wrap :claimed_youth_court_fee_included, Bool, default: false
+          wrap :assessed_youth_court_fee_included, Bool, default: nil
+          wrap :youth_court, Bool
+          wrap :plea_category, String
         end
       end
     end
