@@ -151,141 +151,142 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
     end
   end
 
-  # describe "#youth_court_fee" do
-  #   let(:claim) do
-  #     {
-  #       claim_type:,
-  #       rep_order_date: claim_date,
-  #       vat_registered: true,
-  #       claimed_youth_court_fee_included:,
-  #       assessed_youth_court_fee_included:,
-  #       youth_court:,
-  #       plea_category:,
-  #     }
-  #   end
-  #   let(:claim_type) { "non_standard_magistrate" }
-  #   let(:claim_date) { "2024-10-10" }
-  #   let(:vat_registered) { true }
-  #   let(:claimed_youth_court_fee_included) { true }
-  #   let(:assessed_youth_court_fee_included) { nil }
-  #   let(:youth_court) { true }
-  #   let(:plea_category) { "category_1a" }
+  describe "#youth_court_fee" do
+    let(:claim) do
+      {
+        claim_type:,
+        rep_order_date: claim_date,
+        vat_registered: true,
+        claimed_youth_court_fee_included:,
+        assessed_youth_court_fee_included:,
+        youth_court:,
+        plea_category:,
+      }
+    end
+    let(:claim_type) { "non_standard_magistrate" }
+    let(:claim_date) { "2024-10-10" }
+    let(:vat_registered) { true }
+    let(:claimed_youth_court_fee_included) { true }
+    let(:assessed_youth_court_fee_included) { nil }
+    let(:youth_court) { true }
+    let(:plea_category) { "category_1a" }
 
-  #   context "claim date pre december 6th (Non-standard magistrate)" do
-  #     it "does not apply the fee" do
-  #       expect(described_class.calculate_youth_court_fee(claim)).to eq({
-  #         claimed_total_exc_vat: 0.0,
-  #         assessed_total_exc_vat: 0.0,
-  #         claimed_vatable: 0.0,
-  #         assessed_vatable: 0.0,
-  #       })
-  #     end
-  #   end
+    context "claim date pre december 6th (Non-standard magistrate)" do
+      it "does not apply the fee" do
+        expect(described_class.calculate_youth_court_fee(claim)).to eq({
+          claimed_total_exc_vat: 0.0,
+          assessed_total_exc_vat: 0.0,
+          claimed_vatable: 0.0,
+          assessed_vatable: 0.0,
+        })
+      end
+    end
 
-  #   context "claim date pre december 6th (Breach of inunction)" do
-  #     let(:claim_type) { "breach_of_injunction" }
-  #     let(:claim) do
-  #       {
-  #         claim_type:,
-  #         cntp_date: claim_date,
-  #         vat_registered: true,
-  #         claimed_youth_court_fee_included:,
-  #         assessed_youth_court_fee_included:,
-  #         youth_court:,
-  #         plea_category:,
-  #       }
-  #     end
+    context "claim date on december 6th (Breach of inunction)" do
+      let(:claim_type) { "breach_of_injunction" }
+      let(:claim_date) { "2024-12-06" }
+      let(:claim) do
+        {
+          claim_type:,
+          cntp_date: claim_date,
+          vat_registered: true,
+          claimed_youth_court_fee_included:,
+          assessed_youth_court_fee_included:,
+          youth_court:,
+          plea_category:,
+        }
+      end
 
-  #     it "it does not apply the fee" do
-  #       expect(described_class.calculate_youth_court_fee(claim)).to eq({
-  #         claimed_total_exc_vat: 0.0,
-  #         assessed_total_exc_vat: 0.0,
-  #         claimed_vatable: 0.0,
-  #         assessed_vatable: 0.0,
-  #       })
-  #     end
-  #   end
+      it "it does not apply the fee" do
+        expect(described_class.calculate_youth_court_fee(claim)).to eq({
+          claimed_total_exc_vat: 0.0,
+          assessed_total_exc_vat: 0.0,
+          claimed_vatable: 0.0,
+          assessed_vatable: 0.0,
+        })
+      end
+    end
 
-  #   context "claim date december 6th and onwards" do
-  #     let(:claim_date) { "2024-12-06" }
+    context "claim date december 6th and onwards" do
+      let(:claim_date) { "2024-12-06" }
 
-  #     context "youth court fee not claimed" do
-  #       let(:claimed_youth_court_fee_included) { false }
+      context "youth court fee not claimed" do
+        let(:claimed_youth_court_fee_included) { false }
 
-  #       it "does not apply the fee" do
-  #         expect(described_class.calculate_youth_court_fee(claim)).to eq({
-  #           claimed_total_exc_vat: 0.0,
-  #           assessed_total_exc_vat: 0.0,
-  #           claimed_vatable: 0.0,
-  #           assessed_vatable: 0.0,
-  #         })
-  #       end
-  #     end
+        it "does not apply the fee" do
+          expect(described_class.calculate_youth_court_fee(claim)).to eq({
+            claimed_total_exc_vat: 0.0,
+            assessed_total_exc_vat: 0.0,
+            claimed_vatable: 0.0,
+            assessed_vatable: 0.0,
+          })
+        end
+      end
 
-  #     context "hearing not in youth court" do
-  #       let(:youth_court) { false }
+      context "hearing not in youth court" do
+        let(:youth_court) { false }
 
-  #       it "does not apply the fee" do
-  #         expect(described_class.calculate_youth_court_fee(claim)).to eq({
-  #           claimed_total_exc_vat: 0.0,
-  #           assessed_total_exc_vat: 0.0,
-  #           claimed_vatable: 0.0,
-  #           assessed_vatable: 0.0,
-  #         })
-  #       end
-  #     end
+        it "does not apply the fee" do
+          expect(described_class.calculate_youth_court_fee(claim)).to eq({
+            claimed_total_exc_vat: 0.0,
+            assessed_total_exc_vat: 0.0,
+            claimed_vatable: 0.0,
+            assessed_vatable: 0.0,
+          })
+        end
+      end
 
-  #     context "plea category not applicable to fee" do
-  #       let(:plea_category) { "category_1b" }
+      context "plea category not applicable to fee" do
+        let(:plea_category) { "category_1b" }
 
-  #       it "does not apply the fee" do
-  #         expect(described_class.calculate_youth_court_fee(claim)).to eq({
-  #           claimed_total_exc_vat: 0.0,
-  #           assessed_total_exc_vat: 0.0,
-  #           claimed_vatable: 0.0,
-  #           assessed_vatable: 0.0,
-  #         })
-  #       end
-  #     end
+        it "does not apply the fee" do
+          expect(described_class.calculate_youth_court_fee(claim)).to eq({
+            claimed_total_exc_vat: 0.0,
+            assessed_total_exc_vat: 0.0,
+            claimed_vatable: 0.0,
+            assessed_vatable: 0.0,
+          })
+        end
+      end
 
-  #     context "youth court fee applicable and claimed" do
-  #       it "applies the fee" do
-  #         expect(described_class.calculate_youth_court_fee(claim)).to eq({
-  #           claimed_total_exc_vat: 598.59,
-  #           assessed_total_exc_vat: 0.0,
-  #           claimed_vatable: 598.59,
-  #           assessed_vatable: 0.0,
-  #         })
-  #       end
-  #     end
+      context "youth court fee applicable and claimed" do
+        it "applies the fee" do
+          expect(described_class.calculate_youth_court_fee(claim)).to eq({
+            claimed_total_exc_vat: 598.59,
+            assessed_total_exc_vat: 0.0,
+            claimed_vatable: 598.59,
+            assessed_vatable: 0.0,
+          })
+        end
+      end
 
-  #     context "youth court fee applicable, claimed and granted" do
-  #       let(:assessed_youth_court_fee_included) { true }
+      context "youth court fee applicable, claimed and granted" do
+        let(:assessed_youth_court_fee_included) { true }
 
-  #       it "applies the fee" do
-  #         expect(described_class.calculate_youth_court_fee(claim)).to eq({
-  #           claimed_total_exc_vat: 598.59,
-  #           assessed_total_exc_vat: 598.59,
-  #           claimed_vatable: 598.59,
-  #           assessed_vatable: 598.59,
-  #         })
-  #       end
-  #     end
+        it "applies the fee" do
+          expect(described_class.calculate_youth_court_fee(claim)).to eq({
+            claimed_total_exc_vat: 598.59,
+            assessed_total_exc_vat: 598.59,
+            claimed_vatable: 598.59,
+            assessed_vatable: 598.59,
+          })
+        end
+      end
 
-  #     context "youth court fee applicable, claimed and rejected" do
-  #       let(:assessed_youth_court_fee_included) { false }
+      context "youth court fee applicable, claimed and rejected" do
+        let(:assessed_youth_court_fee_included) { false }
 
-  #       it "shows the original claim but does not apply the fee in assessed values" do
-  #         expect(described_class.calculate_youth_court_fee(claim)).to eq({
-  #           claimed_total_exc_vat: 598.59,
-  #           assessed_total_exc_vat: 0.0,
-  #           claimed_vatable: 598.59,
-  #           assessed_vatable: 0.0,
-  #         })
-  #       end
-  #     end
-  #   end
-  # end
+        it "shows the original claim but does not apply the fee in assessed values" do
+          expect(described_class.calculate_youth_court_fee(claim)).to eq({
+            claimed_total_exc_vat: 598.59,
+            assessed_total_exc_vat: 0.0,
+            claimed_vatable: 598.59,
+            assessed_vatable: 0.0,
+          })
+        end
+      end
+    end
+  end
 
   describe "#totals" do
     let(:claimed_youth_court_fee_included) { true }
@@ -294,8 +295,8 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
     let(:plea_category) { "category_1a" }
     let(:claim) do
       {
-        claim_type: "breach_of_injunction",
-        cntp_date: "2024-12-06",
+        claim_type: "non_standard_magistrate",
+        rep_order_date: "2024-12-06",
         claimed_youth_court_fee_included:,
         assessed_youth_court_fee_included:,
         youth_court:,

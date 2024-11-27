@@ -34,7 +34,7 @@ module LaaCrimeFormsCommon
           end
 
           def youth_court_fee_applicable
-            claim.youth_court && %w[category_1a category_2a].include?(claim.plea_category)
+            claim.youth_court && claim.claim_type == "non_standard_magistrate" && %w[category_1a category_2a].include?(claim.plea_category)
           end
 
           attr_reader :claim, :rates

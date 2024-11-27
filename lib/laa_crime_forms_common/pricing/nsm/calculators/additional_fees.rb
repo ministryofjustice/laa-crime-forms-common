@@ -1,5 +1,3 @@
-require 'pry'
-
 module LaaCrimeFormsCommon
   module Pricing
     module Nsm
@@ -17,7 +15,6 @@ module LaaCrimeFormsCommon
           end
 
           def call
-            binding.pry
             {
               youth_court_fee: calculate_totals([youth_court_fee_row]),
               total: calculate_totals(additional_fee_rows)
