@@ -22,13 +22,7 @@ module LaaCrimeFormsCommon
               disbursements: disbursements_summary_row,
               travel: travel_summary_row,
               waiting: waiting_summary_row,
-              additional_fees: additional_fees_row,
             }
-          end
-
-          def additional_fees_row
-            calculations = [youth_court_calculation]
-            augment_with_vat(calculate_pre_vat_totals(calculations))
           end
 
           def profit_costs_summary_row
@@ -74,7 +68,7 @@ module LaaCrimeFormsCommon
             @disbursements ||= claim.disbursements.map { Wrappers::Disbursement.new(_1) }
           end
 
-          attr_reader :claim, :work_types, :letters_and_calls, :rates, :include_additional_fees
+          attr_reader :claim, :work_types, :letters_and_calls, :rates
 
         private
 
