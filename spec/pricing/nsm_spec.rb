@@ -471,9 +471,9 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
                 claimed_total_inc_vat: 718.31,
                 assessed_vatable: 598.59,
                 assessed_vat: 119.72,
-                assessed_total_inc_vat: 718.31                
-              }, 
-              total:{
+                assessed_total_inc_vat: 718.31,
+              },
+              total: {
                 claimed_total_exc_vat: 598.59,
                 assessed_total_exc_vat: 598.59,
                 claimed_vatable: 598.59,
@@ -481,8 +481,8 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
                 claimed_total_inc_vat: 718.31,
                 assessed_vatable: 598.59,
                 assessed_vat: 119.72,
-                assessed_total_inc_vat: 718.31
-              }
+                assessed_total_inc_vat: 718.31,
+              },
             },
             cost_summary: {
               profit_costs: {
@@ -528,7 +528,7 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
                 assessed_vat: 12.14,
                 assessed_total_inc_vat: 72.86,
                 at_least_one_claimed_work_item_assessed_as_type_with_different_summary_group: false,
-              }
+              },
             },
             totals: {
               claimed_total_exc_vat: 907.32,
@@ -644,9 +644,9 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
                 claimed_total_inc_vat: 598.59,
                 assessed_vatable: 0.0,
                 assessed_vat: 0.0,
-                assessed_total_inc_vat: 598.59                
-              }, 
-              total:{
+                assessed_total_inc_vat: 598.59,
+              },
+              total: {
                 claimed_total_exc_vat: 598.59,
                 assessed_total_exc_vat: 598.59,
                 claimed_vatable: 0.0,
@@ -654,8 +654,8 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
                 claimed_total_inc_vat: 598.59,
                 assessed_vatable: 0.0,
                 assessed_vat: 0.0,
-                assessed_total_inc_vat: 598.59 
-              }
+                assessed_total_inc_vat: 598.59,
+              },
             },
             cost_summary: {
               profit_costs: {
@@ -701,7 +701,7 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
                 assessed_vat: 0.0,
                 assessed_total_inc_vat: 60.72,
                 at_least_one_claimed_work_item_assessed_as_type_with_different_summary_group: false,
-              }
+              },
             },
             totals: {
               assessed_total_exc_vat: 847.37,
