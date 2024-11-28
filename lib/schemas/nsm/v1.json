@@ -2165,20 +2165,22 @@
     "include_youth_court_fee":{
       "examples":[
         true,
-        false
+        false,
+        null
       ],
       "title":"Do you want to claim the youth court additional fee?",
       "x-pii": false,
-      "type":"boolean"
+      "type":["boolean","null"]
     },
     "include_youth_court_fee_original":{
       "examples":[
         true,
-        false
+        false,
+        null
       ],
       "title":"Do you want to claim the youth court additional fee?",
       "x-pii": false,
-      "type":"boolean"
+      "type":["boolean","null"]
     }
   },
   "examples":[
