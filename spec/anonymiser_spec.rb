@@ -67,6 +67,7 @@ RSpec.describe LaaCrimeFormsCommon::Anonymiser do
         "pending_rejected_explanation" => "",
         "pending_part_grant_explanation" => "",
         "psychiatric_liaison_reason_not" => nil,
+        "undocumented_field" => "FOO",
       }
     end
 
@@ -131,6 +132,7 @@ RSpec.describe LaaCrimeFormsCommon::Anonymiser do
         "pending_rejected_explanation" => "",
         "pending_part_grant_explanation" => "",
         "psychiatric_liaison_reason_not" => nil,
+        "undocumented_field" => "FOO",
       }
     end
 

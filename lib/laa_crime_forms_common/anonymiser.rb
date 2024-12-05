@@ -12,6 +12,8 @@ module LaaCrimeFormsCommon
     private
 
       def recursively_anonymise(payload, schema)
+        return payload unless schema
+
         case payload
         when Array
           payload.map do |element|
