@@ -768,7 +768,7 @@
       ],
       "properties": {
         "email": {
-          "x-pii": false,
+          "x-pii": true,
           "type": "string",
           "title": "Email",
           "examples": [
