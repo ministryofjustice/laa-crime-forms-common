@@ -26,7 +26,13 @@ module LaaCrimeFormsCommon
           mapped.to_h
         else
           if schema["x-pii"]
-            "ANONYMISED" if payload
+            if payload
+              if schema["x-format"] == "date"
+                "2000-01-01"
+              else
+                "ANONYMISED"
+              end
+            end
           else
             payload
           end

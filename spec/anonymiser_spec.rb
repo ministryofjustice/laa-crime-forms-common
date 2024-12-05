@@ -107,7 +107,7 @@ RSpec.describe LaaCrimeFormsCommon::Anonymiser do
           "maat" => nil,
           "last_name" => "ANONYMISED",
           "first_name" => "ANONYMISED",
-          "date_of_birth" => "ANONYMISED",
+          "date_of_birth" => "2000-01-01",
         },
         "prison_id" => nil,
         "solicitor" => {
