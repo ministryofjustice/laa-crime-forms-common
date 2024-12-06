@@ -275,6 +275,7 @@
         },
         "date_of_birth": {
           "x-pii": true,
+          "x-format": "date",
           "type": "string",
           "title": "date birth in YYYY-MM-DD",
           "examples": [
@@ -768,7 +769,7 @@
       ],
       "properties": {
         "email": {
-          "x-pii": false,
+          "x-pii": true,
           "type": "string",
           "title": "Email",
           "examples": [

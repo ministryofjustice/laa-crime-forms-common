@@ -1,5 +1,6 @@
 require "i18n"
 require "json-schema"
+require "laa_crime_forms_common/anonymiser"
 require "laa_crime_forms_common/assignment"
 require "laa_crime_forms_common/autogrant/prior_authority"
 require "laa_crime_forms_common/hooks"
