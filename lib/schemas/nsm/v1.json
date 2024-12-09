@@ -399,12 +399,7 @@
           "type":"object"
         }
       },
-      "required":[
-        "disbursements",
-        "profit_costs",
-        "travel",
-        "waiting"
-      ],
+      "required":[],
       "title":"Cost summary",
       "type":"object"
     },
