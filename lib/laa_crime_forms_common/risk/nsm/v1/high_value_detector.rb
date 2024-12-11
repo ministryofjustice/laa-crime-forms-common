@@ -70,7 +70,7 @@ module LaaCrimeFormsCommon
               claimed_cost: (BigDecimal(disbursement["total_cost_without_vat"]) if disbursement["total_cost_without_vat"]),
               claimed_miles: (BigDecimal(disbursement["miles"]) if disbursement["miles"]),
               claimed_apply_vat: disbursement["apply_vat"] == "true",
-              assessed_cost: 0,
+              assessed_cost: BigDecimal(0),
               assessed_miles: BigDecimal(0),
               assessed_apply_vat: false,
             }
