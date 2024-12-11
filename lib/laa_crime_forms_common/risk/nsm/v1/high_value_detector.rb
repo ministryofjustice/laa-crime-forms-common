@@ -67,8 +67,8 @@ module LaaCrimeFormsCommon
           def build_disbursement_object(disbursement)
             {
               disbursement_type: disbursement["disbursement_type"],
-              claimed_cost: (BigDecimal(disbursement["total_cost_without_vat"]) if disbursement["total_cost_without_vat"]),
-              claimed_miles: (BigDecimal(disbursement["miles"]) if disbursement["miles"]),
+              claimed_cost: (BigDecimal(disbursement["total_cost_without_vat"].to_s) if disbursement["total_cost_without_vat"]),
+              claimed_miles: (BigDecimal(disbursement["miles"].to_s) if disbursement["miles"]),
               claimed_apply_vat: disbursement["apply_vat"] == "true",
               assessed_cost: BigDecimal(0),
               assessed_miles: BigDecimal(0),
