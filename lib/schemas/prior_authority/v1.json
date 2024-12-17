@@ -698,7 +698,7 @@
       "x-pii": false,
       "type": ["string", "null"],
       "title": "Stashed provisional decision",
-      "enum": ["granted", "part_grant", "rejected"],
+      "enum": ["granted", "part_grant", "rejected", null],
       "examples": [
         "granted"
       ]

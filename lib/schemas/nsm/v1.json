@@ -1273,7 +1273,7 @@
       "title":"What is the offence type?",
       "x-pii": false,
       "type":["string", "null"],
-      "enum":["summary_only", "either_way", "indictable_only", "prescribed_proceedings"]
+      "enum":["summary_only", "either_way", "indictable_only", "prescribed_proceedings", null]
     },
     "main_offence_date":{
       "examples":[
