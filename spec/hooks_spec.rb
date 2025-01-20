@@ -12,6 +12,7 @@ RSpec.describe LaaCrimeFormsCommon::Hooks do
            application_type:,
            latest_version:,
            events: [],
+           'last_updated_at=': :now,
            'application_risk=': true)
   end
   let(:latest_version) do
@@ -179,6 +180,11 @@ RSpec.describe LaaCrimeFormsCommon::Hooks do
         public: false,
         does_not_constitute_update: false,
       )
+    end
+
+    it "updates submission last_updated_at" do
+      described_class.submission_updated(submission, now)
+      expect(submission).to have_received("last_updated_at=").with(:now).once
     end
 
     context "when not crm7" do
