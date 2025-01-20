@@ -19,9 +19,12 @@ module LaaCrimeFormsCommon
     end
 
     def submission_updated(submission, now)
-      return unless submission.state == "provider_updated" && submission.application_type == "crm7"
-
-      add_new_version_event(submission, now)
+      if submission.state == "provider_updated"
+        submission.last_updated_at = now
+        if submission.application_type == "crm7"
+          add_new_version_event(submission, now)
+        end
+      end
     end
 
   private
