@@ -1143,7 +1143,7 @@
         "2024-10-04T08:51:26.791Z"
       ],
       "x-pii": false, 
-      "type": "string"
+      "type": ["null", "string"]
     },
     "is_other_info":{
       "examples":[
