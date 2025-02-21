@@ -1138,6 +1138,13 @@
       "x-pii": false,
       "type":"string"
     },
+    "import_date": {
+      "examples": [
+        "2024-10-04T08:51:26.791Z"
+      ],
+      "x-pii": false, 
+      "type": ["null", "string"]
+    },
     "is_other_info":{
       "examples":[
         "yes"
