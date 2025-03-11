@@ -440,7 +440,7 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
               total: {
                 assessed_time_spent_in_minutes: 157.0,
                 assessed_total_exc_vat: 82.0,
-                assessed_total_inc_vat: 98.39,
+                assessed_total_inc_vat: 98.4,
                 assessed_vat: 16.4,
                 assessed_vatable: 82.0,
                 claimed_time_spent_in_minutes: 183.0,
@@ -515,7 +515,7 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
                 claimed_total_inc_vat: 0.0,
                 assessed_vatable: 21.28,
                 assessed_vat: 4.26,
-                assessed_total_inc_vat: 25.53,
+                assessed_total_inc_vat: 25.54,
                 at_least_one_claimed_work_item_assessed_as_type_with_different_summary_group: false,
               },
               waiting: {
@@ -532,9 +532,9 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
             },
             totals: {
               claimed_total_exc_vat: 907.32,
-              claimed_vatable: 901.78,
-              assessed_total_exc_vat: 847.37,
-              assessed_vatable: 841.88,
+              claimed_vatable: 901.79,
+              assessed_total_exc_vat: 847.38,
+              assessed_vatable: 841.89,
               claimed_vat: 180.36,
               assessed_vat: 168.38,
               claimed_total_inc_vat: 1087.68,
@@ -704,8 +704,8 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
               },
             },
             totals: {
-              assessed_total_exc_vat: 847.37,
-              assessed_total_inc_vat: 871.94,
+              assessed_total_exc_vat: 847.38,
+              assessed_total_inc_vat: 871.95,
               assessed_vat: 24.57,
               assessed_vatable: 122.85,
               claimed_total_exc_vat: 907.32,
@@ -714,6 +714,47 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
               claimed_vatable: 123.85,
             },
           })
+        end
+      end
+
+      context "when 4 decimal - work items" do
+        let(:vat_registered) { false }
+
+        let(:disbursements) { [] }
+        let(:letters_and_calls) { [] }
+        let(:assessed_youth_court_fee_included) { false }
+        let(:claimed_youth_court_fee_included) { false }
+        let(:work_items) do
+          [
+            {
+            claimed_time_spent_in_minutes: 426,
+            claimed_work_type: "advocacy",
+            claimed_uplift_percentage: 0,
+            assessed_time_spent_in_minutes: 426,
+            assessed_work_type: "advocacy",
+            assessed_uplift_percentage: 0,
+            },
+            {
+            claimed_time_spent_in_minutes: 426,
+            claimed_work_type: "preparation",
+            claimed_uplift_percentage: 0,
+            assessed_time_spent_in_minutes: 426,
+            assessed_work_type: "preparation",
+            assessed_uplift_percentage: 0
+            },
+            {
+            claimed_time_spent_in_minutes: 426,
+            claimed_work_type: "attendance_without_counsel",
+            claimed_uplift_percentage: 0,
+            assessed_time_spent_in_minutes: 426,
+            assessed_work_type: "attendance_without_counsel",
+            assessed_uplift_percentage: 0
+            },
+          ]
+        end
+
+        it "applies calculates the expected work_items totals" do
+          expect(described_class.totals(claim)[:work_types][:total][:claimed_total_inc_vat]).to eq(1205.02)
         end
       end
     end
