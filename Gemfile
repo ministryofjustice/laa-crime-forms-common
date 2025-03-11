@@ -17,4 +17,5 @@ group :test do
   gem "simplecov"
   gem "simplecov-rcov"
   gem "webmock"
+  gem "super_diff", "~> 0.15.0"
 end
