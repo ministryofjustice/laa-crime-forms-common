@@ -1,6 +1,7 @@
 require "simplecov"
 require "debug"
 require "webmock/rspec"
+require "super_diff/rspec"
 
 unless ENV["NOCOVERAGE"]
   SimpleCov.start do
