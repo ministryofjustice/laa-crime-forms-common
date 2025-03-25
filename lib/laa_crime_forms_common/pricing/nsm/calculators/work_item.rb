@@ -31,7 +31,7 @@ module LaaCrimeFormsCommon
         private
 
           def claimed_subtotal_without_uplift
-            @claimed_subtotal_without_uplift ||= Rational(work_item.claimed_time_spent_in_minutes * claimed_rate_per_hour, 60)
+            @claimed_subtotal_without_uplift ||= Rational(work_item.claimed_time_spent_in_minutes * claimed_rate_per_hour, 60).round(4)
           end
 
           def claimed_total_exc_vat
@@ -47,7 +47,7 @@ module LaaCrimeFormsCommon
           end
 
           def assessed_subtotal_without_uplift
-            @assessed_subtotal_without_uplift ||= Rational(work_item.assessed_time_spent_in_minutes * assessed_rate_per_hour, 60)
+            @assessed_subtotal_without_uplift ||= Rational(work_item.assessed_time_spent_in_minutes * assessed_rate_per_hour, 60).round(4)
           end
 
           def assessed_total_exc_vat
