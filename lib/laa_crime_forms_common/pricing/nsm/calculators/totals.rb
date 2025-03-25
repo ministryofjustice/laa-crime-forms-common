@@ -52,7 +52,7 @@ module LaaCrimeFormsCommon
           def partial_totals(prefix)
             pre_vat = %i[total_exc_vat vatable].to_h do |suffix|
               figure = "#{prefix}_#{suffix}".to_sym
-              [figure, cost_summary.values.sum(Rational(0, 1)) { _1[figure] }]
+              [figure, cost_summary.values.sum(Rational(0, 1)) { _1[figure].round(2) }]
             end
 
             vat = pre_vat[:"#{prefix}_vatable"] * rates.vat
