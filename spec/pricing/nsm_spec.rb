@@ -531,14 +531,14 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
               },
             },
             totals: {
-              claimed_total_exc_vat: 907.33,
+              claimed_total_exc_vat: 907.32,
               claimed_vatable: 901.79,
               assessed_total_exc_vat: 847.38,
               assessed_vatable: 841.89,
               claimed_vat: 180.36,
               assessed_vat: 168.38,
-              claimed_total_inc_vat: 1087.69,
-              assessed_total_inc_vat: 1015.76,
+              claimed_total_inc_vat: 1087.68,
+              assessed_total_inc_vat: 1015.75,
             },
           })
         end
@@ -708,8 +708,8 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
               assessed_total_inc_vat: 871.95,
               assessed_vat: 24.57,
               assessed_vatable: 122.85,
-              claimed_total_exc_vat: 907.33,
-              claimed_total_inc_vat: 932.10,
+              claimed_total_exc_vat: 907.32,
+              claimed_total_inc_vat: 932.09,
               claimed_vat: 24.77,
               claimed_vatable: 123.85,
             },
@@ -754,7 +754,7 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
         end
 
         it "applies calculates the expected work_items totals" do
-          expect(described_class.totals(claim)[:work_types][:total][:claimed_total_inc_vat]).to eq(1205.02)
+          expect(described_class.totals(claim)[:work_types][:total][:claimed_total_inc_vat]).to eq(1205.01)
         end
       end
 
@@ -847,7 +847,7 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
         end
 
         it "applies calculates the expected work_items totals" do
-          expect(described_class.totals(claim)[:totals][:claimed_total_exc_vat]).to eq(1231.64)
+          expect(described_class.totals(claim)[:totals][:claimed_total_exc_vat]).to eq(1231.63)
         end
       end
     end
