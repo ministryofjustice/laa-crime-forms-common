@@ -25,15 +25,16 @@ module LaaCrimeFormsCommon
 
           def call
             calculations = work_items.map { Calculators::WorkItem.call(claim, _1, rates:) }
-
+            # rounded_types used for totals to ensure they're summed and rounded per work item type before totalling
+            rounded_types = [] 
             types = WORK_TYPES.to_h do |work_type|
               claimed_items = calculations.select { _1[:claimed_work_type] == work_type }
               assessed_items = calculations.select { _1[:assessed_work_type] == work_type }
-
-              [work_type.to_sym, build_summary(claimed_items, assessed_items)]
+              formatted_items = build_summary(claimed_items, assessed_items)
+              rounded_types << formatted_items
+              [work_type.to_sym, formatted_items]
             end
-
-            types[:total] = add_vat(build_summary(calculations))
+            types[:total] = add_vat(build_summary(rounded_types))
 
             types
           end
