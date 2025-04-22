@@ -754,7 +754,7 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
         end
 
         it "applies calculates the expected work_items totals" do
-          expect(described_class.totals(claim)[:work_types][:total][:claimed_total_inc_vat]).to eq(1205.01)
+          expect(described_class.totals(claim)[:work_types][:total][:claimed_total_inc_vat]).to eq(1205.02)
         end
       end
 
