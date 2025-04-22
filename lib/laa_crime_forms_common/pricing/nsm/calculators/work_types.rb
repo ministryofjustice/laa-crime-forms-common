@@ -34,7 +34,7 @@ module LaaCrimeFormsCommon
               rounded_types << formatted_items
               [work_type.to_sym, formatted_items]
             end
-            types[:total] = add_vat(build_summary(rounded_types))
+            types[:total] = add_vat(build_summary(calculations, calculations, rounded_types))
 
             types
           end
@@ -43,10 +43,14 @@ module LaaCrimeFormsCommon
             @work_items ||= claim.work_items.map { Wrappers::WorkItem.new(_1) }
           end
 
-          def build_summary(claimed_items, assessed_items = claimed_items)
-            claimed_total_exc_vat = claimed_items.sum(Rational(0, 1)) { _1[:claimed_total_exc_vat] }.round(2)
-            assessed_total_exc_vat = assessed_items.sum(Rational(0, 1)) { _1[:assessed_total_exc_vat] }.round(2)
-
+          def build_summary(claimed_items, assessed_items = claimed_items, summarized_items = nil)
+            if summarized_items.nil?
+              claimed_total_exc_vat = claimed_items.sum(Rational(0, 1)) { _1[:claimed_total_exc_vat] }.round(2)
+              assessed_total_exc_vat = assessed_items.sum(Rational(0, 1)) { _1[:assessed_total_exc_vat] }.round(2)
+            else
+              claimed_total_exc_vat = summarized_items.sum(Rational(0, 1)) { _1[:claimed_total_exc_vat] }.round(2)
+              assessed_total_exc_vat = summarized_items.sum(Rational(0, 1)) { _1[:assessed_total_exc_vat] }.round(2)
+            end
             {
               claimed_time_spent_in_minutes: claimed_items.sum(Rational(0, 1)) { _1[:claimed_time_spent_in_minutes] },
               claimed_total_exc_vat:,
