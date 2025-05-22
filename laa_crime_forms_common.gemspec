@@ -4,7 +4,7 @@ Gem::Specification.new do |spec|
   spec.name        = "laa_crime_forms_common"
   spec.version     = LaaCrimeFormsCommon::VERSION
   spec.authors     = ["LAA NSCC"]
-  spec.email       = ["CRM457@digital.justice.gov.uk"]
+  spec.email       = ["nscc@justice.gov.uk"]
   spec.summary     = "Shared code for LAA crime forms applications"
   spec.description = "Data and functionality shared across Submit a crime form and Assess a crime form"
   spec.required_ruby_version = ">= 3.3"
