@@ -1,3 +1,4 @@
+require "active_support"
 require "active_support/testing/time_helpers"
 require "active_support/core_ext/date_time"
 require "active_support/core_ext/numeric"

@@ -181,7 +181,6 @@ PLATFORMS
   x86_64-darwin-23
 
 DEPENDENCIES
-  activesupport
   debug
   laa_crime_forms_common!
   pry

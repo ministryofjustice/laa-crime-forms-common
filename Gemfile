@@ -12,7 +12,6 @@ group :development, :test do
 end
 
 group :test do
-  gem "activesupport"
   gem "rspec", ">= 3.13.0"
   gem "rspec_junit_formatter", require: false
   gem "simplecov"
