@@ -16,6 +16,6 @@ group :test do
   gem "rspec_junit_formatter", require: false
   gem "simplecov"
   gem "simplecov-rcov"
-  gem "super_diff", "~> 0.15.0"
+  gem "super_diff", "~> 0.16.0"
   gem "webmock"
 end
