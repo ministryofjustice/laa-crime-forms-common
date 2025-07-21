@@ -11,7 +11,7 @@ module LaaCrimeFormsCommon
         end
       end
 
-      private
+    private
 
       def add_indexed_errors(object, attribute, was_array, sub_record, index)
         sub_record.errors.each do |error|
@@ -20,7 +20,7 @@ module LaaCrimeFormsCommon
           object.errors.add(
             attr_name,
             error.type,
-            message: error_message(sub_record, error), name: error_message_name(object, index)
+            message: error_message(sub_record, error), name: error_message_name(object, index),
           )
 
           # We define the attribute getter as it doesn't really exist
@@ -40,7 +40,7 @@ module LaaCrimeFormsCommon
       def error_message(obj, error)
         I18n.t(
           "#{obj.model_name.i18n_key}.summary.#{error.attribute}.#{error.type}",
-          scope: [:activemodel, :errors, :models]
+          scope: %i[activemodel errors models],
         )
       end
 

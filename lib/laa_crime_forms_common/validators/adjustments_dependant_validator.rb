@@ -11,10 +11,10 @@ module LaaCrimeFormsCommon
         end
       end
 
-      private
+    private
 
       def validate_granted(record, attribute, direction)
-        record.errors.add(attribute, :'invalid.granted_with_reductions') if direction.in?([:mixed, :down])
+        record.errors.add(attribute, :'invalid.granted_with_reductions') if direction.in?(%i[mixed down])
       end
 
       def validate_part_grant(record, attribute, direction)

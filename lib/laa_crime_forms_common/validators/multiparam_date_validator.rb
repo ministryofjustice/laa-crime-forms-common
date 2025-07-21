@@ -1,7 +1,7 @@
 module LaaCrimeFormsCommon
   module Validators
     class MultiparamDateValidator < ActiveModel::EachValidator
-      DATE_STRUCT = Struct.new('DateStruct', :day, :month, :year, keyword_init: true)
+      DATE_STRUCT = Struct.new("DateStruct", :day, :month, :year, keyword_init: true)
 
       DEFAULT_OPTIONS = {
         earliest_year: 1900,
@@ -29,15 +29,15 @@ module LaaCrimeFormsCommon
         # Remember, the hash will have the format: {3=>31, 2=>12, 1=>2000}
         # where `3` is the day, `2` is the month and `1` is the year.
         date = if value.is_a?(Hash)
-                DATE_STRUCT.new(day: value[3], month: value[2], year: value[1])
-              else
-                value
-              end
+                 DATE_STRUCT.new(day: value[3], month: value[2], year: value[1])
+               else
+                 value
+               end
 
         validate_date(date)
       end
 
-      private
+    private
 
       def validate_date(date)
         add_error(:invalid_day)   unless date.day.to_i.between?(1, 31)

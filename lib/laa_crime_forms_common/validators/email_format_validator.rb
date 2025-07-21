@@ -13,7 +13,7 @@ module LaaCrimeFormsCommon
       MAX_HOST_NAME_LENGTH = 253
       MIN_HOST_NAME_PARTS = 2
       MAX_HOST_PART_LENGTH = 63
-      DOUBLE_DOT = '..'.freeze
+      DOUBLE_DOT = "..".freeze
 
       def validate_each(record, attribute, value)
         return if value.blank?
@@ -29,7 +29,7 @@ module LaaCrimeFormsCommon
       end
 
       def validate_host_name(record, attribute, host_name)
-        host_parts = host_name.split('.')
+        host_parts = host_name.split(".")
 
         return add_error(record, attribute) if host_name.length > MAX_HOST_NAME_LENGTH || host_parts.length < MIN_HOST_NAME_PARTS
 

@@ -11,10 +11,10 @@ module LaaCrimeFormsCommon
         end
       end
 
-      private
+    private
 
       def remove_commas(value)
-        value&.to_s&.delete(',')
+        value&.to_s&.delete(",")
       end
 
       def check_valid(value)
@@ -23,7 +23,7 @@ module LaaCrimeFormsCommon
           value.is_a?(Float),
           value.blank?,
           Float(remove_commas(value), exception: false),
-          Integer(remove_commas(value), exception: false)
+          Integer(remove_commas(value), exception: false),
         ]
         (checks - [nil, false]).present?
       end

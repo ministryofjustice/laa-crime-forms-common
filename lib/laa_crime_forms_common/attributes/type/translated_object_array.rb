@@ -5,7 +5,7 @@ module LaaCrimeFormsCommon
         :translated_array
       end
 
-      private
+    private
 
       def cast_value(values)
         values.map { super(_1) }

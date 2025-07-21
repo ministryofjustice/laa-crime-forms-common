@@ -5,7 +5,7 @@ module LaaCrimeFormsCommon
       # or of format { "en" => "Some string", "value" => "x" }
       def cast(values)
         mapped = values&.map do |value|
-          value.is_a?(String) ? value : value['value']
+          value.is_a?(String) ? value : value["value"]
         end
 
         super(mapped)

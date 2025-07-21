@@ -10,7 +10,7 @@ module LaaCrimeFormsCommon
       end
 
       def item_type_for(record)
-        basic = record.respond_to?(:item_type) ? record.item_type || 'item' : 'item'
+        basic = record.respond_to?(:item_type) ? record.item_type || "item" : "item"
         basic.pluralize
       end
     end

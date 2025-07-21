@@ -11,7 +11,7 @@ module LaaCrimeFormsCommon
         record.errors.add(attribute, :invalid)
       end
 
-      private
+    private
 
       def parse_postcode(postcode)
         UKPostcode.parse(postcode)

@@ -25,7 +25,7 @@ module LaaCrimeFormsCommon
         end
       end
 
-      private
+    private
 
       def add_error(error)
         record.errors.add(attribute, error)

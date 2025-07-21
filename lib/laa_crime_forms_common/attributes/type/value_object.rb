@@ -19,13 +19,13 @@ module LaaCrimeFormsCommon
       def ==(other)
         self.class == other.class && source == other.source
       end
-      alias eql? ==
+      alias_method :eql?, :==
 
       def hash
         [self.class, source].hash
       end
 
-      private
+    private
 
       def cast_value(value)
         case value

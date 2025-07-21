@@ -1,7 +1,7 @@
 module LaaCrimeFormsCommon
   module Validators
     class TimePeriodValidator < ActiveModel::EachValidator
-      TIME_PERIOD_STRUCT = Struct.new('TIME_PERIOD_STRUCT', :hours, :minutes)
+      TIME_PERIOD_STRUCT = Struct.new("TIME_PERIOD_STRUCT", :hours, :minutes)
 
       attr_reader :record, :attribute
 
@@ -26,7 +26,7 @@ module LaaCrimeFormsCommon
         validate_period(time_period)
       end
 
-      private
+    private
 
       def validate_period(time_period)
         validate_hours(time_period.hours)

@@ -12,11 +12,11 @@ module LaaCrimeFormsCommon
     def ==(other)
       other.value == value && other.scope == scope
     end
-    alias === ==
-    alias eql? ==
+    alias_method :===, :==
+    alias_method :eql?, :==
 
     def translated
-      return '' unless value
+      return "" unless value
 
       I18n.t("laa_crime_forms_common.#{scope}.#{value}")
     end

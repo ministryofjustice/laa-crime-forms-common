@@ -10,10 +10,10 @@ module LaaCrimeFormsCommon
         :translated
       end
 
-      private
+    private
 
       def cast_value(value)
-        key = value.is_a?(Hash) ? value['value'] : value
+        key = value.is_a?(Hash) ? value["value"] : value
         TranslationObject.new(key, @scope)
       end
     end
