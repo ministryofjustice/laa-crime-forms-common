@@ -6,6 +6,7 @@ PATH
       httparty (>= 0.22.0, < 1)
       i18n (>= 1.8.11, < 2)
       json-schema (>= 5.0.0, < 6)
+      uuid (~> 2.3)
 
 GEM
   remote: https://rubygems.org/
@@ -64,6 +65,8 @@ GEM
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
     logger (1.7.0)
+    macaddr (1.7.2)
+      systemu (~> 2.6.5)
     method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.25.5)
@@ -167,12 +170,15 @@ GEM
       attr_extras (>= 6.2.4)
       diff-lcs
       patience_diff
+    systemu (2.6.5)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (3.1.4)
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
     uri (1.0.3)
+    uuid (2.3.9)
+      macaddr (~> 1.0)
     webmock (3.25.1)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
