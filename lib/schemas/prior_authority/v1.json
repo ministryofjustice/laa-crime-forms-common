@@ -853,6 +853,12 @@
               "Some org"
             ]
           },
+          "submitter_email":{
+            "examples":["test@email.com"],
+            "title":"Submitter email address",
+            "x-pii": true,
+            "type":["string","null"]
+          },
           "postcode": {
             "x-pii": false,
             "type": "string",
@@ -1579,6 +1585,7 @@
       "requested_at": "2024-01-01T01:01:01.000Z",
       "new": true
     }],
-    "status": "sent_back"
+    "status": "sent_back",
+    "submitter_email": "test@email.com"
   }]
 }

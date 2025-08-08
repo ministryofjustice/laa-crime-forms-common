@@ -2190,6 +2190,12 @@
       "title":"Do you want to claim the youth court additional fee?",
       "x-pii": false,
       "type":["boolean","null"]
+    },
+    "submitter_email":{
+    "examples":["test@email.com"],
+    "title":"Submitter email address",
+    "x-pii": true,
+    "type":["string","null"]
     }
   },
   "examples":[
@@ -2381,7 +2387,8 @@
           "work_type":"waiting"
         }
       ],
-      "youth_court":"no"
+      "youth_court":"no",
+      "submitter_email": "test@email.com"
     }
   ]
 }
