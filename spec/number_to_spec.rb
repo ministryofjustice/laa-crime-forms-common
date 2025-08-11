@@ -29,6 +29,12 @@ RSpec.describe NumberTo do
     end
   end
 
+  describe "formatted" do 
+    it "expect a stripped, rounded decimal with precision 1" do 
+      expect(described_class.formatted(2.504)).to eq("2.5")
+    end
+  end
+
   describe "#percentage" do
     it "expects a decimal percentage" do
       expect(described_class.percentage(0.2)).to eq("20%")
