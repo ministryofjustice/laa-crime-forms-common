@@ -1,4 +1,5 @@
-require "rails_helper"
+require_relative "../lib/laa_crime_forms_common/number_to"
+require "spec_helper"
 
 RSpec.describe NumberTo do
   describe "#pounds" do
