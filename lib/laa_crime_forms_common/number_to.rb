@@ -1,4 +1,4 @@
-require "active_support/number_helper"
+require "active_support"
 
 module NumberTo
   extend ActiveSupport::NumberHelper
