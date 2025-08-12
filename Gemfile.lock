@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    laa_crime_forms_common (0.10.2)
+    laa_crime_forms_common (0.11.2)
       activesupport
       httparty (>= 0.22.0, < 1)
       i18n (>= 1.8.11, < 2)
