@@ -1,7 +1,7 @@
 require_relative "../lib/laa_crime_forms_common/number_to"
 require "spec_helper"
 
-RSpec.describe NumberTo do
+RSpec.describe LaaCrimeFormsCommon::NumberTo do
   describe "#pounds" do
     context "when a single number is passed in" do
       it "converts it to a money amount" do
