@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency("activesupport")
   spec.add_dependency("httparty", ">= 0.22.0", "< 1")
   spec.add_dependency("i18n", ">= 1.8.11", "< 2")
-  spec.add_dependency("json-schema", ">= 5.0.0", "< 6")
+  spec.add_dependency("json-schema", ">= 5.0.0", "< 7")
   spec.add_dependency("uuid", "~> 2.3")
   spec.metadata["rubygems_mfa_required"] = "true"
 end
