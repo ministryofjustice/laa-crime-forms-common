@@ -1,5 +1,5 @@
 module LaaCrimeFormsCommon
-  require 'csv'
+  require "csv"
   class Court
     def initialize(name:)
       @name = name
@@ -15,18 +15,18 @@ module LaaCrimeFormsCommon
       def all
         @all ||= begin
           rows = csv_data
-          rows.map { |r| new(name: r['combined_formatted']) }
+          rows.map { |r| new(name: r["combined_formatted"]) }
               .sort_by(&:name)
         end
       end
 
       def csv_file_path
-        file = File.join(File.dirname(__dir__), 'court/courts.csv')
+        file = File.join(File.dirname(__dir__), "court/courts.csv")
         File.read(file)
       end
 
       def csv_data
-        @csv_data ||= CSV.parse(csv_file_path, col_sep: ',', row_sep: :auto, headers: true, skip_blanks: true)
+        @csv_data ||= CSV.parse(csv_file_path, col_sep: ",", row_sep: :auto, headers: true, skip_blanks: true)
       end
     end
   end
