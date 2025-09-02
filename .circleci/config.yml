@@ -92,6 +92,8 @@ jobs:
       - run-tests
 
   publish-npm-package:
+    working_directory: ~/repo
+    executor: test-executor
     steps:
       - checkout
       - run:
