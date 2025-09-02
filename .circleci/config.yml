@@ -115,7 +115,11 @@ workflows:
             branches:
               ignore:
                 - main
-      - publish-npm-package
+      - publish-npm-package:
+          filters:
+            branches:
+              ignore:
+                - main
 
   test-merged-pr:
     jobs:
