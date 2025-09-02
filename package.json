@@ -1,6 +1,6 @@
 {
   "name": "laa-crime-forms-common",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A node module to store JS functions used across the NSCC front end suite",
   "homepage": "https://github.com/ministryofjustice/laa-crime-forms-common#readme",
   "bugs": {
