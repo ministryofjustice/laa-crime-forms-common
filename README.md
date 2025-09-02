@@ -18,7 +18,7 @@ It may one day be used for:
 - And more
 
 ## NPM Package
-For instances where we only want to share a JS function, this code is stored in the node package of this directory. All files for this node package are in the js folder to prevent mixing with the gem.
+For instances where we only want to share a JS function, this code is stored in the [node package](https://www.npmjs.com/package/laa-crime-forms-common) of this directory. All files for this node package are in the js folder to prevent mixing with the gem.
 
 ## Licence
 Unless stated otherwise, the codebase is released under the [MIT License][mit].
