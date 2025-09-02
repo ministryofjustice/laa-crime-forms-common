@@ -1,3 +1,1 @@
-import { convertSelectToAutocomplete } from "./autocomplete.js";
-
-exports = { convertSelectToAutocomplete };
+export { convertSelectToAutocomplete } from "./autocomplete.js";
