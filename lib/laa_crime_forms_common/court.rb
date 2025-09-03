@@ -1,5 +1,6 @@
 module LaaCrimeFormsCommon
   require "csv"
+  require "pry"
   class Court
     def initialize(name:)
       @name = name
@@ -21,7 +22,7 @@ module LaaCrimeFormsCommon
       end
 
       def csv_file_path
-        file = File.join(File.dirname(__dir__), "court/courts.csv")
+        file = File.join(File.dirname(__dir__), "laa_crime_forms_common/courts.csv")
         File.read(file)
       end
 
