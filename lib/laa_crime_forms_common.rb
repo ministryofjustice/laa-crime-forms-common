@@ -10,7 +10,7 @@ require "laa_crime_forms_common/s3_files"
 require "laa_crime_forms_common/validator"
 require "laa_crime_forms_common/working_day_service"
 require "laa_crime_forms_common/number_to"
-require "laa_crime_forms_common/court/court"
+require "laa_crime_forms_common/court"
 
 Dir["#{File.join(__dir__, './laa_crime_forms_common/attributes/type')}/*.rb"].each { |f| require f }
 Dir["#{File.join(__dir__, './laa_crime_forms_common/validators')}/*.rb"].each { |f| require f }
