@@ -1,0 +1,13 @@
+en: 
+  laa_crime_forms_common:
+    prior_authority:
+      service_costs:
+        items:
+          items: Number of %{items}
+          cost_per_item: What is the cost per %{item}?
+          cost_per_item_hint: Costs should be exclusive of VAT
+          item: item
+          minute: minute
+          word: word
+          thousand_words: 1000 words
+          page: page
