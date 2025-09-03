@@ -1,7 +1,7 @@
 require_relative "../lib/laa_crime_forms_common/court"
 require "rails_helper"
 
-RSpec.describe LaaCrimeFormsCommon::Court, type: :model do
+RSpec.describe LaaCrimeFormsCommon::Court do
   describe ".all" do
     subject { described_class.all }
 
