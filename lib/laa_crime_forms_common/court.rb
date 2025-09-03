@@ -21,7 +21,7 @@ module LaaCrimeFormsCommon
       end
 
       def csv_file_path
-        file = File.join(File.dirname(__dir__), "court/courts.csv")
+        file = File.join(File.dirname(__dir__), "courts.csv")
         File.read(file)
       end
 
