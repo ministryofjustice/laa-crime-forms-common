@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe LaaMultiStepForms::Court, type: :model do
+RSpec.describe LaaCrimeFormsCommon::Court, type: :model do
   describe '.all' do
     subject { described_class.all }
 
