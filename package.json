@@ -14,11 +14,17 @@
   "author": "NSCC",
   "type": "module",
   "main": "js/index.js",
-  "files": [ "js/*.js" ],
+  "files": [
+    "js/*.js"
+  ],
   "directories": {
     "lib": "lib"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "accessible-autocomplete": "^3.0.1",
+    "fastest-levenshtein": "^1.0.16"
   }
 }
