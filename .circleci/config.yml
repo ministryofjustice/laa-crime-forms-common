@@ -91,17 +91,6 @@ jobs:
       - install-requirements
       - run-tests
 
-  publish-npm-package:
-    working_directory: ~/repo
-    executor: test-executor
-    steps:
-      - checkout
-      - run:
-          name: Publish to NPM
-          command: |
-            npm set //registry.npmjs.org/:_authToken=$NPM_TOKEN
-            npm publish
-
 workflows:
   version: 2
 
@@ -126,11 +115,6 @@ workflows:
               only:
                 - main
       - test-app:
-          filters:
-            branches:
-              only:
-                - main
-      - publish-npm-package:
           filters:
             branches:
               only:
