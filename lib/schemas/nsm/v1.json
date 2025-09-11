@@ -963,7 +963,7 @@
                 ],
                 "properties": {
                     "file_name": {
-                      "x-pii": true,  
+                      "x-pii": true,
                       "type": "string",
                         "title": "Filename",
                         "examples": [
@@ -971,7 +971,7 @@
                         ]
                     },
                     "file_type": {
-                      "x-pii": false,  
+                      "x-pii": false,
                       "type": "string",
                         "title": "File type",
                         "examples": [
@@ -979,7 +979,7 @@
                         ]
                     },
                     "file_size": {
-                      "x-pii": false,  
+                      "x-pii": false,
                       "type": "integer",
                         "title": "File size in bytes",
                         "examples": [
@@ -987,7 +987,7 @@
                         ]
                     },
                     "file_path": {
-                      "x-pii": false,  
+                      "x-pii": false,
                       "type": "string",
                         "title": "S3 ID of the file",
                         "examples": [
@@ -995,7 +995,7 @@
                         ]
                     },
                     "document_type": {
-                      "x-pii": false,  
+                      "x-pii": false,
                       "type": "string",
                         "title": "Document type",
                         "examples": [
@@ -1141,7 +1141,7 @@
       "examples": [
         "2024-10-04T08:51:26.791Z"
       ],
-      "x-pii": false, 
+      "x-pii": false,
       "type": ["null", "string"]
     },
     "is_other_info":{
@@ -1159,7 +1159,7 @@
       ],
       "title":"LAA reference",
       "x-pii": false,
-      "type":"string"
+      "type":["string", "null"]
     },
     "letters_and_calls":{
       "examples":[
