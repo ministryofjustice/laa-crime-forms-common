@@ -47,10 +47,6 @@ RSpec.describe LaaCrimeFormsCommon::Messages::PriorAuthority::FurtherInformation
   let(:fi_explanation) { "Hooey" }
   let(:correction_explanation) { "Booey" }
 
-  before do
-    I18n.load_path += Dir[File.join(__dir__, "../../../lib/locales", "**/*.yml")]
-  end
-
   it "has a hard-coded template" do
     expect(subject.template).to eq "c8abf9ee-5cfe-44ab-9253-72111b7a35ba"
   end
