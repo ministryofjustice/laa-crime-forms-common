@@ -57,10 +57,6 @@ RSpec.describe LaaCrimeFormsCommon::Messages::PriorAuthority::PartGranted do
     }
   end
 
-  before do
-    I18n.load_path += Dir[File.join(__dir__, "../../../lib/locales", "**/*.yml")]
-  end
-
   it "has a hard-coded template" do
     expect(subject.template).to eq "97c0245f-9fec-4ec1-98cc-c9d392a81254"
   end

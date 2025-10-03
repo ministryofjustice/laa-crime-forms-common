@@ -1,3 +1,4 @@
+require "i18n"
 require "simplecov"
 require "debug"
 require "webmock/rspec"
@@ -26,6 +27,10 @@ end
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  I18n.load_path += Dir[File.join(__dir__, "../lib/locales", "**/*.yml")]
+  I18n.available_locales = [:en]
+  I18n.default_locale = :en
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
