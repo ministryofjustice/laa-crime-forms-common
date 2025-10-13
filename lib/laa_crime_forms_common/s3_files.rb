@@ -9,7 +9,7 @@ require "uri"
 # It assumes that s3_bucket is an appropriately configured Aws::S3::Bucket object
 module LaaCrimeFormsCommon
   class S3Files
-    PRESIGNED_EXPIRY = 60
+    PRESIGNED_EXPIRY = 30
 
     def self.temporary_download_url(s3_bucket, file_key, original_file_name)
       escaped = URI.encode_uri_component(original_file_name)

@@ -20,7 +20,7 @@ RSpec.describe LaaCrimeFormsCommon::S3Files do
       expect(s3_bucket).to have_received(:object).with(file_path)
       expect(s3_object).to have_received(:presigned_url).with(
         :get,
-        expires_in: 60,
+        expires_in: 30,
         response_content_disposition: "attachment; filename=\"#{original_file_name}\"; filename*=UTF-8''#{original_file_name}",
       )
     end
@@ -36,7 +36,7 @@ RSpec.describe LaaCrimeFormsCommon::S3Files do
         subject
         expect(s3_object).to have_received(:presigned_url).with(
           :get,
-          expires_in: 60,
+          expires_in: 30,
           response_content_disposition: "attachment; filename=\"the%E2%80%93first-dash-in-this-file-name-is-an-unusual-one.pdf%27\"; filename*=UTF-8''the%E2%80%93first-dash-in-this-file-name-is-an-unusual-one.pdf%27",
         )
       end
@@ -49,7 +49,7 @@ RSpec.describe LaaCrimeFormsCommon::S3Files do
         subject
         expect(s3_object).to have_received(:presigned_url).with(
           :get,
-          expires_in: 60,
+          expires_in: 30,
           response_content_disposition: "attachment; filename=\"file-with-%22double-quotes%22.pdf\"; filename*=UTF-8''file-with-%22double-quotes%22.pdf",
         )
       end
@@ -62,7 +62,7 @@ RSpec.describe LaaCrimeFormsCommon::S3Files do
         subject
         expect(s3_object).to have_received(:presigned_url).with(
           :get,
-          expires_in: 60,
+          expires_in: 30,
           response_content_disposition: "attachment; filename=\"file%20with%20spaces.pdf\"; filename*=UTF-8''file%20with%20spaces.pdf",
         )
       end
