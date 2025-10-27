@@ -39,7 +39,7 @@
       bike: 0.25
     vat: 0.2
 - from: "2024-12-06"
-  until: null
+  until: "2025-12-15"
   values:
     additional_fees:
       youth_court: 598.59
@@ -53,6 +53,26 @@
     letters_and_calls:
       letters: 4.09
       calls: 4.09
+    disbursements:
+      car: 0.45
+      motorcycle: 0.45
+      bike: 0.25
+    vat: 0.2
+- from: "2025-12-16"
+  until: null
+  values:
+    additional_fees:
+      youth_court: 658.45
+    work_items:
+      preparation: 57.37
+      advocacy: 71.96
+      attendance_with_counsel: 39.25
+      attendance_without_counsel: 57.37
+      travel: 30.36
+      waiting: 30.36
+    letters_and_calls:
+      letters: 4.50
+      calls: 4.50
     disbursements:
       car: 0.45
       motorcycle: 0.45

@@ -41,6 +41,19 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm::Rates do
           expect([rates.work_items, rates.letters_and_calls, rates.disbursements, rates.vat]).to all be_truthy
         end
       end
+
+      context "when CNTP date is post the 2025 10% uplift" do
+        let(:cntp_date) { "2025-12-17" }
+
+        it "returns new pricing data" do
+          expect(subject.work_items[:preparation]).to eq 57.37
+        end
+
+        it "has appropriate fields" do
+          rates = subject
+          expect([rates.work_items, rates.letters_and_calls, rates.disbursements, rates.vat]).to all be_truthy
+        end
+      end
     end
 
     context "when the claim is NSM" do
