@@ -11,7 +11,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (8.1.0)
+    activesupport (8.1.1)
       base64
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.3.1)
@@ -33,7 +33,7 @@ GEM
     coderay (1.1.3)
     concurrent-ruby (1.3.5)
     connection_pool (2.5.4)
-    crack (1.0.0)
+    crack (1.0.1)
       bigdecimal
       rexml
     csv (3.3.5)
@@ -45,7 +45,7 @@ GEM
     docile (1.4.1)
     drb (2.2.3)
     erb (5.0.1)
-    hashdiff (1.1.2)
+    hashdiff (1.2.1)
     httparty (0.23.2)
       csv
       mini_mime (>= 1.0.0)
@@ -57,7 +57,7 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    json (2.13.2)
+    json (2.15.2)
     json-schema (6.0.0)
       addressable (~> 2.8)
       bigdecimal (~> 3.1)
@@ -98,7 +98,7 @@ GEM
     regexp_parser (2.11.2)
     reline (0.6.1)
       io-console (~> 0.5)
-    rexml (3.4.2)
+    rexml (3.4.4)
     rspec (3.13.2)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
@@ -165,7 +165,7 @@ GEM
       simplecov (>= 0.4.1)
     simplecov_json_formatter (0.1.4)
     stringio (3.1.7)
-    super_diff (0.16.0)
+    super_diff (0.17.0)
       attr_extras (>= 6.2.4)
       diff-lcs
       patience_diff
@@ -178,7 +178,7 @@ GEM
     uri (1.0.4)
     uuid (2.3.9)
       macaddr (~> 1.0)
-    webmock (3.25.1)
+    webmock (3.26.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
@@ -197,7 +197,7 @@ DEPENDENCIES
   rubocop-performance (>= 1.17.0)
   simplecov
   simplecov-rcov
-  super_diff (~> 0.16.0)
+  super_diff (~> 0.17.0)
   webmock
 
 BUNDLED WITH
