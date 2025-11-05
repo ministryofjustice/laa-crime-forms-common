@@ -1663,8 +1663,8 @@
       ],
       "title":"Does this bill represent a supplemental claim?",
       "x-pii": false,
-      "type":"string",
-      "enum": ["yes", "no"]
+      "type":["null","string"],
+      "enum": ["yes", "no", null]
     },
     "supporting_evidences":{
       "examples":[
