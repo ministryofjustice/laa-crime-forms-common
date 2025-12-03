@@ -43,7 +43,7 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm::Rates do
       end
 
       context "when CNTP date is post the 2025 10% uplift" do
-        let(:cntp_date) { "2025-12-17" }
+        let(:cntp_date) { "2025-12-02" }
 
         it "returns new pricing data" do
           expect(subject.work_items[:preparation]).to eq 57.37

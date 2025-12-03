@@ -39,7 +39,7 @@
       bike: 0.25
     vat: 0.2
 - from: "2024-12-06"
-  until: "2025-12-15"
+  until: "2025-11-30"
   values:
     additional_fees:
       youth_court: 598.59
@@ -58,7 +58,7 @@
       motorcycle: 0.45
       bike: 0.25
     vat: 0.2
-- from: "2025-12-16"
+- from: "2025-12-01"
   until: null
   values:
     additional_fees:
