@@ -3,7 +3,7 @@ PATH
   specs:
     laa_crime_forms_common (0.12.6)
       activesupport
-      httparty (>= 0.22.0, < 1)
+      httparty (>= 0.24.0, < 1)
       i18n (>= 1.8.11, < 2)
       json-schema (>= 5.0.0, < 7)
       uuid (~> 2.3)
@@ -46,7 +46,7 @@ GEM
     drb (2.2.3)
     erb (5.0.1)
     hashdiff (1.2.1)
-    httparty (0.23.2)
+    httparty (0.24.0)
       csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
