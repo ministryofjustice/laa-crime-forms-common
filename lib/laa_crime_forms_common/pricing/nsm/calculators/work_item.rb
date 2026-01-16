@@ -35,7 +35,12 @@ module LaaCrimeFormsCommon
           end
 
           def claimed_total_exc_vat
-            claimed_subtotal_without_uplift * claimed_uplift_multiplier
+            if claimed_uplift_multiplier == Rational(2,1) 
+              (claimed_subtotal_without_uplift * 2).round(3)
+            else
+              additional_percentage = claimed_uplift_multiplier - Rational(1,1)
+              claimed_subtotal_without_uplift.round(3) + (claimed_subtotal_without_uplift * additional_percentage).round(3)
+            end
           end
 
           def claimed_rate_per_hour
