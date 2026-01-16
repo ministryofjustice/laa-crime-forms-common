@@ -1,3 +1,3 @@
 module LaaCrimeFormsCommon
-  VERSION = "0.12.6".freeze
+  VERSION = "0.13.0".freeze
 end
