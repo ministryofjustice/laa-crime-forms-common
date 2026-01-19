@@ -16,6 +16,7 @@ Gem::Specification.new do |spec|
     Dir["{config,lib}/**/*", "LICENSE", "README.md"]
   end
 
+  spec.add_dependency("activemodel")
   spec.add_dependency("activesupport")
   spec.add_dependency("httparty", ">= 0.22.0", "< 1")
   spec.add_dependency("i18n", ">= 1.8.11", "< 2")

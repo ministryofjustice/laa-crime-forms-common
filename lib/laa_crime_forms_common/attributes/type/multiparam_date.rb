@@ -11,7 +11,13 @@ module LaaCrimeFormsCommon
 
         # `value` is a hash in the format: {3=>31, 2=>12, 1=>2000}
         # where `3` is the day, `2` is the month and `1` is the year.
-        value_args = value.values_at(1, 2, 3).map { _1&.to_i }
+        raw_values = value.values_at(1, 2, 3)
+
+        # If any part contains non-digits (e.g. "5a"), return the raw hash so the
+        # form can re-render the values and the validator can show an error.
+        return value unless raw_values.all? { |raw_value| numeric?(raw_value) }
+
+        value_args = raw_values.map { _1&.to_i }
 
         if Date.valid_date?(*value_args) && value_args.none?(&:zero?)
           Date.new(*value_args)
@@ -28,6 +34,12 @@ module LaaCrimeFormsCommon
       # Leave the sanity check to the `#cast` method.
       def value_from_multiparameter_assignment(value)
         value
+      end
+
+    private
+
+      def numeric?(value)
+        value.is_a?(Integer) || value.to_s.match?(/\A\d+\z/)
       end
     end
   end
