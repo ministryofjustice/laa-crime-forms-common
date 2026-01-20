@@ -17,7 +17,7 @@ module LaaCrimeFormsCommon
         # form can re-render the values and the validator can show an error.
         return value unless raw_values.all? { |raw_value| numeric?(raw_value) }
 
-        value_args = raw_values.map { _1&.to_i }
+        value_args = raw_values.map(&:to_i)
 
         if Date.valid_date?(*value_args) && value_args.none?(&:zero?)
           Date.new(*value_args)
