@@ -16,11 +16,19 @@ Gem::Specification.new do |spec|
     Dir["{config,lib}/**/*", "LICENSE", "README.md"]
   end
 
-  spec.add_dependency("activemodel")
-  spec.add_dependency("activesupport")
+  # activemodel and activesupport are provided by Rails in consuming applications
+  # spec.add_dependency("activemodel")
+  # spec.add_dependency("activesupport")
   spec.add_dependency("httparty", ">= 0.22.0", "< 1")
   spec.add_dependency("i18n", ">= 1.8.11", "< 2")
   spec.add_dependency("json-schema", ">= 5.0.0", "< 7")
   spec.add_dependency("uuid", "~> 2.3")
+
+  # Development/test dependencies - needed for running specs
+  # Pinned to match versions used in consumer repos (8.0.3, 8.0.4, 8.1.0)
+  # These are not runtime dependencies as they're provided by Rails in consuming applications
+  spec.add_development_dependency("activemodel", "~> 8.0")
+  spec.add_development_dependency("activesupport", "~> 8.0")
+
   spec.metadata["rubygems_mfa_required"] = "true"
 end

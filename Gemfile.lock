@@ -2,8 +2,6 @@ PATH
   remote: .
   specs:
     laa_crime_forms_common (0.12.7)
-      activemodel
-      activesupport
       httparty (>= 0.22.0, < 1)
       i18n (>= 1.8.11, < 2)
       json-schema (>= 5.0.0, < 7)
@@ -35,7 +33,7 @@ GEM
     bigdecimal (4.0.1)
     coderay (1.1.3)
     concurrent-ruby (1.3.6)
-    connection_pool (2.5.4)
+    connection_pool (3.0.2)
     crack (1.0.1)
       bigdecimal
       rexml
@@ -60,7 +58,7 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    json (2.15.2)
+    json (2.18.0)
     json-schema (6.1.0)
       addressable (~> 2.8)
       bigdecimal (>= 3.1, < 5)
@@ -181,7 +179,7 @@ GEM
     unicode-display_width (3.2.0)
       unicode-emoji (~> 4.1)
     unicode-emoji (4.2.0)
-    uri (1.0.4)
+    uri (1.1.1)
     uuid (2.3.9)
       macaddr (~> 1.0)
     webmock (3.26.1)
@@ -194,6 +192,8 @@ PLATFORMS
   x86_64-darwin-23
 
 DEPENDENCIES
+  activemodel (~> 8.0)
+  activesupport (~> 8.0)
   debug
   laa_crime_forms_common!
   pry
