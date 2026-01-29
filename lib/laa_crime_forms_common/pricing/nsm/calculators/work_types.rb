@@ -35,7 +35,6 @@ module LaaCrimeFormsCommon
               [work_type.to_sym, formatted_items]
             end
             types[:total] = add_vat(build_summary(calculations, calculations, rounded_types))
-
             types
           end
 
@@ -45,8 +44,8 @@ module LaaCrimeFormsCommon
 
           def build_summary(claimed_items, assessed_items = claimed_items, summarized_items = nil)
             if summarized_items.nil?
-              claimed_total_exc_vat = claimed_items.sum(Rational(0, 1)) { _1[:claimed_total_exc_vat] }.round(2)
-              assessed_total_exc_vat = assessed_items.sum(Rational(0, 1)) { _1[:assessed_total_exc_vat] }.round(2)
+              claimed_total_exc_vat = calculated_summation(claimed_items).round(2)
+              assessed_total_exc_vat = calculated_summation(assessed_items, :assessed).round(2)
             else
               claimed_total_exc_vat = summarized_items.sum(Rational(0, 1)) { _1[:claimed_total_exc_vat] }.round(2)
               assessed_total_exc_vat = summarized_items.sum(Rational(0, 1)) { _1[:assessed_total_exc_vat] }.round(2)
@@ -85,6 +84,17 @@ module LaaCrimeFormsCommon
           end
 
           attr_reader :claim, :rates
+
+        private
+
+          def calculated_summation(items, eval_type = :claimed)
+            return Rational(0, 1) if items.empty?
+
+            total_time_spent = items.sum(Rational(0, 1)) { _1["#{eval_type}_time_spent_in_minutes".to_sym] }
+            total_uplift_time = items.sum(Rational(0, 1)) { _1["#{eval_type}_time_spent_in_minutes".to_sym] * (1 - _1["#{eval_type}_uplift_percentage".to_sym].to_f) / 100 }
+            rate = rates.work_items[items.first[:claimed_work_type].to_sym]
+            Rational(total_time_spent * rate, 60).round(3) + Rational(total_uplift_time * rate, 60).round(3)
+          end
         end
       end
     end

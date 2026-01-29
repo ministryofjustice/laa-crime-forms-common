@@ -26,7 +26,7 @@ module LaaCrimeFormsCommon
           end
 
           def profit_costs_summary_row
-            work_item_rows = work_types.except(:travel, :waiting, :total).values
+            work_item_rows = work_types.except(:travel, :waiting, :total).values.compact
             augment_with_vat(calculate_pre_vat_totals(work_item_rows + [letters_and_calls, youth_court_calculation]))
           end
 
@@ -47,7 +47,9 @@ module LaaCrimeFormsCommon
             %i[claimed_total_exc_vat
                claimed_vatable
                assessed_total_exc_vat
-               assessed_vatable].to_h { |figure| [figure, rows.sum(BigDecimal("0")) { _1[figure] }] }.tap do |basic_data|
+               assessed_vatable].to_h { |figure|
+              [figure, rows.sum { _1[figure] || BigDecimal("0") }]
+            }.tap do |basic_data|
               basic_data[:at_least_one_claimed_work_item_assessed_as_type_with_different_summary_group] = rows.any? { _1[:at_least_one_claimed_work_item_assessed_as_type_with_different_summary_group] }
             end
           end
