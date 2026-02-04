@@ -90,10 +90,14 @@ module LaaCrimeFormsCommon
           def calculated_summation(items, eval_type = :claimed)
             return Rational(0, 1) if items.empty?
 
-            total_time_spent = items.sum(Rational(0, 1)) { _1["#{eval_type}_time_spent_in_minutes".to_sym] }
-            total_uplift_time = items.sum(Rational(0, 1)) { _1["#{eval_type}_time_spent_in_minutes".to_sym] * (1 - _1["#{eval_type}_uplift_percentage".to_sym].to_f) / 100 }
+            total_time_spent = items.sum(Rational(0, 1)) { |item| item["#{eval_type}_uplift_multiplier".to_sym] == 100 ? item["#{eval_type}_time_spent_in_minutes".to_sym] * Rational(2, 1) : item["#{eval_type}_time_spent_in_minutes".to_sym] }
+            total_uplift_time = items.sum(Rational(0, 1)) { |item| partial_uplift?(item, eval_type) ? item["#{eval_type}_time_spent_in_minutes".to_sym] * item["#{eval_type}_uplift_percentage".to_sym].to_f / 100 : Rational(0, 1) }
             rate = rates.work_items[items.first[:claimed_work_type].to_sym]
             Rational(total_time_spent * rate, 60).round(3) + Rational(total_uplift_time * rate, 60).round(3)
+          end
+
+          def partial_uplift?(item, eval_type = :claimed)
+            item["#{eval_type}_uplift_multiplier".to_sym].positive? && item["#{eval_type}_uplift_multiplier".to_sym] < 100
           end
         end
       end
