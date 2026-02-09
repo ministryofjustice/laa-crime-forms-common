@@ -11,6 +11,7 @@ permissions:
 jobs:
   rubocop:
     name: Rubocop
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code 
         uses: actions/checkout@v6
