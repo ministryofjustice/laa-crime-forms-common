@@ -1,0 +1,51 @@
+name: Test, Build, Scan & Deploy
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  rubocop:
+    name: Rubocop
+    steps:
+      - name: Checkout code 
+        uses: actions/checkout@v6
+      
+      - name: Set up Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      
+      - name: Run Rubocop linter
+        run: bundle exec rubocop --format github --format progress
+
+  rspec:
+    name: RSpec
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code 
+        uses: actions/checkout@v6
+      
+      - name: Set up Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      
+      - name: Run RSpec tests
+        run: |
+          RUBYOPT=-W:no-deprecated \
+          bundle exec rspec --format progress
+
+      - name: Upload code coverage results
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: coverage-results
+          path: coverage
+          include-hidden-files: true
