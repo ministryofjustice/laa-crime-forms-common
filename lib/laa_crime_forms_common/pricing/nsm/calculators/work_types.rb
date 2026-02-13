@@ -89,11 +89,11 @@ module LaaCrimeFormsCommon
 
           def calculated_summation(items, eval_type = :claimed)
             return Rational(0, 1) if items.empty?
-            
+
             # since this method should only be used when summing for the same work item type, we can assume the first rate is the same as all items
             rate = rates.work_items[items.first[:claimed_work_type].to_sym]
             total_time_spent = items.sum(Rational(0, 1)) { |item| item["#{eval_type}_time_spent_in_minutes".to_sym] }
-            
+
             if all_full_uplift?(items, eval_type)
               Rational(total_time_spent * rate * Rational(2, 1), 60).round(3)
             elsif all_no_uplift?(items, eval_type)
@@ -101,7 +101,6 @@ module LaaCrimeFormsCommon
             else
               # every other scenario is a partial uplift of work type, so calculate and round uplift contribution separately
               total_uplift_time = items.sum(Rational(0, 1)) { |item| item["#{eval_type}_time_spent_in_minutes".to_sym] * (item["#{eval_type}_uplift_multiplier".to_sym] - 1) }
-              binding.pry
               Rational(total_time_spent * rate, 60).round(3) + Rational(total_uplift_time * rate, 60).round(3)
             end
           end
