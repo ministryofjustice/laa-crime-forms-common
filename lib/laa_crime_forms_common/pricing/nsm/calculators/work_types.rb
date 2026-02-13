@@ -89,19 +89,29 @@ module LaaCrimeFormsCommon
 
           def calculated_summation(items, eval_type = :claimed)
             return Rational(0, 1) if items.empty?
-
-            total_time_spent = items.sum(Rational(0, 1)) { |item| item["#{eval_type}_uplift_multiplier".to_sym] == Rational(2, 1) ? item["#{eval_type}_time_spent_in_minutes".to_sym] * Rational(2, 1) : item["#{eval_type}_time_spent_in_minutes".to_sym] }
-            total_uplift_time = items.sum(Rational(0, 1)) { |item| partial_uplift?(item, eval_type) ? item["#{eval_type}_time_spent_in_minutes".to_sym] * (item["#{eval_type}_uplift_multiplier".to_sym] - 1) : Rational(0, 1) }
+            
             # since this method should only be used when summing for the same work item type, we can assume the first rate is the same as all items
             rate = rates.work_items[items.first[:claimed_work_type].to_sym]
-
-            Rational(total_time_spent * rate, 60).round(3) + Rational(total_uplift_time * rate, 60).round(3)
+            total_time_spent = items.sum(Rational(0, 1)) { |item| item["#{eval_type}_time_spent_in_minutes".to_sym] }
+            
+            if all_full_uplift?(items, eval_type)
+              Rational(total_time_spent * rate * Rational(2, 1), 60).round(3)
+            elsif all_no_uplift?(items, eval_type)
+              Rational(total_time_spent * rate, 60).round(3)
+            else
+              # every other scenario is a partial uplift of work type, so calculate and round uplift contribution separately
+              total_uplift_time = items.sum(Rational(0, 1)) { |item| item["#{eval_type}_time_spent_in_minutes".to_sym] * (item["#{eval_type}_uplift_multiplier".to_sym] - 1) }
+              binding.pry
+              Rational(total_time_spent * rate, 60).round(3) + Rational(total_uplift_time * rate, 60).round(3)
+            end
           end
 
-          def partial_uplift?(item, eval_type = :claimed)
-            return false if item["#{eval_type}_uplift_multiplier".to_sym].nil?
+          def all_full_uplift?(items, eval_type)
+            items.all? { |item| item["#{eval_type}_uplift_multiplier".to_sym] == Rational(2, 1) }
+          end
 
-            item["#{eval_type}_uplift_multiplier".to_sym].between?(Rational(101, 100), Rational(200, 100))
+          def all_no_uplift?(items, eval_type)
+            items.all? { |item| item["#{eval_type}_uplift_multiplier".to_sym] == Rational(1, 1) }
           end
         end
       end
