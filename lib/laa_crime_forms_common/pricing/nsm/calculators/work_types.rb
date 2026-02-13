@@ -99,7 +99,7 @@ module LaaCrimeFormsCommon
             elsif all_no_uplift?(items, eval_type)
               Rational(total_time_spent * rate, 60).round(3)
             else
-              # every other scenario is a partial uplift of work type, so calculate and round uplift contribution separately
+              # every other scenario is a partial uplift of work type, calculate and round uplift contribution separately
               total_uplift_time = items.sum(Rational(0, 1)) { |item| item["#{eval_type}_time_spent_in_minutes".to_sym] * (item["#{eval_type}_uplift_multiplier".to_sym] - 1) }
               Rational(total_time_spent * rate, 60).round(3) + Rational(total_uplift_time * rate, 60).round(3)
             end
