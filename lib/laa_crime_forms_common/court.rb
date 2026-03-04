@@ -1,11 +1,13 @@
 module LaaCrimeFormsCommon
   require "csv"
   class Court
-    def initialize(name:)
+    def initialize(id:, short_name:, name:)
+      @id = id
+      @short_name = short_name
       @name = name
     end
 
-    attr_reader :name
+    attr_reader :id, :short_name, :name
 
     def ==(other)
       other.name == name
@@ -15,7 +17,7 @@ module LaaCrimeFormsCommon
       def all
         @all ||= begin
           rows = csv_data
-          rows.map { |r| new(name: r["combined_formatted"]) }
+          rows.map { |r| new(id: r["id"], short_name: r["court_name"], name: r["combined_formatted"]) }
               .sort_by(&:name)
         end
       end
