@@ -30,7 +30,7 @@ module LaaCrimeFormsCommon
             types = WORK_TYPES.to_h do |work_type|
               claimed_items = calculations.select { _1[:claimed_work_type] == work_type }
               assessed_items = calculations.select { _1[:assessed_work_type] == work_type }
-              formatted_items = build_summary(claimed_items, assessed_items)
+              formatted_items = build_summary(claimed_items, assessed_items, nil, work_type)
               rounded_types << formatted_items
               [work_type.to_sym, formatted_items]
             end
@@ -42,10 +42,10 @@ module LaaCrimeFormsCommon
             @work_items ||= claim.work_items.map { Wrappers::WorkItem.new(_1) }
           end
 
-          def build_summary(claimed_items, assessed_items = claimed_items, summarized_items = nil)
+          def build_summary(claimed_items, assessed_items = claimed_items, summarized_items = nil, work_type = nil)
             if summarized_items.nil?
-              claimed_total_exc_vat = calculated_summation(claimed_items).round(2)
-              assessed_total_exc_vat = calculated_summation(assessed_items, :assessed).round(2)
+              claimed_total_exc_vat = calculated_summation(claimed_items, :claimed, work_type).round(2)
+              assessed_total_exc_vat = calculated_summation(assessed_items, :assessed, work_type).round(2)
             else
               claimed_total_exc_vat = summarized_items.sum(Rational(0, 1)) { _1[:claimed_total_exc_vat] }.round(2)
               assessed_total_exc_vat = summarized_items.sum(Rational(0, 1)) { _1[:assessed_total_exc_vat] }.round(2)
@@ -87,11 +87,11 @@ module LaaCrimeFormsCommon
 
         private
 
-          def calculated_summation(items, eval_type = :claimed)
+          def calculated_summation(items, eval_type = :claimed, work_type = nil)
             return Rational(0, 1) if items.empty?
 
             # since this method should only be used when summing for the same work item type, we can assume the first rate is the same as all items
-            rate = rates.work_items[items.first["#{eval_type}_work_type"].to_sym]
+            rate = rates.work_items[work_type.to_sym]
             total_time_spent = items.sum(Rational(0, 1)) { |item| item["#{eval_type}_time_spent_in_minutes".to_sym] }
 
             if all_full_uplift?(items, eval_type)
