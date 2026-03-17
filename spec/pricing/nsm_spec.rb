@@ -854,6 +854,47 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
           expect(described_class.totals(claim)[:totals][:claimed_total_exc_vat]).to eq(1231.63)
         end
       end
+
+      context "when all items have a full 100% uplift applied" do
+        let(:vat_registered) { false }
+
+        let(:disbursements) { [] }
+        let(:letters_and_calls) { [] }
+        let(:assessed_youth_court_fee_included) { false }
+        let(:claimed_youth_court_fee_included) { false }
+        let(:work_items) do
+          [
+            {
+              claimed_time_spent_in_minutes: 426,
+              claimed_work_type: "advocacy",
+              claimed_uplift_percentage: 100,
+              assessed_time_spent_in_minutes: 426,
+              assessed_work_type: "advocacy",
+              assessed_uplift_percentage: 0,
+            },
+            {
+              claimed_time_spent_in_minutes: 426,
+              claimed_work_type: "advocacy",
+              claimed_uplift_percentage: 100,
+              assessed_time_spent_in_minutes: 426,
+              assessed_work_type: "advocacy",
+              assessed_uplift_percentage: 0,
+            },
+            {
+              claimed_time_spent_in_minutes: 426,
+              claimed_work_type: "advocacy",
+              claimed_uplift_percentage: 100,
+              assessed_time_spent_in_minutes: 426,
+              assessed_work_type: "advocacy",
+              assessed_uplift_percentage: 0,
+            },
+          ]
+        end
+
+        it "applies calculates the expected work_items totals" do
+          expect(described_class.totals(claim)[:totals][:claimed_total_exc_vat]).to eq(2786.89)
+        end
+      end
     end
   end
 end
