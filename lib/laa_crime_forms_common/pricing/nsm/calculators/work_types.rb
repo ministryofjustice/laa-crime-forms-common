@@ -91,7 +91,7 @@ module LaaCrimeFormsCommon
             return Rational(0, 1) if items.empty?
 
             # since this method should only be used when summing for the same work item type, we can assume the first rate is the same as all items
-            rate = rates.work_items[items.first[:claimed_work_type].to_sym]
+            rate = rates.work_items[items.first["#{eval_type}_work_type"].to_sym]
             total_time_spent = items.sum(Rational(0, 1)) { |item| item["#{eval_type}_time_spent_in_minutes".to_sym] }
 
             if all_full_uplift?(items, eval_type)

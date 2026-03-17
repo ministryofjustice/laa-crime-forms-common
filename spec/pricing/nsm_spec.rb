@@ -36,10 +36,14 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
           claimed_work_type: "advocacy",
           claimed_subtotal_without_uplift: 54.52,
           claimed_total_exc_vat: 65.42,
+          claimed_rate_per_hour: 65.42,
+          claimed_uplift_multiplier: 1.2,
           assessed_time_spent_in_minutes: 25,
           assessed_work_type: "travel",
           assessed_subtotal_without_uplift: 11.5,
           assessed_total_exc_vat: 21.28,
+          assessed_rate_per_hour: 27.6,
+          assessed_uplift_multiplier: 1.85,
         })
       end
 
