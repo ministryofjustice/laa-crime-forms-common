@@ -36,10 +36,14 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
           claimed_work_type: "advocacy",
           claimed_subtotal_without_uplift: 54.52,
           claimed_total_exc_vat: 65.42,
+          claimed_rate_per_hour: 65.42,
+          claimed_uplift_multiplier: 1.2,
           assessed_time_spent_in_minutes: 25,
           assessed_work_type: "travel",
           assessed_subtotal_without_uplift: 11.5,
           assessed_total_exc_vat: 21.28,
+          assessed_rate_per_hour: 27.6,
+          assessed_uplift_multiplier: 1.85,
         })
       end
 
@@ -848,6 +852,47 @@ RSpec.describe LaaCrimeFormsCommon::Pricing::Nsm do
 
         it "applies calculates the expected work_items totals" do
           expect(described_class.totals(claim)[:totals][:claimed_total_exc_vat]).to eq(1231.63)
+        end
+      end
+
+      context "when all items have a full 100% uplift applied" do
+        let(:vat_registered) { false }
+
+        let(:disbursements) { [] }
+        let(:letters_and_calls) { [] }
+        let(:assessed_youth_court_fee_included) { false }
+        let(:claimed_youth_court_fee_included) { false }
+        let(:work_items) do
+          [
+            {
+              claimed_time_spent_in_minutes: 426,
+              claimed_work_type: "advocacy",
+              claimed_uplift_percentage: 100,
+              assessed_time_spent_in_minutes: 426,
+              assessed_work_type: "advocacy",
+              assessed_uplift_percentage: 0,
+            },
+            {
+              claimed_time_spent_in_minutes: 426,
+              claimed_work_type: "advocacy",
+              claimed_uplift_percentage: 100,
+              assessed_time_spent_in_minutes: 426,
+              assessed_work_type: "advocacy",
+              assessed_uplift_percentage: 0,
+            },
+            {
+              claimed_time_spent_in_minutes: 426,
+              claimed_work_type: "advocacy",
+              claimed_uplift_percentage: 100,
+              assessed_time_spent_in_minutes: 426,
+              assessed_work_type: "advocacy",
+              assessed_uplift_percentage: 0,
+            },
+          ]
+        end
+
+        it "applies calculates the expected work_items totals" do
+          expect(described_class.totals(claim)[:totals][:claimed_total_exc_vat]).to eq(2786.89)
         end
       end
     end

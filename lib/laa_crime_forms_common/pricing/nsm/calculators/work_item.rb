@@ -3,6 +3,8 @@ module LaaCrimeFormsCommon
     module Nsm
       module Calculators
         class WorkItem
+          attr_reader :work_item, :claim, :rates
+
           class << self
             def call(claim, work_item, rates: Rates.call(claim))
               new(claim, work_item, rates).call
@@ -21,10 +23,14 @@ module LaaCrimeFormsCommon
               claimed_time_spent_in_minutes: work_item.claimed_time_spent_in_minutes,
               claimed_subtotal_without_uplift:,
               claimed_total_exc_vat:,
+              claimed_rate_per_hour:,
+              claimed_uplift_multiplier:,
               assessed_work_type: work_item.assessed_work_type,
               assessed_time_spent_in_minutes: work_item.assessed_time_spent_in_minutes,
               assessed_subtotal_without_uplift:,
               assessed_total_exc_vat:,
+              assessed_rate_per_hour:,
+              assessed_uplift_multiplier:,
             }
           end
 
@@ -61,8 +67,6 @@ module LaaCrimeFormsCommon
           def assessed_uplift_multiplier
             Rational(100 + work_item.assessed_uplift_percentage, 100)
           end
-
-          attr_reader :work_item, :claim, :rates
         end
       end
     end
