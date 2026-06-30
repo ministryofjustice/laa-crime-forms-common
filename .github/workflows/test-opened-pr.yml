@@ -14,7 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code 
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          persist-credentials: false
       
       - name: Set up Ruby and install gems
         uses: ruby/setup-ruby@3ff19f5e2baf30647122352b96108b1fbe250c64
@@ -31,7 +33,9 @@ jobs:
       contents: read
     steps:
       - name: Checkout code 
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          persist-credentials: false
       
       - name: Set up Ruby and install gems
         uses: ruby/setup-ruby@3ff19f5e2baf30647122352b96108b1fbe250c64
