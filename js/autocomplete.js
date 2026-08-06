@@ -74,6 +74,8 @@ export function convertSelectToAutocomplete() {
         }
       },
     });
+    element.hidden = true;
+    element.setAttribute("aria-hidden", "true");
     element.dataset.converted = true;
   });
 }
