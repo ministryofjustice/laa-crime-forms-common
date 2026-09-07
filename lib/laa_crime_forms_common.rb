@@ -15,6 +15,7 @@ require "laa_crime_forms_common/court"
 require "laa_crime_forms_common/main_offence"
 require "laa_crime_forms_common/outcome_code"
 require "laa_crime_forms_common/matter_type"
+require "laa_crime_forms_common/payment_basis"
 
 Dir["#{File.join(__dir__, './laa_crime_forms_common/attributes/type')}/*.rb"].each { |f| require f }
 Dir["#{File.join(__dir__, './laa_crime_forms_common/validators')}/*.rb"].each { |f| require f }
