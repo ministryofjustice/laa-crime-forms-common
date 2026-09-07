@@ -4,6 +4,7 @@ module LaaCrimeFormsCommon
 
     DIGITAL_CLAIM = "digital_claim".freeze
     EXISTING_PAYMENT_RECORD = "existing_payment_record".freeze
+    LINKED_NO_PREVIOUS_PAYMENT = "linked_no_previous_payment".freeze
     NEW_UNLINKED_RECORD = "new_unlinked_record".freeze
     STANDARD_MANUAL_ENTRY = "standard_manual_entry".freeze
 
@@ -13,6 +14,7 @@ module LaaCrimeFormsCommon
     ALL = [
       DIGITAL_CLAIM,
       EXISTING_PAYMENT_RECORD,
+      LINKED_NO_PREVIOUS_PAYMENT,
       NEW_UNLINKED_RECORD,
       STANDARD_MANUAL_ENTRY,
     ].freeze
@@ -20,6 +22,7 @@ module LaaCrimeFormsCommon
     CALCULATION_METHOD_BY_BASIS = {
       DIGITAL_CLAIM => ENTERED_TO_BE_PAID,
       EXISTING_PAYMENT_RECORD => CALCULATED_DIFFERENCE,
+      LINKED_NO_PREVIOUS_PAYMENT => ENTERED_TO_BE_PAID,
       NEW_UNLINKED_RECORD => ENTERED_TO_BE_PAID,
       STANDARD_MANUAL_ENTRY => ENTERED_TO_BE_PAID,
     }.freeze
