@@ -27,7 +27,7 @@ RSpec.describe LaaCrimeFormsCommon::PaymentBasis do
     it "maps direct-entry basis values to entered to be paid" do
       expect(described_class.calculation_method_for("digital_claim"))
         .to eq("entered_to_be_paid")
-      expect(described_class.calculation_method_for("linked_no_previous_payment"))
+      expect(described_class.calculation_method_for("linked_no_original_payment"))
         .to eq("entered_to_be_paid")
       expect(described_class.calculation_method_for("new_unlinked_record"))
         .to eq("entered_to_be_paid")
