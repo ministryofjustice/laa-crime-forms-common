@@ -11,14 +11,6 @@ module LaaCrimeFormsCommon
     ENTERED_TO_BE_PAID = "entered_to_be_paid".freeze
     CALCULATED_DIFFERENCE = "calculated_difference".freeze
 
-    ALL = [
-      DIGITAL_CLAIM,
-      EXISTING_PAYMENT_RECORD,
-      LINKED_NO_ORIGINAL_PAYMENT,
-      NEW_UNLINKED_RECORD,
-      STANDARD_MANUAL_ENTRY,
-    ].freeze
-
     CALCULATION_METHOD_BY_BASIS = {
       DIGITAL_CLAIM => ENTERED_TO_BE_PAID,
       EXISTING_PAYMENT_RECORD => CALCULATED_DIFFERENCE,
@@ -26,6 +18,8 @@ module LaaCrimeFormsCommon
       NEW_UNLINKED_RECORD => ENTERED_TO_BE_PAID,
       STANDARD_MANUAL_ENTRY => ENTERED_TO_BE_PAID,
     }.freeze
+
+    ALL = CALCULATION_METHOD_BY_BASIS.keys.freeze
 
     def valid_basis?(value)
       ALL.include?(normalize(value))
