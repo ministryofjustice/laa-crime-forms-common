@@ -9,6 +9,14 @@ permissions:
   contents: read
 
 jobs:
+  test-comment:
+    name: Test Comment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add comment
+        uses: ./.github/workflows/comment-pr.yml
+        with:
+          comment-body: 'Running tests on this pull request'
   rubocop:
     name: Rubocop
     runs-on: ubuntu-latest

@@ -1,0 +1,24 @@
+name: "Comment on Pull Request"
+description: "Intakes a string, comments on the pull request with the provided content once per pull request"
+
+on:
+  workflow_call:
+    inputs:
+      comment-body:
+        description: 'Body of comment to upsert to pull request'
+        default: 'latest'
+        required: false
+        type: string
+
+jobs:
+    comment:
+        runs-on: ubuntu-latest
+        name: Add comment
+        steps:
+            - name: Add comment
+              run: gh pr comment "$NUMBER" --body "$BODY" --edit-last --create-if-none
+              env:
+                GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                GH_REPO: ${{ github.repository }}
+                NUMBER: ${{ github.event.pull_request.number }}
+                BODY: ${{ inputs.comment-body }}
