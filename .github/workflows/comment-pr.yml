@@ -1,6 +1,6 @@
-name: "Comment on Pull Request"
-description: "Intakes a string, comments on the pull request with the provided content once per pull request"
+# This workflow intakes a string, comments on the pull request with the provided content once per pull request
 
+name: "Comment on Pull Request"
 on:
   workflow_call:
     inputs:
