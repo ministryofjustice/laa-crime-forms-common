@@ -9,18 +9,6 @@ permissions:
   contents: read
 
 jobs:
-  test-comment:
-    name: Test Comment
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code 
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
-        with:
-          persist-credentials: false
-      - name: Add comment
-        uses: ./.github/workflows/comment-pr.yml
-        with:
-          comment-body: 'Running tests on this pull request'
   rubocop:
     name: Rubocop
     runs-on: ubuntu-latest
