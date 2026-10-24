@@ -24,7 +24,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "accessible-autocomplete": "^3.0.1",
+    "accessible-autocomplete": "^3.0.2",
     "fastest-levenshtein": "^1.0.16"
   }
 }
