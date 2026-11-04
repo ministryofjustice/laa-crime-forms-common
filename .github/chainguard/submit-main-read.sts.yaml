@@ -1,0 +1,13 @@
+issuer: https://token.actions.githubusercontent.com
+subject: 'repo:ministryofjustice/laa-submit-crime-forms:ref:refs/heads/main'
+
+claim_pattern:
+  repository: "ministryofjustice/laa-submit-crime-forms"
+  repository_id: "615250998"
+  repository_owner_id: "2203574"
+  ref: "refs/heads/main"
+  event_name: "push"
+  workflow_ref: "ministryofjustice/laa-submit-crime-forms/.github/workflows/build-and-test-main.yml@refs/heads/main"
+
+permissions:
+  contents: read
